@@ -1,0 +1,38 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+
+	<wicket:panel>
+		
+				<section id="contact">
+		<div id="contact-us" class="parallax">
+		<div class="container">
+			<div class="row">
+	          <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+	            <h2>Register Now!</h2>
+	          </div>
+	        </div>
+			<div class="contact-form wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
+			<div class="row">
+<form wicket:id="registrationForm">
+
+					<label><wicket:message key="Registration.Username">Username</wicket:message>:</label>
+					<input wicket:id="username" id="j_username" name="j_username" type="text" class="form-control" tabindex="1" required />
+					<br /> 
+					<label><wicket:message key="Registration.Password">Password</wicket:message>:</label>
+					<input wicket:id="password" id="j_password" name="j_password" type="password" class="form-control" tabindex="2" required /><br />
+					<br />
+					<label><wicket:message key="Registration.ConfirmPassword">Confirm Password</wicket:message>:</label>
+					<input wicket:id="confirmPassword" id="j_password" name="j_password" type="password" class="form-control" tabindex="3" required /><br />
+					
+					<input type="submit" wicket:message="value:Registration.Register" value="Register" class="btn btn-primary"/>
+				</form>
+
+				</div>
+			</div>
+		</div>
+		</div>
+		</section>
+	</wicket:panel>
+
+</body>
+</html>

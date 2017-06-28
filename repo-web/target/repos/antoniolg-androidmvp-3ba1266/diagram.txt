@@ -1,0 +1,111 @@
+@startuml
+class android.app.Activity
+class android.content.Intent
+class android.os.Bundle
+class android.os.Handler
+class android.text.TextUtils
+class android.view.Menu
+class android.view.MenuItem
+class android.view.View
+class android.widget.AdapterView
+class android.widget.ArrayAdapter
+class android.widget.EditText
+class android.widget.ListView
+class android.widget.ProgressBar
+class android.widget.Toast
+class com.antonioleiva.mvpexample.app.Login.LoginActivity {
+ # void onCreate(Bundle savedInstanceState) 
+# void onDestroy() 
++ void showProgress() 
++ void hideProgress() 
++ void setUsernameError() 
++ void setPasswordError() 
++ void navigateToHome() 
++ void onClick(View v) 
+    - ProgressBar progressBar;
+    - EditText username;
+    - EditText password;
+    - LoginPresenter presenter;
+ 
+}
+class com.antonioleiva.mvpexample.app.Login.LoginInteractor {
+  
+}Impl
+class com.antonioleiva.mvpexample.app.Login.LoginPresenter {
+  
+}Impl
+class com.antonioleiva.mvpexample.app.R
+class com.antonioleiva.mvpexample.app.main.FindItemsInteractor {
+  
+}Impl
+class com.antonioleiva.mvpexample.app.main.MainActivity {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
+# void onDestroy() 
++ void showProgress() 
++ void hideProgress() 
++ void setItems(List<String> items) 
++ void showMessage(String message) 
++ void onItemClick(AdapterView<?> parent, View view, int position, long id) 
+    - ListView listView;
+    - ProgressBar progressBar;
+    - MainPresenter presenter;
+ 
+}
+class com.antonioleiva.mvpexample.app.main.MainPresenter {
+  
+}Impl
+class com.antonioleiva.mvpexample.app.main.MainPresenterTest {
+ + void setUp() 
++ void checkIfShowsProgressOnResume() 
++ void checkIfShowsMessageOnItemClick() 
++ void checkIfRightMessageIsDisplayed() 
++ void checkIfViewIsReleasedOnDestroy() 
++ void checkIfItemsArePassedToView() 
+    - MainPresenterImpl presenter;
+ 
+}
+class org.hamcrest.CoreMatchers
+class org.hamcrest.MatcherAssert
+class org.junit.Assert
+class org.mockito.ArgumentCaptor
+class org.mockito.Matchers
+class org.mockito.Mockito
+class org.mockito.runners.MockitoJUnitRunner
+interface AdapterView.OnItemClickListener
+interface FindItemsInteractor.OnFinishedListener
+interface LoginInteractor.OnLoginFinishedListener
+interface View.OnClickListener
+interface com.antonioleiva.mvpexample.app.Login.LoginInteractor {
+  
+}
+interface com.antonioleiva.mvpexample.app.Login.LoginPresenter {
+  
+}
+interface com.antonioleiva.mvpexample.app.Login.LoginView {
+  
+}
+interface com.antonioleiva.mvpexample.app.main.FindItemsInteractor {
+  
+}
+interface com.antonioleiva.mvpexample.app.main.MainPresenter {
+  
+}
+interface com.antonioleiva.mvpexample.app.main.MainView {
+  
+}
+com.antonioleiva.mvpexample.app.Login.LoginActivity --|> android.app.Activity
+com.antonioleiva.mvpexample.app.Login.LoginActivity --|> View.OnClickListener
+com.antonioleiva.mvpexample.app.Login.LoginActivity --|> com.antonioleiva.mvpexample.app.Login.LoginView
+com.antonioleiva.mvpexample.app.Login.LoginInteractorImpl --|> com.antonioleiva.mvpexample.app.Login.LoginInteractor
+com.antonioleiva.mvpexample.app.Login.LoginPresenterImpl --|> LoginInteractor.OnLoginFinishedListener
+com.antonioleiva.mvpexample.app.Login.LoginPresenterImpl --|> com.antonioleiva.mvpexample.app.Login.LoginPresenter
+com.antonioleiva.mvpexample.app.main.FindItemsInteractorImpl --|> com.antonioleiva.mvpexample.app.main.FindItemsInteractor
+com.antonioleiva.mvpexample.app.main.MainActivity --|> android.app.Activity
+com.antonioleiva.mvpexample.app.main.MainActivity --|> AdapterView.OnItemClickListener
+com.antonioleiva.mvpexample.app.main.MainActivity --|> com.antonioleiva.mvpexample.app.main.MainView
+com.antonioleiva.mvpexample.app.main.MainPresenterImpl --|> FindItemsInteractor.OnFinishedListener
+com.antonioleiva.mvpexample.app.main.MainPresenterImpl --|> com.antonioleiva.mvpexample.app.main.MainPresenter
+@enduml

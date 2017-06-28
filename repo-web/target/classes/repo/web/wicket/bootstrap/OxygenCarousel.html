@@ -1,0 +1,24 @@
+<html xmlns:wicket="http://wicket.apache.org">
+    <head>
+        <title>Carousel</title>
+    </head>
+    <body>
+        <wicket:panel>
+        	<div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
+			      <div class="carousel-inner">
+			        <div wicket:id="images" class="item" style="background-image: url(images/slider/1.jpg)">
+			          <div class="caption">
+			            <h1 wicket:id="header" class="animated fadeInLeftBig">Welcome to <span>Oxygen</span></h1>
+			            <p wicket:id="description" class="animated fadeInRightBig">Bootstrap - Responsive Design - Retina Ready - Parallax</p>
+			            <a data-scroll wicket:id="buttonLink" class="btn btn-start animated fadeInUpBig" wicket:message="value:Button.Link.Caption">Start Now</a>
+			          </div>
+			        </div>
+			      </div>
+			      <a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+			      <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
+			      
+				  <a id="tohash" href="#services"><i class="fa fa-angle-down"></i></a>
+			</div>
+        </wicket:panel>
+    </body>
+</html>

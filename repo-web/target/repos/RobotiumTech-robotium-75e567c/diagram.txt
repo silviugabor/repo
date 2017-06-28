@@ -1,0 +1,914 @@
+@startuml
+abstract class com.robotium.solo.By {
+ + {static} By id(final String id) 
++ {static} By xpath(final String xpath) 
++ {static} By cssSelector(final String selectors) 
++ {static} By name(final String name) 
++ {static} By className(final String className) 
++ {static} By textContent(final String textContent) 
++ {static} By tagName(final String tagName) 
++ String getValue()
+		- final String id;
+		- final String xpath;
+		- final String selector;
+		- final String name;
+		- final String className;
+		- final String textContent;
+		- final String tagName;
+ 
+}
+class android.app.Activity
+class android.app.ActivityManager
+class android.app.Instrumentation
+class android.app.Instrumentation.ActivityMonitor
+class android.content.Context
+class android.content.IntentFilter
+class android.content.pm.ActivityInfo
+class android.graphics.Bitmap
+class android.graphics.Canvas
+class android.graphics.Picture
+class android.graphics.PointF
+class android.net.ConnectivityManager
+class android.net.wifi.WifiManager
+class android.opengl.GLES20
+class android.opengl.GLSurfaceView
+class android.os.Environment
+class android.os.Handler
+class android.os.HandlerThread
+class android.os.Message
+class android.os.SystemClock
+class android.support.v4.app.Fragment
+class android.support.v4.app.FragmentActivity
+class android.text.InputType
+class android.util.Log
+class android.view.ContextThemeWrapper
+class android.view.InputDevice
+class android.view.KeyEvent
+class android.view.MenuItem
+class android.view.MotionEvent
+class android.view.MotionEvent.PointerCoords
+class android.view.MotionEvent.PointerProperties
+class android.view.View
+class android.view.ViewConfiguration
+class android.view.ViewGroup
+class android.view.ViewParent
+class android.view.Window
+class android.view.WindowManager
+class android.view.inputmethod.EditorInfo
+class android.view.inputmethod.InputMethodManager
+class android.webkit.ConsoleMessage
+class android.webkit.GeolocationPermissions
+class android.webkit.JsPromptResult
+class android.webkit.JsResult
+class android.webkit.ValueCallback
+class android.webkit.WebChromeClient
+class android.webkit.WebStorage
+class android.webkit.WebView
+class android.widget.AbsListView
+class android.widget.Button
+class android.widget.CheckBox
+class android.widget.CheckedTextView
+class android.widget.CompoundButton
+class android.widget.DatePicker
+class android.widget.EditText
+class android.widget.GridView
+class android.widget.ImageButton
+class android.widget.ImageView
+class android.widget.ListView
+class android.widget.ProgressBar
+class android.widget.RadioButton
+class android.widget.ScrollView
+class android.widget.SlidingDrawer
+class android.widget.Spinner
+class android.widget.TextView
+class android.widget.TimePicker
+class android.widget.ToggleButton
+class com.robotium.solo.ActivityUtils {
+ - void createStackAndPushStartActivity()
++ ArrayList<Activity> getAllOpenedActivities()
+	
+- void setupActivityMonitor() 
++ boolean shouldRegisterActivities() 
++ void setRegisterActivities(boolean registerActivities) 
+- void setupActivityStackListener() 
+- void removeActivityFromStack(Activity activity)
++ ActivityMonitor getActivityMonitor()
++ void setActivityOrientation(int orientation)
+	
++ Activity getCurrentActivity(boolean shouldSleepFirst) 
++ Activity getCurrentActivity() 
+- void addActivityToStack(Activity activity)
+- final void waitForActivityIfNotAvailable()
++ String getCurrentActivityName()
++ Activity getCurrentActivity(boolean shouldSleepFirst, boolean waitForActivity) 
++ boolean isActivityStackEmpty() 
++ void goBackToActivity(String name)
+	
++ String getString(int resId)
+	
++ void finalize() 
+- void stopActivityMonitor()
++ void finishOpenedActivities()
+- void useGoBack(int numberOfTimes)
+- void clearActivityStack()
+- void finishActivity(Activity activity)
++ void run() 
+- boolean shouldMonitor() 
+- void monitorActivities() 
+	- final Config config;
+	- final Instrumentation inst;
+	- ActivityMonitor activityMonitor;
+	- Activity activity;
+	- final Sleeper sleeper;
+	- Stack<WeakReference<Activity>> activityStack;
+	- WeakReference<Activity> weakActivityReference;
+	- Stack<String> activitiesStoredInActivityStack;
+	- Timer activitySyncTimer;
+	- volatile boolean registerActivities;
+		- final WeakReference<ActivityUtils> activityUtilsWR;
+ 
+}
+class com.robotium.solo.Asserter {
+ + void assertCurrentActivity(String message, String name) 
++ void assertCurrentActivity(String message, Class<? extends Activity> expectedClass) 
++ void assertCurrentActivity(String message, String name, boolean isNewInstance) 
++ void assertCurrentActivity(String message, Class<? extends Activity> expectedClass,
+			boolean isNewInstance) 
++ void assertMemoryNotLow() 
+	- final ActivityUtils activityUtils;
+	- final Waiter waiter;
+ 
+}
+class com.robotium.solo.Checker {
+ + <T extends CompoundButton> boolean isButtonChecked(Class<T> expectedClass, int index)
+	
++ <T extends CompoundButton> boolean isButtonChecked(Class<T> expectedClass, String text)
+	
++ boolean isCheckedTextChecked(String text)
+	
++ boolean isSpinnerTextSelected(String text)
+	
++ boolean isSpinnerTextSelected(int spinnerIndex, String text)
+	
+	- final ViewFetcher viewFetcher;
+	- final Waiter waiter;
+ 
+}
+class com.robotium.solo.Clicker {
+ + void clickOnScreen(float x, float y, View view) 
++ void clickLongOnScreen(float x, float y, int time, View view) 
++ void clickOnScreen(View view) 
++ void clickOnScreen(View view, boolean longClick, int time) 
+- float[] getClickCoordinates(View view)
++ void clickLongOnTextAndPress(String text, int index)
+	
+- void openMenu()
++ void clickOnMenuItem(String text)
+	
++ void clickOnMenuItem(String text, boolean subMenu)
+	
++ void clickOnActionBarItem(int resourceId)
++ void clickOnActionBarHomeButton() 
++ void clickOnWebElement(By by, int match, boolean scroll, boolean useJavaScriptToClick)
++ void clickOnText(String regex, boolean longClick, int match, boolean scroll, int time) 
++ <T extends TextView> void clickOn(Class<T> viewClass, String nameRegex) 
++ <T extends View> void clickOn(Class<T> viewClass, int index) 
++ ArrayList<TextView> clickInList(int line) 
++ void clickInList(int line, int id) 
++ ArrayList<TextView> clickInList(int line, int index, int id, boolean longClick, int time) 
++ ArrayList<TextView> clickInRecyclerView(int line) 
++ void clickInRecyclerView(int itemIndex, int id) 
++ ArrayList<TextView> clickInRecyclerView(int itemIndex, int recyclerViewIndex, int id, boolean longClick, int time) 
+- View getView(int id, List<View> views)
+- void failIfIndexHigherThenChildCount(ViewGroup viewGroup, int index, long endTime)
+- View getViewOnAbsListLine(AbsListView absListView, int index, int lineIndex)
+- View getViewOnRecyclerItemIndex(ViewGroup recyclerView, int recyclerViewIndex, int itemIndex)
+	- final ActivityUtils activityUtils;
+	- final ViewFetcher viewFetcher;
+	- final Instrumentation inst;
+	- final Sender sender;
+	- final Sleeper sleeper;
+	- final Waiter waiter;
+	- final WebUtils webUtils;
+	- final DialogUtils dialogUtils;
+ 
+}
+class com.robotium.solo.DialogUtils {
+ + boolean waitForDialogToClose(long timeout) 
++ boolean waitForDialogToOpen(long timeout, boolean sleepFirst) 
+- boolean isDialogOpen()
+- boolean isDialog(Activity activity, View decorView)
++ void hideSoftKeyboard(EditText editText, boolean shouldSleepFirst, boolean shouldSleepAfter) 
+	- final Instrumentation instrumentation;
+	- final ActivityUtils activityUtils;
+	- final ViewFetcher viewFetcher;
+	- final Sleeper sleeper;
+ 
+}
+class com.robotium.solo.GLRenderWrapper {
+ + void onSurfaceCreated(GL10 gl, EGLConfig config) 
++ void onSurfaceChanged(GL10 gl, int width, int height) 
++ void onDrawFrame(GL10 gl) 
++ void setTakeScreenshot() 
++ void setLatch(CountDownLatch latch) 
+- Bitmap savePixels(int x, int y, int w, int h) 
+- {static} Bitmap savePixels(int x, int y, int w, int h, GL10 gl) 
+	- Renderer renderer;
+	- int width;
+	- int height;
+	- final GLSurfaceView view;
+	- CountDownLatch latch;
+	- int glVersion;
+ 
+}
+class com.robotium.solo.Getter {
+ + <T extends View> T getView(Class<T> classToFilterBy, int index) 
++ <T extends TextView> T getView(Class<T> classToFilterBy, String text, boolean onlyVisible) 
++ String getString(int id)
+	
++ String getString(String id)
+	
++ View getView(int id, int index, int timeout)
++ View getView(int id, int index)
++ View getView(String id, int index)
++ View getView(Object tag, int index, int timeout)
++ View getView(Object tag, int index)
+	- final Instrumentation instrumentation;
+	- final ActivityUtils activityUtils;
+	- final Waiter waiter;
+ 
+}
+class com.robotium.solo.Illustration {
+ + Builder setToolType(int toolType) 
++ Builder addPoint(float x, float y, float pressure) 
++ Illustration build() 
++ ArrayList<PressurePoint> getPoints() 
++ int getToolType() 
+  - final int toolType;
+  - final ArrayList<PressurePoint> points;
+ 
+}
+class com.robotium.solo.Illustrator {
+ + void illustrate(Illustration illustration) 
+    - Instrumentation inst;
+ 
+}
+class com.robotium.solo.Presser {
+ + void pressMenuItem(int index)
++ void pressMenuItem(int index, int itemsPerRow) 
++ void pressSoftKeyboard(final int imeAction)
++ void pressSpinnerItem(int spinnerIndex, int itemIndex)
+	
+	- final Clicker clicker;
+	- final Instrumentation inst;
+	- final Sleeper sleeper;
+	- final Waiter waiter;
+	- final DialogUtils dialogUtils;
+	- final ViewFetcher viewFetcher;
+ 
+}
+class com.robotium.solo.PressurePoint {
+     + final float x;
+    + final float y;
+    + final float pressure;
+ 
+}
+class com.robotium.solo.Reflect {
+ + FieldRf field(String name) 
++ <T> T out(Class<T> outclazz) 
++ void in(Object value) 
++ FieldRf type(Class<?> clazz) 
+- Field getField() 
+- Object getValue(Field field) 
+	- Object object;
+		- Object object;
+		- String name;
+ 
+}
+class com.robotium.solo.RobotiumTextView {
+ + void getLocationOnScreen(int[] location) 
++ void setLocationX(int locationX)
++ void setLocationY(int locationY)
+ 
+}
+class com.robotium.solo.RobotiumUtils {
+ + {static} <T extends View> ArrayList<T> removeInvisibleViews(Iterable<T> viewList) 
++ {static} <T> ArrayList<T> filterViews(Class<T> classToFilterBy, Iterable<?> viewList) 
++ {static} ArrayList<View> filterViewsToSet(Class<View> classSet[], Iterable<View> viewList) 
++ {static} void sortViewsByLocationOnScreen(List<? extends View> views) 
++ {static} void sortViewsByLocationOnScreen(List<? extends View> views, boolean yAxisFirst) 
++ {static} int getNumberOfMatches(String regex, TextView view, Set<TextView> uniqueTextViews)
++ {static} <T extends TextView> List<T> filterViewsByText(Iterable<T> views, String regex) 
++ {static} <T extends TextView> List<T> filterViewsByText(Iterable<T> views, Pattern regex) 
+ 
+}
+class com.robotium.solo.RobotiumWebClient {
+ + void enableJavascriptAndSetRobotiumWebClient(List<WebView> webViews, WebChromeClient originalWebChromeClient)
++ boolean onJsPrompt(WebView view, String url, String message,	String defaultValue, JsPromptResult r) 
++ Bitmap getDefaultVideoPoster() 
++ View getVideoLoadingProgressView() 
++ void getVisitedHistory(ValueCallback<String[]> callback) 
++ void onCloseWindow(WebView window) 
++ void onConsoleMessage(String message, int lineNumber, String sourceID) 
++ boolean onConsoleMessage(ConsoleMessage consoleMessage) 
++ boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) 
++ void onExceededDatabaseQuota(String url, String databaseIdentifier, long quota,
+			long estimatedDatabaseSize, long totalQuota, WebStorage.QuotaUpdater quotaUpdater) 
++ void onGeolocationPermissionsHidePrompt() 
++ void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) 
++ void onHideCustomView() 
++ boolean onJsAlert(WebView view, String url, String message, JsResult result) 
++ boolean onJsBeforeUnload(WebView view, String url, String message, JsResult result) 
++ boolean onJsConfirm(WebView view, String url, String message, JsResult result) 
++ boolean onJsTimeout() 
++ void onProgressChanged(WebView view, int newProgress) 
++ void onReachedMaxAppCacheSize(long requiredStorage, long quota, WebStorage.QuotaUpdater quotaUpdater) 
++ void onReceivedIcon(WebView view, Bitmap icon) 
++ void onReceivedTitle(WebView view, String title) 
++ void onReceivedTouchIconUrl(WebView view, String url, boolean precomposed) 
++ void onRequestFocus(WebView view) 
++ void onShowCustomView(View view, WebChromeClient.CustomViewCallback callback) 
+	- Instrumentation inst;
+	- WebChromeClient robotiumWebClient;
+ 
+}
+class com.robotium.solo.Rotator {
+ + void generateRotateGesture(int size, PointF center1, PointF center2)
+	
+	- final Instrumentation _instrument;
+ 
+}
+class com.robotium.solo.ScreenshotTaker {
+ + void takeScreenshot(final String name, final int quality) 
++ void startScreenshotSequence(final String name, final int quality, final int frameDelay, final int maxFrames) 
++ void stopScreenshotSequence() 
+- View getScreenshotView() 
+- void wrapAllGLViews(View decorView) 
+- Bitmap getBitmapOfWebView(final WebView webView)
+- Bitmap getBitmapOfView(final View view)
+- String getFileName(final String name)
+- void initScreenShotSaver() 
++ void run() 
++ void doScreenshot() 
++ void interrupt() 
++ void saveBitmap(Bitmap bitmap, String name, int quality) 
++ void handleMessage(Message message) 
+- void saveFile(String name, Bitmap b, int quality)
+	- final Config config;
+	- final Instrumentation instrumentation;
+	- final ActivityUtils activityUtils;
+	- final ViewFetcher viewFetcher;
+	- final Sleeper sleeper;
+		- String name;
+		- int quality;
+		- int frameDelay;
+		- int maxFrames;
+		- View view;
+ 
+}
+class com.robotium.solo.Scroller {
+ + void drag(float fromX, float toX, float fromY, float toY,
+			int stepCount) 
++ boolean scrollView(final View view, int direction)
++ void run()
++ void scrollViewAllTheWay(final View view, final int direction) 
++ boolean scroll(int direction) 
++ boolean scrollDown() 
++ boolean scroll(int direction, boolean allTheWay) 
++ boolean scrollWebView(final WebView webView, int direction, final boolean allTheWay)
++ <T extends AbsListView> boolean scrollList(T absListView, int direction, boolean allTheWay) 
++ <T extends AbsListView> void scrollListToLine(final T view, final int line)
++ void scrollToSide(Side side, float scrollPosition, int stepCount) 
++ void scrollViewToSide(View view, Side side, float scrollPosition, int stepCount) 
+	- final Instrumentation inst;
+	- final ViewFetcher viewFetcher;
+	- final Sleeper sleeper;
+	- final Config config;
+ 
+}
+class com.robotium.solo.Searcher {
+ + boolean searchWithTimeoutFor(Class<? extends TextView> viewClass, String regex, int expectedMinimumNumberOfMatches, boolean scroll, boolean onlyVisible) 
++ <T extends TextView> T searchFor(final Class<T> viewClass, final String regex, int expectedMinimumNumberOfMatches, final long timeout, final boolean scroll, final boolean onlyVisible) 
++ Collection<T> call() 
++ <T extends View> boolean searchFor(Set<T> uniqueViews, Class<T> viewClass, final int index) 
++ <T extends View> boolean searchFor(View view) 
++ <T extends TextView> T searchFor(Callable<Collection<T>> viewFetcherCallback, String regex, int expectedMinimumNumberOfMatches, long timeout, boolean scroll) 
++ WebElement searchForWebElement(final By by, int minimumNumberOfMatches)
+- void addViewsToList(List<WebElement> allWebElements, List<WebElement> webElementsOnScreen)
+- WebElement getViewFromList(List<WebElement> webElements, int match)
++ <T extends View> int getNumberOfUniqueViews(Set<T>uniqueViews, ArrayList<T> views)
++ int getNumberOfUniqueViews()
++ void logMatchesFound(String regex)
+	- final ViewFetcher viewFetcher;
+	- final WebUtils webUtils;
+	- final Scroller scroller;
+	- final Sleeper sleeper;
+	- int numberOfUniqueViews;
+ 
+}
+class com.robotium.solo.Sender {
+ + void sendKeyCode(int keycode)
+	
++ void goBack() 
+	- final Instrumentation inst;
+	- final Sleeper sleeper;
+ 
+}
+class com.robotium.solo.Setter {
+ + void setDatePicker(final DatePicker datePicker, final int year, final int monthOfYear, final int dayOfMonth) 
++ void setTimePicker(final TimePicker timePicker, final int hour, final int minute) 
++ void setProgressBar(final ProgressBar progressBar,final int progress) 
++ void setSlidingDrawer(final SlidingDrawer slidingDrawer, final int status)
++ void setNavigationDrawer(final int status)
++ boolean isSatisfied() 
+	- final ActivityUtils activityUtils;
+	- final Getter getter;
+	- final Clicker clicker;
+	- final Waiter waiter;
+ 
+}
+class com.robotium.solo.Sleeper {
+ + void sleep() 
++ void sleepMini() 
++ void sleep(int time) 
+	- int pauseDuration;
+	- int miniPauseDuration;
+ 
+}
+class com.robotium.solo.Solo {
+ + void setUp() 
++ ActivityMonitor getActivityMonitor()
++ Config getConfig()
++ ArrayList<View> getViews() 
++ ArrayList<View> getViews(View parent) 
++ View getTopParent(View view) 
++ boolean waitForText(String text) 
++ boolean waitForText(String text, int minimumNumberOfMatches, long timeout) 
++ boolean waitForText(String text, int minimumNumberOfMatches, long timeout, boolean scroll) 
++ boolean waitForText(String text, int minimumNumberOfMatches, long timeout, boolean scroll, boolean onlyVisible) 
++ boolean waitForView(int id)
++ boolean waitForView(int id, int minimumNumberOfMatches, int timeout)
++ boolean waitForView(int id, int minimumNumberOfMatches, int timeout, boolean scroll)
++ boolean waitForView(Object tag)
++ boolean waitForView(Object tag, int minimumNumberOfMatches, int timeout)
++ boolean waitForView(Object tag, int minimumNumberOfMatches, int timeout, boolean scroll)
++ <T extends View> boolean waitForView(final Class<T> viewClass)
++ <T extends View> boolean waitForView(View view)
++ <T extends View> boolean waitForView(View view, int timeout, boolean scroll)
++ <T extends View> boolean waitForView(final Class<T> viewClass, final int minimumNumberOfMatches, final int timeout)
++ <T extends View> boolean waitForView(final Class<T> viewClass, final int minimumNumberOfMatches, final int timeout,final boolean scroll)
++ boolean waitForWebElement(By by)
++ boolean waitForWebElement(By by, int timeout, boolean scroll)
++ boolean waitForWebElement(By by, int minimumNumberOfMatches, int timeout, boolean scroll)
++ boolean waitForCondition(Condition condition, final int timeout)
++ boolean searchEditText(String text) 
++ boolean searchButton(String text) 
++ boolean searchButton(String text, boolean onlyVisible) 
++ boolean searchToggleButton(String text) 
++ boolean searchButton(String text, int minimumNumberOfMatches) 
++ boolean searchButton(String text, int minimumNumberOfMatches, boolean onlyVisible) 
++ boolean searchToggleButton(String text, int minimumNumberOfMatches) 
++ boolean searchText(String text) 
++ boolean searchText(String text, boolean onlyVisible) 
++ boolean searchText(String text, int minimumNumberOfMatches) 
++ boolean searchText(String text, int minimumNumberOfMatches, boolean scroll) 
++ boolean searchText(String text, int minimumNumberOfMatches, boolean scroll, boolean onlyVisible) 
++ void setActivityOrientation(int orientation)
+	
++ Activity getCurrentActivity() 
++ void assertCurrentActivity(String message, String name)
+	
++ void assertCurrentActivity(String message, @SuppressWarnings("rawtypes") 
++ void assertCurrentActivity(String message, String name, boolean isNewInstance)
+	
++ void assertMemoryNotLow()
+	
++ boolean waitForDialogToOpen() 
++ boolean waitForDialogToClose() 
++ boolean waitForDialogToOpen(long timeout) 
++ boolean waitForDialogToClose(long timeout) 
++ void goBack()
+	
++ void clickOnScreen(float x, float y) 
++ void clickOnScreen(float x, float y, int numberOfClicks) 
++ void clickLongOnScreen(float x, float y) 
++ void clickLongOnScreen(float x, float y, int time) 
++ void clickOnButton(String text) 
++ void clickOnImageButton(int index) 
++ void clickOnToggleButton(String text) 
++ void clickOnMenuItem(String text)
+	
++ void clickOnMenuItem(String text, boolean subMenu)
+	
++ void clickOnWebElement(WebElement webElement)
++ void clickOnWebElement(By by)
++ void clickOnWebElement(By by, int match)
++ void clickOnWebElement(By by, int match, boolean scroll)
++ void pressMenuItem(int index) 
++ void pressMenuItem(int index, int itemsPerRow) 
++ void pressSoftKeyboardNextButton()
++ void pressSoftKeyboardSearchButton()
++ void pressSoftKeyboardGoButton()
++ void pressSoftKeyboardDoneButton()
++ void pressSpinnerItem(int spinnerIndex, int itemIndex)
+	
++ void clickOnView(View view) 
++ void clickOnView(View view, boolean immediately)
++ void clickLongOnView(View view) 
++ void clickLongOnView(View view, int time) 
++ void clickOnText(String text) 
++ void clickOnText(String text, int match) 
++ void clickOnText(String text, int match, boolean scroll) 
++ void clickLongOnText(String text)
+	
++ void clickLongOnText(String text, int match)
+	
++ void clickLongOnText(String text, int match, boolean scroll)
+	
++ void clickLongOnText(String text, int match, int time)
+	
++ void clickLongOnTextAndPress(String text, int index) 
++ void clickOnButton(int index) 
++ void clickOnRadioButton(int index) 
++ void clickOnCheckBox(int index) 
++ void clickOnEditText(int index) 
++ ArrayList<TextView> clickInList(int line) 
++ ArrayList<TextView> clickInList(int line, int index) 
++ void clickInList(int line, int index, int id) 
++ ArrayList<TextView> clickLongInList(int line)
++ ArrayList<TextView> clickLongInList(int line, int index)
++ ArrayList<TextView> clickLongInList(int line, int index, int time)
++ ArrayList<TextView> clickInRecyclerView(int itemIndex) 
++ ArrayList<TextView> clickInRecyclerView(int itemIndex, int recyclerViewIndex) 
++ void clickInRecyclerView(int itemIndex, int recyclerViewIndex, int id) 
++ ArrayList<TextView> clickLongInRecycleView(int itemIndex)
++ ArrayList<TextView> clickLongInRecycleView(int itemIndex, int recyclerViewIndex)
++ ArrayList<TextView> clickLongInRecycleView(int itemIndex, int recyclerViewIndex, int time)
++ void clickOnActionBarItem(int id)
++ void clickOnActionBarHomeButton() 
++ void run() 
++ void illustrate(Illustration illustration)
++ void drag(float fromX, float toX, float fromY, float toY,
+			int stepCount) 
++ boolean scrollDown() 
++ void scrollToBottom() 
++ boolean scrollUp()
++ void scrollToTop() 
++ boolean scrollDownList(AbsListView list) 
++ boolean scrollListToBottom(AbsListView list) 
++ boolean scrollUpList(AbsListView list) 
++ boolean scrollListToTop(AbsListView list) 
++ boolean scrollDownList(int index) 
++ boolean scrollListToBottom(int index) 
++ boolean scrollUpList(int index) 
++ boolean scrollListToTop(int index) 
++ void scrollListToLine(AbsListView absListView, int line)
++ void scrollListToLine(int index, int line)
++ boolean scrollDownRecyclerView(int index) 
++ boolean scrollRecyclerViewToBottom(int index) 
++ boolean scrollUpRecyclerView(int index) 
++ boolean scrollRecyclerViewToTop(int index) 
++ void scrollToSide(int side, float scrollPosition, int stepCount) 
++ void scrollToSide(int side, float scrollPosition) 
++ void scrollToSide(int side) 
++ void scrollViewToSide(View view, int side, float scrollPosition, int stepCount) 
++ void scrollViewToSide(View view, int side, float scrollPosition) 
++ void scrollViewToSide(View view, int side) 
++ void pinchToZoom(PointF startPoint1, PointF startPoint2, PointF endPoint1, PointF endPoint2)
+	
++ void swipe(PointF startPoint1, PointF startPoint2, PointF endPoint1, PointF endPoint2)
+	
++ void rotateLarge(PointF center1, PointF center2)
+	
++ void rotateSmall(PointF center1, PointF center2)
+	
++ void setMobileData(Boolean turnedOn)
++ void setWiFiData(Boolean turnedOn)
++ void setDatePicker(int index, int year, int monthOfYear, int dayOfMonth) 
++ void setDatePicker(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) 
++ void setTimePicker(int index, int hour, int minute) 
++ void setTimePicker(TimePicker timePicker, int hour, int minute) 
++ void setProgressBar(int index, int progress)
++ void setProgressBar(ProgressBar progressBar, int progress)
++ void setNavigationDrawer(final int status)
++ void setSlidingDrawer(int index, int status)
++ void setSlidingDrawer(SlidingDrawer slidingDrawer, int status)
++ void enterText(int index, String text) 
++ void enterText(EditText editText, String text) 
++ void enterTextInWebElement(By by, String text)
++ void typeText(int index, String text) 
++ void typeText(EditText editText, String text) 
++ void typeTextInWebElement(By by, String text)
++ void typeTextInWebElement(By by, String text, int match)
++ void typeTextInWebElement(WebElement webElement, String text)
++ void clearEditText(int index) 
++ void clearEditText(EditText editText) 
++ void clearTextInWebElement(By by)
++ void clickOnImage(int index) 
++ EditText getEditText(int index) 
++ Button getButton(int index) 
++ TextView getText(int index) 
++ ImageView getImage(int index) 
++ ImageButton getImageButton(int index) 
++ TextView getText(String text)
+	
++ TextView getText(String text, boolean onlyVisible)
+	
++ Button getButton(String text)
+	
++ Button getButton(String text, boolean onlyVisible)
+	
++ EditText getEditText(String text)
+	
++ EditText getEditText(String text, boolean onlyVisible)
+	
++ View getView(int id)
++ View getView(int id, int index)
++ View getView(Object tag)
++ View getView(Object tag, int index)
++ View getView(String id)
++ View getView(String id, int index)
++ <T extends View> T getView(Class<T> viewClass, int index)
++ WebElement getWebElement(By by, int index)
++ String getWebUrl() 
++ ArrayList<View> getCurrentViews() 
++ <T extends View> ArrayList<T> getCurrentViews(Class<T> classToFilterBy) 
++ <T extends View> ArrayList<T> getCurrentViews(Class<T> classToFilterBy, boolean includeSubclasses) 
++ <T extends View> ArrayList<T> getCurrentViews(Class<T> classToFilterBy, View parent) 
++ <T extends View> ArrayList<T> getCurrentViews(Class<T> classToFilterBy, boolean includeSubclasses, View parent) 
++ ArrayList<WebElement> getWebElements()
++ ArrayList<WebElement> getWebElements(By by)
++ ArrayList<WebElement> getCurrentWebElements()
++ ArrayList<WebElement> getCurrentWebElements(By by)
++ boolean isRadioButtonChecked(int index)
+	
++ boolean isRadioButtonChecked(String text)
+	
++ boolean isCheckBoxChecked(int index)
+	
++ boolean isToggleButtonChecked(String text)
+	
++ boolean isToggleButtonChecked(int index)
+	
++ boolean isCheckBoxChecked(String text)
+	
++ boolean isTextChecked(String text)
++ boolean isSpinnerTextSelected(String text)
+	
++ boolean isSpinnerTextSelected(int index, String text)
+	
++ void hideSoftKeyboard() 
++ void unlockScreen()
++ void sendKey(int key)
+	
++ void goBackToActivity(String name) 
++ boolean waitForActivity(String name)
++ boolean waitForActivity(String name, int timeout)
+	
++ boolean waitForActivity(Class<? extends Activity> activityClass)
++ boolean waitForActivity(Class<? extends Activity> activityClass, int timeout)
+	
++ boolean waitForEmptyActivityStack(int timeout)
+	
++ boolean isSatisfied() 
++ boolean waitForFragmentByTag(String tag)
++ boolean waitForFragmentByTag(String tag, int timeout)
++ boolean waitForFragmentById(int id)
++ boolean waitForFragmentById(int id, int timeout)
++ boolean waitForLogMessage(String logMessage)
++ boolean waitForLogMessage(String logMessage, int timeout)
++ void clearLog()
++ String getString(int id)
+	
++ String getString(String id)
+	
++ void sleep(int time)
+	
++ void finalize() 
++ void finishOpenedActivities()
++ void takeScreenshot()
++ void takeScreenshot(String name)
++ void takeScreenshot(String name, int quality)
++ void startScreenshotSequence(String name) 
++ void startScreenshotSequence(String name, int quality, int frameDelay, int maxFrames) 
++ void stopScreenshotSequence() 
+- void initialize()
+- {static} int initializeTimeout(String property, int defaultValue) 
+	# final Asserter asserter;
+	# final ViewFetcher viewFetcher;
+	# final Checker checker;
+	# final Clicker clicker;
+	# final Presser presser;
+	# final Searcher searcher;
+	# final ActivityUtils activityUtils;
+	# final DialogUtils dialogUtils;
+	# final TextEnterer textEnterer;
+	# final Rotator rotator;
+	# final Scroller scroller;
+	# final Sleeper sleeper;
+	# final Swiper swiper;
+	# final Tapper tapper;
+	# final Illustrator illustrator;
+	# final Waiter waiter;
+	# final Setter setter;
+	# final Getter getter;
+	# final WebUtils webUtils;
+	# final Sender sender;
+	# final ScreenshotTaker screenshotTaker;
+	# final Instrumentation instrumentation;
+	# final Zoomer zoomer;
+	# final SystemUtils systemUtils;
+	- final Config config;
+ 
+}
+class com.robotium.solo.Solo.Config
+class com.robotium.solo.Solo.Config.ScreenshotFileType
+class com.robotium.solo.Swiper {
+ + void generateSwipeGesture(PointF startPoint1, PointF startPoint2,
+            PointF endPoint1, PointF endPoint2)
+    
+    - final Instrumentation _instrument;
+ 
+}
+class com.robotium.solo.SystemUtils {
+ + void setMobileData(Boolean turnedOn)
++ void setWiFiData(Boolean turnedOn)
+	- Instrumentation instrumentation;
+ 
+}
+class com.robotium.solo.Tapper {
+ + void generateTapGesture(int numTaps, PointF... points)
+    
+    - final Instrumentation _instrument;
+ 
+}
+class com.robotium.solo.TextEnterer {
+ + void setEditText(final EditText editText, final String text) 
++ void typeText(final EditText editText, final String text)
+	- final Instrumentation inst;
+	- final Clicker clicker;
+	- final DialogUtils dialogUtils;
+ 
+}
+class com.robotium.solo.Timeout {
+ + {static} void setLargeTimeout(int milliseconds)
++ {static} void setSmallTimeout(int milliseconds)
++ {static} int getLargeTimeout()
++ {static} int getSmallTimeout()
+	- {static} int largeTimeout;
+	- {static} int smallTimeout;
+ 
+}
+class com.robotium.solo.ViewFetcher {
+ + View getTopParent(View view) 
++ View getScrollOrListParent(View view) 
++ ArrayList<View> getAllViews(boolean onlySufficientlyVisible) 
++ final View getRecentDecorView(View[] views) 
+- final View getRecentContainer(View[] views) 
+- final View[] getNonDecorViews(View[] views) 
+- boolean isDecorView(View view) 
++ ArrayList<View> getViews(View parent, boolean onlySufficientlyVisible) 
+- void addChildren(ArrayList<View> views, ViewGroup viewGroup, boolean onlySufficientlyVisible) 
++ final boolean isViewSufficientlyShown(View view)
++ float getScrollListWindowHeight(View view) 
++ <T extends View> ArrayList<T> getCurrentViews(Class<T> classToFilterBy, boolean includeSubclasses) 
++ <T extends View> ArrayList<T> getCurrentViews(Class<T> classToFilterBy, boolean includeSubclasses, View parent) 
++ final <T extends View> T getFreshestView(ArrayList<T> views)
++ <T extends View> ViewGroup getRecyclerView(int recyclerViewIndex, int timeOut) 
++ View getRecyclerView(boolean shouldSleep, int recyclerViewIndex)
++ List<View> getScrollableSupportPackageViews(boolean shouldSleep)
+- boolean isViewType(Class<?> aClass, String typeName) 
++ View getIdenticalView(View view) 
+- boolean areViewsIdentical(View firstView, View secondView)
++ View[] getWindowDecorViews()
+	
+- void setWindowManagerString()
+	- String windowManagerString;
+	- Instrumentation instrumentation;
+	- Sleeper sleeper;
+ 
+}
+class com.robotium.solo.ViewLocationComparator {
+ + int compare(View lhs, View rhs) 
+	- final int axis1, axis2;
+ 
+}
+class com.robotium.solo.Waiter {
+ + boolean waitForActivity(String name)
++ boolean waitForActivity(String name, int timeout)
+- boolean isActivityMatching(Activity currentActivity, String name)
++ boolean waitForActivity(Class<? extends Activity> activityClass)
++ boolean waitForActivity(Class<? extends Activity> activityClass, int timeout)
+- boolean isActivityMatching(Class<? extends Activity> activityClass, Activity currentActivity)
+- ActivityMonitor getActivityMonitor()
+- void removeMonitor(ActivityMonitor activityMonitor)
++ <T extends View> boolean waitForView(final Class<T> viewClass, final int index, boolean sleep, boolean scroll)
++ <T extends View> boolean waitForView(final Class<T> viewClass, final int index, final int timeout, final boolean scroll)
++ <T extends View> boolean  waitForViews(boolean scrollMethod, Class<? extends T>... classes) 
++ boolean waitForView(View view)
++ View waitForView(View view, int timeout)
++ View waitForView(View view, int timeout, boolean scroll, boolean checkIsShown)
++ View waitForView(int id, int index, int timeout)
++ View waitForView(int id, int index, int timeout, boolean scroll)
++ View waitForView(Object tag, int index, int timeout)
++ View waitForView(Object tag, int index, int timeout, boolean scroll)
++ WebElement waitForWebElement(final By by, int minimumNumberOfMatches, int timeout, boolean scroll)
++ boolean waitForCondition(Condition condition, int timeout)
++ TextView waitForText(String text) 
++ TextView waitForText(String text, int expectedMinimumNumberOfMatches, long timeout)
+	
++ TextView waitForText(String text, int expectedMinimumNumberOfMatches, long timeout, boolean scroll) 
++ <T extends TextView> T waitForText(Class<T> classToFilterBy, String text, int expectedMinimumNumberOfMatches, long timeout, boolean scroll) 
++ TextView waitForText(String text, int expectedMinimumNumberOfMatches, long timeout, boolean scroll, boolean onlyVisible, boolean hardStoppage) 
++ <T extends TextView> T waitForText(Class<T> classToFilterBy, String text, int expectedMinimumNumberOfMatches, long timeout, boolean scroll, boolean onlyVisible, boolean hardStoppage) 
++ <T extends View> T waitForAndGetView(int index, Class<T> classToFilterBy)
++ boolean waitForFragment(String tag, int id, int timeout)
+- Fragment getSupportFragment(String tag, int id)
++ boolean waitForLogMessage(String logMessage, int timeout)
+- StringBuilder getLog(StringBuilder stringBuilder) 
++ void clearLog()
+- void destroy(Process p, BufferedReader reader)
+	- final ActivityUtils activityUtils;
+	- final ViewFetcher viewFetcher;
+	- final Searcher searcher;
+	- final Scroller scroller;
+	- final Sleeper sleeper;
+	- final Instrumentation instrumentation;
+ 
+}
+class com.robotium.solo.WebElement {
+ + void getLocationOnScreen(int[] location) 
++ void setLocationX(int locationX)
++ void setLocationY(int locationY)
++ int getLocationX()
++ int getLocationY()
++ String getId() 
++ void setId(String id) 
++ String getName() 
++ void setName(String name) 
++ String getClassName() 
++ void setClassName(String className) 
++ String getTagName() 
++ void setTagName(String tagName) 
++ String getText() 
++ void setTextContent(String textContent) 
++ String getAttribute(String attributeName) 
++ void setAttributes(Hashtable<String,String> attributes) 
+	- String id;
+	- String text;
+	- String name;
+	- String className;
+	- String tagName;
+	- Hashtable<String, String> attributes;
+ 
+}
+class com.robotium.solo.WebElementCreator {
+ + void prepareForStart()
++ ArrayList<WebElement> getWebElementsFromWebViews()
++ boolean isFinished()
++ void setFinished(boolean isFinished)
++ void createWebElementAndAddInList(String webData, WebView webView)
+- void setLocation(WebElement webElement, WebView webView, int x, int y, int width, int height )
+- WebElement createWebElementAndSetLocation(String information, WebView webView)
+- boolean waitForWebElementsToBeCreated()
+	- List<WebElement> webElements;
+	- Sleeper sleeper;
+ 
+}
+class com.robotium.solo.WebUtils {
+ + ArrayList<TextView> getTextViewsFromWebView()
+- ArrayList <TextView> createAndReturnTextViewsFromWebElements(boolean javaScriptWasExecuted)
++ ArrayList<WebElement> getWebElements(boolean onlySufficientlyVisible)
++ ArrayList<WebElement> getWebElements(final By by, boolean onlySufficientlyVisbile)
+- ArrayList<WebElement> getWebElements(boolean javaScriptWasExecuted, boolean onlySufficientlyVisbile)
+- String prepareForStartOfJavascriptExecution(List<WebView> webViews) 
+- WebChromeClient getCurrentWebChromeClient()
++ void enterTextIntoWebElement(final By by, final String text)
++ boolean executeJavaScript(final By by, boolean shouldClick)
+- boolean executeJavaScriptFunction(final String function) 
++ void run() 
+- String setWebFrame(String javascript)
++ final boolean isWebElementSufficientlyShown(WebElement webElement)
++ String splitNameByUpperCase(String name) 
+- String getJavaScriptAsString() 
+	- ViewFetcher viewFetcher;
+	- Instrumentation inst;
+	- Config config;
+ 
+}
+class com.robotium.solo.Zoomer {
+ + void generateZoomGesture(PointF startPoint1, PointF startPoint2, PointF endPoint1, PointF endPoint2) 
+	
+	- final Instrumentation _instrument;
+ 
+}
+class junit.framework.Assert
+interface android.opengl.GLSurfaceView.Renderer
+interface com.robotium.solo.Condition {
+ + boolean isSatisfied()
+ 
+}
+com.robotium.solo.GLRenderWrapper --|> android.opengl.GLSurfaceView.Renderer
+com.robotium.solo.RobotiumTextView --|> android.widget.TextView
+com.robotium.solo.RobotiumWebClient --|> android.webkit.WebChromeClient
+@enduml

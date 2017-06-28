@@ -1,0 +1,15 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.novoda.demo.sms"
+        minSdkVersion 3
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+}
+

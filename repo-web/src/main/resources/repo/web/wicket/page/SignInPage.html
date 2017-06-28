@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+	<wicket:extend>
+		<section id="contact">
+		<div id="contact-us" class="parallax">
+		<div class="container">
+			<div class="row">
+	          <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+	            <h2>Log In Now!</h2>
+	          </div>
+	        </div>
+			<div class="contact-form wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
+			<div class="row">
+				<form wicket:id="loginForm">
+
+					<span wicket:id="border"> <input wicket:id="username"
+						id="j_username" name="j_username" type="text" class="form-control"
+						tabindex="1" required />
+					</span> <input wicket:id="password" id="j_password" name="j_password"
+						type="password" class="form-control" tabindex="2" required /> <br />
+					<input wicket:id="submit" type="submit" class="btn btn-primary" />
+				</form>
+				</div>
+			</div>
+		</div>
+		</div>
+		</section>
+
+	</wicket:extend>
+</body>
+</html>

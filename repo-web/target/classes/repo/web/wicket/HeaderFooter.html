@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title wicket:id="pageTitle"></title>
+	
+	<!--[if lt IE 9]>
+    	<script src="js/html5shiv.js"></script>
+    	<script src="js/respond.min.js"></script>
+  	<![endif]-->
+  
+  	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+  	<link rel="shortcut icon" href="images/favicon.ico">
+</head>
+<body>
+	<!--.preloader-->
+  		<div class="preloader"> <i class="fa fa-circle-o-notch fa-spin"></i></div>
+  	<!--/.preloader-->
+	
+	<header id="home">
+		<div wicket:id="carouselSlider"></div>
+		<div wicket:id="navbar"></div>
+	</header>
+	
+	<wicket:child />	
+	
+	<footer id="footer">
+		<div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+      		<div class="container text-center">
+        		<div class="footer-logo">
+          			<a wicket:id="homePageLink"><img id="logo" class="img-responsive" src="images/logo.png" alt=""></a>
+        		</div>
+      		</div>
+    	</div>
+    	<div class="footer-bottom">
+      		<div class="container">
+        		<div class="row">
+          			<div class="col-sm-6">
+            			<p>&copy; 2014 Oxygen Theme.</p>
+          			</div>
+          			<div class="col-sm-6">
+            			<p class="pull-right">Designed by <a href="http://www.themeum.com/">Themeum</a></p>
+          			</div>
+        		</div>
+      		</div>
+    	</div>
+  	</footer>
+
+</body>
+</html>

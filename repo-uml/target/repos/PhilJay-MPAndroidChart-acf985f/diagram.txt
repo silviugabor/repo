@@ -1,0 +1,3304 @@
+@startuml
+abstract class com.github.mikephil.charting.buffer.AbstractBuffer {
+ + void limitFrom(int from) 
++ void limitTo(int to) 
++ void reset() 
++ int size() 
++ void setPhases(float phaseX, float phaseY) 
++ {abstract} void feed(T data)
+    + final float[] buffer;
+ 
+}
+abstract class com.github.mikephil.charting.charts.BarLineChartBase {
+ # void init() 
+# void onDraw(Canvas canvas) 
++ void resetTracking() 
+# void prepareValuePxMatrix() 
+# void prepareOffsetMatrix() 
++ void notifyDataSetChanged() 
+# void autoScale() 
+# void calcMinMax() 
+# void calculateLegendOffsets(RectF offsets) 
++ void calculateOffsets() 
+# void drawGridBackground(Canvas c) 
++ Transformer getTransformer(AxisDependency which) 
++ boolean onTouchEvent(MotionEvent event) 
++ void computeScroll() 
++ void zoomIn() 
++ void zoomOut() 
++ void resetZoom() 
++ void zoom(float scaleX, float scaleY, float x, float y) 
++ void zoom(float scaleX, float scaleY, float xValue, float yValue, AxisDependency axis) 
++ void zoomToCenter(float scaleX, float scaleY) 
++ void zoomAndCenterAnimated(float scaleX, float scaleY, float xValue, float yValue, AxisDependency axis,
+                                      long duration) 
++ void fitScreen() 
++ void setScaleMinima(float scaleX, float scaleY) 
++ void setVisibleXRangeMaximum(float maxXRange) 
++ void setVisibleXRangeMinimum(float minXRange) 
++ void setVisibleXRange(float minXRange, float maxXRange) 
++ void setVisibleYRangeMaximum(float maxYRange, AxisDependency axis) 
++ void setVisibleYRangeMinimum(float minYRange, AxisDependency axis) 
++ void setVisibleYRange(float minYRange, float maxYRange, AxisDependency axis) 
++ void moveViewToX(float xValue) 
++ void moveViewTo(float xValue, float yValue, AxisDependency axis) 
++ void moveViewToAnimated(float xValue, float yValue, AxisDependency axis, long duration) 
++ void centerViewToY(float yValue, AxisDependency axis) 
++ void centerViewTo(float xValue, float yValue, AxisDependency axis) 
++ void centerViewToAnimated(float xValue, float yValue, AxisDependency axis, long duration) 
++ void setViewPortOffsets(final float left, final float top,
+                                   final float right, final float bottom) 
++ void resetViewPortOffsets() 
+# float getAxisRange(AxisDependency axis) 
++ void setOnDrawListener(OnDrawListener drawListener) 
++ OnDrawListener getDrawListener() 
++ MPPointF getPosition(Entry e, AxisDependency axis) 
++ void setMaxVisibleValueCount(int count) 
++ int getMaxVisibleCount() 
++ void setHighlightPerDragEnabled(boolean enabled) 
++ boolean isHighlightPerDragEnabled() 
++ void setGridBackgroundColor(int color) 
++ void setDragEnabled(boolean enabled) 
++ boolean isDragEnabled() 
++ void setScaleEnabled(boolean enabled) 
++ void setScaleXEnabled(boolean enabled) 
++ void setScaleYEnabled(boolean enabled) 
++ boolean isScaleXEnabled() 
++ boolean isScaleYEnabled() 
++ void setDoubleTapToZoomEnabled(boolean enabled) 
++ boolean isDoubleTapToZoomEnabled() 
++ void setDrawGridBackground(boolean enabled) 
++ void setDrawBorders(boolean enabled) 
++ boolean isDrawBordersEnabled() 
++ void setClipValuesToContent(boolean enabled) 
++ boolean isClipValuesToContentEnabled() 
++ void setBorderWidth(float width) 
++ void setBorderColor(int color) 
++ float getMinOffset() 
++ void setMinOffset(float minOffset) 
++ boolean isKeepPositionOnRotation() 
++ void setKeepPositionOnRotation(boolean keepPositionOnRotation) 
++ MPPointD getValuesByTouchPoint(float x, float y, AxisDependency axis) 
++ void getValuesByTouchPoint(float x, float y, AxisDependency axis, MPPointD outputPoint) 
++ MPPointD getPixelForValues(float x, float y, AxisDependency axis) 
++ Entry getEntryByTouchPoint(float x, float y) 
++ IBarLineScatterCandleBubbleDataSet getDataSetByTouchPoint(float x, float y) 
++ float getLowestVisibleX() 
++ float getHighestVisibleX() 
++ float getVisibleXRange() 
++ float getScaleX() 
++ float getScaleY() 
++ boolean isFullyZoomedOut() 
++ YAxis getAxisLeft() 
++ YAxis getAxisRight() 
++ YAxis getAxis(AxisDependency axis) 
++ boolean isInverted(AxisDependency axis) 
++ void setPinchZoom(boolean enabled) 
++ boolean isPinchZoomEnabled() 
++ void setDragOffsetX(float offset) 
++ void setDragOffsetY(float offset) 
++ boolean hasNoDragOffset() 
++ XAxisRenderer getRendererXAxis() 
++ void setXAxisRenderer(XAxisRenderer xAxisRenderer) 
++ YAxisRenderer getRendererLeftYAxis() 
++ void setRendererLeftYAxis(YAxisRenderer rendererLeftYAxis) 
++ YAxisRenderer getRendererRightYAxis() 
++ void setRendererRightYAxis(YAxisRenderer rendererRightYAxis) 
++ float getYChartMax() 
++ float getYChartMin() 
++ boolean isAnyAxisInverted() 
++ void setAutoScaleMinMaxEnabled(boolean enabled) 
++ boolean isAutoScaleMinMaxEnabled() 
++ void setPaint(Paint p, int which) 
++ Paint getPaint(int which) 
+# void onSizeChanged(int w, int h, int oldw, int oldh) 
+    # Paint mGridBackgroundPaint;
+    # Paint mBorderPaint;
+    # OnDrawListener mDrawListener;
+    # YAxis mAxisLeft;
+    # YAxis mAxisRight;
+    # YAxisRenderer mAxisRendererLeft;
+    # YAxisRenderer mAxisRendererRight;
+    # Transformer mLeftAxisTransformer;
+    # Transformer mRightAxisTransformer;
+    # XAxisRenderer mXAxisRenderer;
+    // - Approximator mApproximator;
+ 
+}
+abstract class com.github.mikephil.charting.charts.Chart {
+ # void init() 
++ void initWithDummyData() 
++ void setData(T data) 
++ void clear() 
++ void clearValues() 
++ boolean isEmpty() 
++ {abstract} void notifyDataSetChanged()
+# void onDraw(Canvas canvas) 
+# void drawDescription(Canvas c) 
++ float getMaxHighlightDistance() 
++ void setMaxHighlightDistance(float distDp) 
++ Highlight[] getHighlighted() 
++ boolean isHighlightPerTapEnabled() 
++ void setHighlightPerTapEnabled(boolean enabled) 
++ boolean valuesToHighlight() 
+# void setLastHighlighted(Highlight[] highs) 
++ void highlightValues(Highlight[] highs) 
++ void highlightValue(float x, int dataSetIndex) 
++ void highlightValue(float x, float y, int dataSetIndex) 
++ void highlightValue(float x, int dataSetIndex, boolean callListener) 
++ void highlightValue(float x, float y, int dataSetIndex, boolean callListener) 
++ void highlightValue(Highlight highlight) 
++ void highlightValue(Highlight high, boolean callListener) 
++ Highlight getHighlightByTouchPoint(float x, float y) 
++ void setOnTouchListener(ChartTouchListener l) 
++ ChartTouchListener getOnTouchListener() 
+# void drawMarkers(Canvas canvas) 
+# float[] getMarkerPosition(Highlight high) 
++ ChartAnimator getAnimator() 
++ boolean isDragDecelerationEnabled() 
++ void setDragDecelerationEnabled(boolean enabled) 
++ float getDragDecelerationFrictionCoef() 
++ void setDragDecelerationFrictionCoef(float newValue) 
++ void animateXY(int durationMillisX, int durationMillisY, EasingFunction easingX,
+                          EasingFunction easingY) 
++ void animateX(int durationMillis, EasingFunction easing) 
++ void animateY(int durationMillis, EasingFunction easing) 
++ void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX,
+                          Easing.EasingOption easingY) 
++ void animateX(int durationMillis, Easing.EasingOption easing) 
++ void animateY(int durationMillis, Easing.EasingOption easing) 
++ void animateX(int durationMillis) 
++ void animateY(int durationMillis) 
++ void animateXY(int durationMillisX, int durationMillisY) 
++ XAxis getXAxis() 
++ IValueFormatter getDefaultValueFormatter() 
++ void setOnChartValueSelectedListener(OnChartValueSelectedListener l) 
++ void setOnChartGestureListener(OnChartGestureListener l) 
++ OnChartGestureListener getOnChartGestureListener() 
++ float getYMax() 
++ float getYMin() 
++ float getXChartMax() 
++ float getXChartMin() 
++ float getXRange() 
++ MPPointF getCenter() 
++ MPPointF getCenterOffsets() 
++ void setExtraOffsets(float left, float top, float right, float bottom) 
++ void setExtraTopOffset(float offset) 
++ float getExtraTopOffset() 
++ void setExtraRightOffset(float offset) 
++ float getExtraRightOffset() 
++ void setExtraBottomOffset(float offset) 
++ float getExtraBottomOffset() 
++ void setExtraLeftOffset(float offset) 
++ float getExtraLeftOffset() 
++ void setLogEnabled(boolean enabled) 
++ boolean isLogEnabled() 
++ void setNoDataText(String text) 
++ void setNoDataTextColor(int color) 
++ void setNoDataTextTypeface(Typeface tf) 
++ void setTouchEnabled(boolean enabled) 
++ void setMarker(IMarker marker) 
++ IMarker getMarker() 
++ void setMarkerView(IMarker v) 
++ IMarker getMarkerView() 
++ void setDescription(Description desc) 
++ Description getDescription() 
++ Legend getLegend() 
++ LegendRenderer getLegendRenderer() 
++ RectF getContentRect() 
++ void disableScroll() 
++ void enableScroll() 
++ void setPaint(Paint p, int which) 
++ Paint getPaint(int which) 
++ boolean isDrawMarkerViewsEnabled() 
++ void setDrawMarkerViews(boolean enabled) 
++ boolean isDrawMarkersEnabled() 
++ void setDrawMarkers(boolean enabled) 
++ T getData() 
++ ViewPortHandler getViewPortHandler() 
++ DataRenderer getRenderer() 
++ void setRenderer(DataRenderer renderer) 
++ IHighlighter getHighlighter() 
++ void setHighlighter(ChartHighlighter highlighter) 
++ MPPointF getCenterOfView() 
++ Bitmap getChartBitmap() 
++ boolean saveToPath(String title, String pathOnSD) 
++ boolean saveToGallery(String fileName, String subFolderPath, String fileDescription, Bitmap.CompressFormat
+            format, int quality) 
++ boolean saveToGallery(String fileName, int quality) 
++ void removeViewportJob(Runnable job) 
++ void clearAllViewportJobs() 
++ void addViewportJob(Runnable job) 
++ ArrayList<Runnable> getJobs() 
+# void onLayout(boolean changed, int left, int top, int right, int bottom) 
+# void onMeasure(int widthMeasureSpec, int heightMeasureSpec) 
+# void onSizeChanged(int w, int h, int oldw, int oldh) 
++ void setHardwareAccelerationEnabled(boolean enabled) 
+# void onDetachedFromWindow() 
+- void unbindDrawables(View view) 
++ void setUnbindEnabled(boolean enabled) 
+    # Paint mDescPaint;
+    # Paint mInfoPaint;
+    # XAxis mXAxis;
+    # Description mDescription;
+    # Legend mLegend;
+    # OnChartValueSelectedListener mSelectionListener;
+    # ChartTouchListener mChartTouchListener;
+    - OnChartGestureListener mGestureListener;
+    # LegendRenderer mLegendRenderer;
+    # DataRenderer mRenderer;
+    # IHighlighter mHighlighter;
+    # ChartAnimator mAnimator;
+    # Highlight[] mIndicesToHighlight;
+    # IMarker mMarker;
+ 
+}
+abstract class com.github.mikephil.charting.charts.PieRadarChartBase {
+ # void init() 
+# void calcMinMax() 
++ int getMaxVisibleCount() 
++ boolean onTouchEvent(MotionEvent event) 
++ void computeScroll() 
++ void notifyDataSetChanged() 
++ void calculateOffsets() 
++ float getAngleForPoint(float x, float y) 
++ MPPointF getPosition(MPPointF center, float dist, float angle) 
++ void getPosition(MPPointF center, float dist, float angle, MPPointF outputPoint) 
++ float distanceToCenter(float x, float y) 
++ {abstract} int getIndexForAngle(float angle)
++ float getRawRotationAngle() 
++ float getRotationAngle() 
++ void setRotationEnabled(boolean enabled) 
++ boolean isRotationEnabled() 
++ float getMinOffset() 
++ void setMinOffset(float minOffset) 
++ float getDiameter() 
++ {abstract} float getRadius()
++ float getYChartMin() 
++ void spin(int durationmillis, float fromangle, float toangle, Easing.EasingOption easing) 
+ 
+}
+abstract class com.github.mikephil.charting.components.AxisBase {
+ + void setDrawGridLines(boolean enabled) 
++ boolean isDrawGridLinesEnabled() 
++ void setDrawAxisLine(boolean enabled) 
++ boolean isDrawAxisLineEnabled() 
++ void setCenterAxisLabels(boolean enabled) 
++ boolean isCenterAxisLabelsEnabled() 
++ void setGridColor(int color) 
++ int getGridColor() 
++ void setAxisLineWidth(float width) 
++ float getAxisLineWidth() 
++ void setGridLineWidth(float width) 
++ float getGridLineWidth() 
++ void setAxisLineColor(int color) 
++ int getAxisLineColor() 
++ void setDrawLabels(boolean enabled) 
++ boolean isDrawLabelsEnabled() 
++ void setLabelCount(int count) 
++ void setLabelCount(int count, boolean force) 
++ boolean isForceLabelsEnabled() 
++ int getLabelCount() 
++ boolean isGranularityEnabled() 
++ void setGranularityEnabled(boolean enabled) 
++ float getGranularity() 
++ void setGranularity(float granularity) 
++ void addLimitLine(LimitLine l) 
++ void removeLimitLine(LimitLine l) 
++ void removeAllLimitLines() 
++ List<LimitLine> getLimitLines() 
++ void setDrawLimitLinesBehindData(boolean enabled) 
++ boolean isDrawLimitLinesBehindDataEnabled() 
++ String getLongestLabel() 
++ String getFormattedLabel(int index) 
++ void setValueFormatter(IAxisValueFormatter f) 
++ IAxisValueFormatter getValueFormatter() 
++ void enableGridDashedLine(float lineLength, float spaceLength, float phase) 
++ void setGridDashedLine(DashPathEffect effect) 
++ void disableGridDashedLine() 
++ boolean isGridDashedLineEnabled() 
++ DashPathEffect getGridDashPathEffect() 
++ void enableAxisLineDashedLine(float lineLength, float spaceLength, float phase) 
++ void setAxisLineDashedLine(DashPathEffect effect) 
++ void disableAxisLineDashedLine() 
++ boolean isAxisLineDashedLineEnabled() 
++ DashPathEffect getAxisLineDashPathEffect() 
++ float getAxisMaximum() 
++ float getAxisMinimum() 
++ void resetAxisMaximum() 
++ boolean isAxisMaxCustom() 
++ void resetAxisMinimum() 
++ boolean isAxisMinCustom() 
++ void setAxisMinimum(float min) 
++ void setAxisMinValue(float min) 
++ void setAxisMaximum(float max) 
++ void setAxisMaxValue(float max) 
++ void calculate(float dataMin, float dataMax) 
++ float getSpaceMin()
+    
++ void setSpaceMin(float mSpaceMin)
+    
++ float getSpaceMax()
+    
++ void setSpaceMax(float mSpaceMax)
+    
+    # IAxisValueFormatter mAxisValueFormatter;
+    + int mEntryCount;
+    + int mDecimals;
+    # List<LimitLine> mLimitLines;
+ 
+}
+abstract class com.github.mikephil.charting.components.ComponentBase {
+ + float getXOffset() 
++ void setXOffset(float xOffset) 
++ float getYOffset() 
++ void setYOffset(float yOffset) 
++ Typeface getTypeface() 
++ void setTypeface(Typeface tf) 
++ void setTextSize(float size) 
++ float getTextSize() 
++ void setTextColor(int color) 
++ int getTextColor() 
++ void setEnabled(boolean enabled) 
++ boolean isEnabled() 
+ 
+}
+abstract class com.github.mikephil.charting.data.BarLineScatterCandleBubbleData {
+  
+}
+abstract class com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet {
+ + void setHighLightColor(int color) 
++ int getHighLightColor() 
+ 
+}
+abstract class com.github.mikephil.charting.data.BaseDataSet {
+ + void notifyDataSetChanged() 
++ List<Integer> getColors() 
++ List<Integer> getValueColors() 
++ int getColor() 
++ int getColor(int index) 
++ void setColors(List<Integer> colors) 
++ void setColors(int... colors) 
++ void setColors(int[] colors, Context c) 
++ void addColor(int color) 
++ void setColor(int color) 
++ void setColor(int color, int alpha) 
++ void setColors(int[] colors, int alpha) 
++ void resetColors() 
++ void setLabel(String label) 
++ String getLabel() 
++ void setHighlightEnabled(boolean enabled) 
++ boolean isHighlightEnabled() 
++ void setValueFormatter(IValueFormatter f) 
++ IValueFormatter getValueFormatter() 
++ boolean needsFormatter() 
++ void setValueTextColor(int color) 
++ void setValueTextColors(List<Integer> colors) 
++ void setValueTypeface(Typeface tf) 
++ void setValueTextSize(float size) 
++ int getValueTextColor() 
++ int getValueTextColor(int index) 
++ Typeface getValueTypeface() 
++ float getValueTextSize() 
++ void setForm(Legend.LegendForm form) 
++ void setFormSize(float formSize) 
++ float getFormSize() 
++ void setFormLineWidth(float formLineWidth) 
++ float getFormLineWidth() 
++ void setFormLineDashEffect(DashPathEffect dashPathEffect) 
++ DashPathEffect getFormLineDashEffect() 
++ void setDrawValues(boolean enabled) 
++ boolean isDrawValuesEnabled() 
++ void setDrawIcons(boolean enabled) 
++ boolean isDrawIconsEnabled() 
++ void setIconsOffset(MPPointF offsetDp) 
++ MPPointF getIconsOffset() 
++ void setVisible(boolean visible) 
++ boolean isVisible() 
++ void setAxisDependency(YAxis.AxisDependency dependency) 
++ int getIndexInEntries(int xIndex) 
++ boolean removeFirst() 
++ boolean removeLast() 
++ boolean removeEntryByXValue(float xValue) 
++ boolean removeEntry(int index) 
++ boolean contains(T e) 
+    # transient IValueFormatter mValueFormatter;
+    # Typeface mValueTypeface;
+ 
+}
+abstract class com.github.mikephil.charting.data.BaseEntry {
+ + float getY() 
++ void setIcon(Drawable icon) 
++ Drawable getIcon() 
++ void setY(float y) 
++ Object getData() 
++ void setData(Object data) 
+ 
+}
+abstract class com.github.mikephil.charting.data.ChartData {
+ - List<T> arrayToList(T[] array) 
++ void notifyDataChanged() 
++ void calcMinMaxY(float fromX, float toX) 
+# void calcMinMax() 
++ int getDataSetCount() 
++ float getYMin() 
++ float getYMin(AxisDependency axis) 
++ float getYMax() 
++ float getYMax(AxisDependency axis) 
++ float getXMin() 
++ float getXMax() 
++ List<T> getDataSets() 
+# int getDataSetIndexByLabel(List<T> dataSets, String label,
+                                         boolean ignorecase) 
++ String[] getDataSetLabels() 
++ Entry getEntryForHighlight(Highlight highlight) 
++ T getDataSetByLabel(String label, boolean ignorecase) 
++ T getDataSetByIndex(int index) 
++ void addDataSet(T d) 
++ boolean removeDataSet(T d) 
++ boolean removeDataSet(int index) 
++ void addEntry(Entry e, int dataSetIndex) 
+# void calcMinMax(Entry e, AxisDependency axis) 
+# void calcMinMax(T d) 
++ boolean removeEntry(Entry e, int dataSetIndex) 
++ boolean removeEntry(float xValue, int dataSetIndex) 
++ T getDataSetForEntry(Entry e) 
++ int[] getColors() 
++ int getIndexOfDataSet(T dataSet) 
+# T getFirstLeft(List<T> sets) 
++ T getFirstRight(List<T> sets) 
++ void setValueFormatter(IValueFormatter f) 
++ void setValueTextColor(int color) 
++ void setValueTextColors(List<Integer> colors) 
++ void setValueTypeface(Typeface tf) 
++ void setValueTextSize(float size) 
++ void setDrawValues(boolean enabled) 
++ void setHighlightEnabled(boolean enabled) 
++ boolean isHighlightEnabled() 
++ void clearValues() 
++ boolean contains(T dataSet) 
++ int getEntryCount() 
++ T getMaxEntryCountSet() 
+    # List<T> mDataSets;
+ 
+}
+abstract class com.github.mikephil.charting.data.DataSet {
+ + void calcMinMax() 
++ void calcMinMaxY(float fromX, float toX) 
+# void calcMinMax(T e) 
+# void calcMinMaxX(T e) 
+# void calcMinMaxY(T e) 
++ int getEntryCount() 
++ List<T> getValues() 
++ void setValues(List<T> values) 
++ {abstract} DataSet<T> copy()
++ String toSimpleString() 
++ float getYMin() 
++ float getYMax() 
++ float getXMin() 
++ float getXMax() 
++ void addEntryOrdered(T e) 
++ void clear() 
++ boolean addEntry(T e) 
++ boolean removeEntry(T e) 
++ int getEntryIndex(Entry e) 
++ T getEntryForXValue(float xValue, float closestToY, Rounding rounding) 
++ T getEntryForXValue(float xValue, float closestToY) 
++ T getEntryForIndex(int index) 
++ int getEntryIndex(float xValue, float closestToY, Rounding rounding) 
++ List<T> getEntriesForXValue(float xValue) 
+ 
+}
+abstract class com.github.mikephil.charting.data.LineRadarDataSet {
+ + int getFillColor() 
++ void setFillColor(int color) 
++ Drawable getFillDrawable() 
++ void setFillDrawable(Drawable drawable) 
++ int getFillAlpha() 
++ void setFillAlpha(int alpha) 
++ void setLineWidth(float width) 
++ float getLineWidth() 
++ void setDrawFilled(boolean filled) 
++ boolean isDrawFilledEnabled() 
+    # Drawable mFillDrawable;
+ 
+}
+abstract class com.github.mikephil.charting.data.LineScatterCandleRadarDataSet {
+ + void setDrawHorizontalHighlightIndicator(boolean enabled) 
++ void setDrawVerticalHighlightIndicator(boolean enabled) 
++ void setDrawHighlightIndicators(boolean enabled) 
++ boolean isVerticalHighlightIndicatorEnabled() 
++ boolean isHorizontalHighlightIndicatorEnabled() 
++ void setHighlightLineWidth(float width) 
++ float getHighlightLineWidth() 
++ void enableDashedHighlightLine(float lineLength, float spaceLength, float phase) 
++ void disableDashedHighlightLine() 
++ boolean isDashedHighlightLineEnabled() 
++ DashPathEffect getDashPathEffectHighlight() 
+ 
+}
+abstract class com.github.mikephil.charting.highlight.PieRadarHighlighter {
+ + Highlight getHighlight(float x, float y) 
+# {abstract} Highlight getClosestHighlight(int index, float x, float y)
+    # T mChart;
+ 
+}
+abstract class com.github.mikephil.charting.jobs.AnimatedViewPortJob {
+ + void run() 
++ float getPhase() 
++ void setPhase(float phase) 
++ float getXOrigin() 
++ float getYOrigin() 
++ {abstract} void recycleSelf()
++ void onAnimationStart(Animator animation) 
++ void onAnimationEnd(Animator animation) 
++ void onAnimationCancel(Animator animation) 
++ void onAnimationRepeat(Animator animation) 
++ void onAnimationUpdate(ValueAnimator animation) 
+    # ObjectAnimator animator;
+    # float phase;
+    # float xOrigin;
+    # float yOrigin;
+ 
+}
+abstract class com.github.mikephil.charting.jobs.ViewPortJob {
+ + float getXValue() 
++ float getYValue() 
+    # ViewPortHandler mViewPortHandler;
+    # Transformer mTrans;
+    # View view;
+ 
+}
+abstract class com.github.mikephil.charting.listener.ChartTouchListener {
+ + void startAction(MotionEvent me) 
++ void endAction(MotionEvent me) 
++ void setLastHighlighted(Highlight high) 
++ int getTouchMode() 
++ ChartGesture getLastGesture() 
+# void performHighlight(Highlight h, MotionEvent e) 
+# {static} float distance(float eventX, float startX, float eventY, float startY) 
+    # Highlight mLastHighlighted;
+    # GestureDetector mGestureDetector;
+    # T mChart;
+ 
+}
+abstract class com.github.mikephil.charting.renderer.AxisRenderer {
+ + Paint getPaintAxisLabels() 
++ Paint getPaintGrid() 
++ Paint getPaintAxisLine() 
++ Transformer getTransformer() 
++ void computeAxis(float min, float max, boolean inverted) 
+# void computeAxisValues(float min, float max) 
++ {abstract} void renderAxisLabels(Canvas c)
+    # AxisBase mAxis;
+    # Transformer mTrans;
+    # Paint mGridPaint;
+    # Paint mAxisLabelPaint;
+    # Paint mAxisLinePaint;
+    # Paint mLimitLinePaint;
+ 
+}
+abstract class com.github.mikephil.charting.renderer.BarLineScatterCandleBubbleRenderer {
+ # boolean shouldDrawValues(IDataSet set) 
+# boolean isInBoundsX(Entry e, IBarLineScatterCandleBubbleDataSet set) 
++ void set(BarLineScatterCandleBubbleDataProvider chart, IBarLineScatterCandleBubbleDataSet dataSet) 
+        + int min;
+        + int max;
+        + int range;
+ 
+}
+abstract class com.github.mikephil.charting.renderer.DataRenderer {
+ # boolean isDrawingValuesAllowed(ChartInterface chart) 
++ Paint getPaintValues() 
++ Paint getPaintHighlight() 
++ Paint getPaintRender() 
+# void applyValueTextStyle(IDataSet set) 
++ {abstract} void initBuffers()
++ {abstract} void drawExtras(Canvas c)
+    # ChartAnimator mAnimator;
+    # Paint mRenderPaint;
+    # Paint mHighlightPaint;
+    # Paint mDrawPaint;
+    # Paint mValuePaint;
+ 
+}
+abstract class com.github.mikephil.charting.renderer.LineRadarRenderer {
+ # void drawFilledPath(Canvas c, Path filledPath, Drawable drawable) 
+# void drawFilledPath(Canvas c, Path filledPath, int fillColor, int fillAlpha) 
+- boolean clipPathSupported() 
+ 
+}
+abstract class com.github.mikephil.charting.renderer.LineScatterCandleRadarRenderer {
+ # void drawHighlightLines(Canvas c, float x, float y, ILineScatterCandleRadarDataSet set) 
+ 
+}
+abstract class com.github.mikephil.charting.renderer.Renderer {
+     # ViewPortHandler mViewPortHandler;
+ 
+}
+abstract class com.github.mikephil.charting.utils.Utils {
+ + {static} void init(Context context) 
++ {static} void init(Resources res) 
++ {static} float convertDpToPixel(float dp) 
++ {static} float convertPixelsToDp(float px) 
++ {static} int calcTextWidth(Paint paint, String demoText) 
++ {static} int calcTextHeight(Paint paint, String demoText) 
++ {static} float getLineHeight(Paint paint) 
++ {static} float getLineHeight(Paint paint, Paint.FontMetrics fontMetrics)
++ {static} float getLineSpacing(Paint paint) 
++ {static} float getLineSpacing(Paint paint, Paint.FontMetrics fontMetrics)
++ {static} FSize calcTextSize(Paint paint, String demoText) 
++ {static} void calcTextSize(Paint paint, String demoText, FSize outputFSize) 
+- {static} IValueFormatter generateDefaultValueFormatter() 
++ {static} IValueFormatter getDefaultValueFormatter()
+    
++ {static} String formatNumber(float number, int digitCount, boolean separateThousands) 
++ {static} String formatNumber(float number, int digitCount, boolean separateThousands,
+                                      char separateChar) 
++ {static} float roundToNextSignificant(double number) 
++ {static} int getDecimals(float number) 
++ {static} int[] convertIntegers(List<Integer> integers) 
++ {static} void copyIntegers(List<Integer> from, int[] to)
++ {static} String[] convertStrings(List<String> strings) 
++ {static} void copyStrings(List<String> from, String[] to)
++ {static} double nextUp(double d) 
++ {static} MPPointF getPosition(MPPointF center, float dist, float angle) 
++ {static} void getPosition(MPPointF center, float dist, float angle, MPPointF outputPoint)
++ {static} void velocityTrackerPointerUpCleanUpIfNecessary(MotionEvent ev,
+                                                                  VelocityTracker tracker) 
++ {static} void postInvalidateOnAnimation(View view) 
++ {static} int getMinimumFlingVelocity() 
++ {static} int getMaximumFlingVelocity() 
++ {static} float getNormalizedAngle(float angle) 
++ {static} void drawImage(Canvas canvas,
+                                 Drawable drawable,
+                                 int x, int y,
+                                 int width, int height) 
++ {static} void drawXAxisValue(Canvas c, String text, float x, float y,
+                                      Paint paint,
+                                      MPPointF anchor, float angleDegrees) 
++ {static} void drawMultilineText(Canvas c, StaticLayout textLayout,
+                                         float x, float y,
+                                         TextPaint paint,
+                                         MPPointF anchor, float angleDegrees) 
++ {static} void drawMultilineText(Canvas c, String text,
+                                         float x, float y,
+                                         TextPaint paint,
+                                         FSize constrainedToSize,
+                                         MPPointF anchor, float angleDegrees) 
++ {static} FSize getSizeOfRotatedRectangleByDegrees(FSize rectangleSize, float degrees) 
++ {static} FSize getSizeOfRotatedRectangleByRadians(FSize rectangleSize, float radians) 
++ {static} FSize getSizeOfRotatedRectangleByDegrees(float rectangleWidth, float
+            rectangleHeight, float degrees) 
++ {static} FSize getSizeOfRotatedRectangleByRadians(float rectangleWidth, float
+            rectangleHeight, float radians) 
++ {static} int getSDKInt() 
+    - {static} DisplayMetrics mMetrics;
+ 
+}
+abstract class com.xxmassdeveloper.mpchartexample.fragments.SimpleFragment {
+ + View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+# BarData generateBarData(int dataSets, float range, int count) 
+# ScatterData generateScatterData(int dataSets, float range, int count) 
+# PieData generatePieData() 
+# LineData generateLineData() 
+# LineData getComplexity() 
+- String getLabel(int i) 
+    - Typeface tf;
+ 
+}
+abstract class com.xxmassdeveloper.mpchartexample.listviewitems.ChartItem {
+ + {abstract} int getItemType()
+ 
+}
+abstract class com.xxmassdeveloper.mpchartexample.notimportant.DemoBase {
+ # void onCreate(@Nullable Bundle savedInstanceState) 
+# float getRandom(float range, float startsfrom) 
++ void onBackPressed() 
+    # Typeface mTfRegular;
+    # Typeface mTfLight;
+ 
+}
+abstract class com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity {
+ # void onCreate(Bundle savedInstanceState) 
+# void setup(Chart<?> chart) 
+# void styleData(ChartData data) 
+# void onResume() 
+# void onPause() 
+# void writeToDB(int objectCount) 
+# void writeToDBStack(int objectCount) 
+# void writeToDBCandle(int objectCount) 
+# void writeToDBBubble(int objectCount) 
+# void writeToDBPie() 
+    # Realm mRealm;
+    # Typeface mTf;
+ 
+}
+class GestureDetector.SimpleOnGestureListener
+class ObjectPool.Poolable
+class android.animation.Animator
+class android.animation.ObjectAnimator
+class android.animation.ValueAnimator
+class android.animation.ValueAnimator.AnimatorUpdateListener
+class android.app.Activity
+class android.app.AlertDialog
+class android.content.ContentValues
+class android.content.Context
+class android.content.DialogInterface
+class android.content.DialogInterface.OnClickListener
+class android.content.Intent
+class android.content.res.AssetManager
+class android.content.res.Resources
+class android.graphics.Bitmap
+class android.graphics.Bitmap.CompressFormat
+class android.graphics.Canvas
+class android.graphics.Color
+class android.graphics.DashPathEffect
+class android.graphics.Matrix
+class android.graphics.Paint
+class android.graphics.Paint.Align
+class android.graphics.Paint.Style
+class android.graphics.Path
+class android.graphics.Point
+class android.graphics.PointF
+class android.graphics.Rect
+class android.graphics.RectF
+class android.graphics.Typeface
+class android.graphics.drawable.BitmapDrawable
+class android.graphics.drawable.Drawable
+class android.net.Uri
+class android.os.Build
+class android.os.Bundle
+class android.os.Environment
+class android.os.Parcel
+class android.os.ParcelFormatException
+class android.provider.MediaStore.Images
+class android.renderscript.Type
+class android.support.v4.app.Fragment
+class android.support.v4.app.FragmentActivity
+class android.support.v4.app.FragmentManager
+class android.support.v4.app.FragmentPagerAdapter
+class android.support.v4.content.ContextCompat
+class android.support.v4.view.ViewPager
+class android.text.Layout
+class android.text.SpannableString
+class android.text.StaticLayout
+class android.text.TextPaint
+class android.text.TextUtils
+class android.text.style.ForegroundColorSpan
+class android.text.style.RelativeSizeSpan
+class android.text.style.StyleSpan
+class android.util.AttributeSet
+class android.util.DisplayMetrics
+class android.util.Log
+class android.util.SizeF
+class android.view.Display
+class android.view.GestureDetector
+class android.view.GestureDetector.SimpleOnGestureListener
+class android.view.LayoutInflater
+class android.view.Menu
+class android.view.MenuItem
+class android.view.MotionEvent
+class android.view.VelocityTracker
+class android.view.View
+class android.view.ViewConfiguration
+class android.view.ViewGroup
+class android.view.ViewParent
+class android.view.WindowManager
+class android.view.animation.AnimationUtils
+class android.widget.AdapterView
+class android.widget.ArrayAdapter
+class android.widget.FrameLayout
+class android.widget.ListView
+class android.widget.RelativeLayout
+class android.widget.SeekBar
+class android.widget.TextView
+class android.widget.Toast
+class com.github.mikephil.charting.animation.ChartAnimator {
+ + void animateXY(int durationMillisX, int durationMillisY, EasingFunction easingX,
+            EasingFunction easingY) 
++ void animateX(int durationMillis, EasingFunction easing) 
++ void animateY(int durationMillis, EasingFunction easing) 
++ void animateXY(int durationMillisX, int durationMillisY, Easing.EasingOption easingX,
+            Easing.EasingOption easingY) 
++ void animateX(int durationMillis, Easing.EasingOption easing) 
++ void animateY(int durationMillis, Easing.EasingOption easing) 
++ void animateXY(int durationMillisX, int durationMillisY) 
++ void animateX(int durationMillis) 
++ void animateY(int durationMillis) 
++ float getPhaseY() 
++ void setPhaseY(float phase) 
++ float getPhaseX() 
++ void setPhaseX(float phase) 
+    - AnimatorUpdateListener mListener;
+ 
+}
+class com.github.mikephil.charting.animation.Easing {
+ + {static} EasingFunction getEasingFunctionFromOption(EasingOption easing) 
++ float ease(long elapsed, long duration) 
++ float getInterpolation(float input) 
+ 
+}
+class com.github.mikephil.charting.buffer.BarBuffer {
+ + void setBarWidth(float barWidth) 
++ void setDataSet(int index) 
++ void setInverted(boolean inverted) 
+# void addBar(float left, float top, float right, float bottom) 
++ void feed(IBarDataSet data) 
+ 
+}
+class com.github.mikephil.charting.buffer.HorizontalBarBuffer {
+ + void feed(IBarDataSet data) 
+ 
+}
+class com.github.mikephil.charting.charts.BarChart {
+ # void init() 
+# void calcMinMax() 
++ Highlight getHighlightByTouchPoint(float x, float y) 
++ RectF getBarBounds(BarEntry e) 
++ void getBarBounds(BarEntry e, RectF outputRect) 
++ void setDrawValueAboveBar(boolean enabled) 
++ boolean isDrawValueAboveBarEnabled() 
++ void setDrawBarShadow(boolean enabled) 
++ boolean isDrawBarShadowEnabled() 
++ void setHighlightFullBarEnabled(boolean enabled) 
++ boolean isHighlightFullBarEnabled() 
++ void highlightValue(float x, int dataSetIndex, int stackIndex) 
++ BarData getBarData() 
++ void setFitBars(boolean enabled) 
++ void groupBars(float fromX, float groupSpace, float barSpace) 
+ 
+}
+class com.github.mikephil.charting.charts.BubbleChart {
+ # void init() 
++ BubbleData getBubbleData() 
+ 
+}
+class com.github.mikephil.charting.charts.CandleStickChart {
+ # void init() 
++ CandleData getCandleData() 
+ 
+}
+class com.github.mikephil.charting.charts.CombinedChart {
+ # void init() 
++ CombinedData getCombinedData() 
++ void setData(CombinedData data) 
++ Highlight getHighlightByTouchPoint(float x, float y) 
++ LineData getLineData() 
++ BarData getBarData() 
++ ScatterData getScatterData() 
++ CandleData getCandleData() 
++ BubbleData getBubbleData() 
++ boolean isDrawBarShadowEnabled() 
++ boolean isDrawValueAboveBarEnabled() 
++ void setDrawValueAboveBar(boolean enabled) 
++ void setDrawBarShadow(boolean enabled) 
++ void setHighlightFullBarEnabled(boolean enabled) 
++ boolean isHighlightFullBarEnabled() 
++ DrawOrder[] getDrawOrder() 
++ void setDrawOrder(DrawOrder[] order) 
+    # DrawOrder[] mDrawOrder;
+ 
+}
+class com.github.mikephil.charting.charts.CombinedChart.DrawOrder
+class com.github.mikephil.charting.charts.HorizontalBarChart {
+ # void init() 
++ void calculateOffsets() 
+# void prepareValuePxMatrix() 
+# float[] getMarkerPosition(Highlight high) 
++ void getBarBounds(BarEntry e, RectF outputRect) 
++ MPPointF getPosition(Entry e, AxisDependency axis) 
++ Highlight getHighlightByTouchPoint(float x, float y) 
++ float getLowestVisibleX() 
++ float getHighestVisibleX() 
++ void setVisibleXRangeMaximum(float maxXRange) 
++ void setVisibleXRangeMinimum(float minXRange) 
++ void setVisibleXRange(float minXRange, float maxXRange) 
++ void setVisibleYRangeMaximum(float maxYRange, AxisDependency axis) 
++ void setVisibleYRangeMinimum(float minYRange, AxisDependency axis) 
++ void setVisibleYRange(float minYRange, float maxYRange, AxisDependency axis) 
+ 
+}
+class com.github.mikephil.charting.charts.LineChart {
+ # void init() 
++ LineData getLineData() 
+# void onDetachedFromWindow() 
+ 
+}
+class com.github.mikephil.charting.charts.PieChart {
+ # void init() 
+# void onDraw(Canvas canvas) 
++ void calculateOffsets() 
+# void calcMinMax() 
+# float[] getMarkerPosition(Highlight highlight) 
+- void calcAngles() 
++ boolean needsHighlight(int index) 
+- float calcAngle(float value) 
+- float calcAngle(float value, float yValueSum) 
++ XAxis getXAxis() 
++ int getIndexForAngle(float angle) 
++ int getDataSetIndexForIndex(int xIndex) 
++ float[] getDrawAngles() 
++ float[] getAbsoluteAngles() 
++ void setHoleColor(int color) 
++ void setDrawSlicesUnderHole(boolean enable) 
++ boolean isDrawSlicesUnderHoleEnabled() 
++ void setDrawHoleEnabled(boolean enabled) 
++ boolean isDrawHoleEnabled() 
++ void setCenterText(CharSequence text) 
++ CharSequence getCenterText() 
++ void setDrawCenterText(boolean enabled) 
++ boolean isDrawCenterTextEnabled() 
+# float getRequiredLegendOffset() 
+# float getRequiredBaseOffset() 
++ float getRadius() 
++ RectF getCircleBox() 
++ MPPointF getCenterCircleBox() 
++ void setCenterTextTypeface(Typeface t) 
++ void setCenterTextSize(float sizeDp) 
++ void setCenterTextSizePixels(float sizePixels) 
++ void setCenterTextOffset(float x, float y) 
++ MPPointF getCenterTextOffset() 
++ void setCenterTextColor(int color) 
++ void setHoleRadius(final float percent) 
++ float getHoleRadius() 
++ void setTransparentCircleColor(int color) 
++ void setTransparentCircleRadius(final float percent) 
++ float getTransparentCircleRadius() 
++ void setTransparentCircleAlpha(int alpha) 
++ void setDrawSliceText(boolean enabled) 
++ void setDrawEntryLabels(boolean enabled) 
++ boolean isDrawEntryLabelsEnabled() 
++ void setEntryLabelColor(int color) 
++ void setEntryLabelTypeface(Typeface tf) 
++ void setEntryLabelTextSize(float size) 
++ boolean isDrawRoundedSlicesEnabled() 
++ void setUsePercentValues(boolean enabled) 
++ boolean isUsePercentValuesEnabled() 
++ void setCenterTextRadiusPercent(float percent) 
++ float getCenterTextRadiusPercent() 
++ float getMaxAngle() 
++ void setMaxAngle(float maxangle) 
+# void onDetachedFromWindow() 
+ 
+}
+class com.github.mikephil.charting.charts.RadarChart {
+ # void init() 
+# void calcMinMax() 
++ void notifyDataSetChanged() 
+# void onDraw(Canvas canvas) 
++ float getFactor() 
++ float getSliceAngle() 
++ int getIndexForAngle(float angle) 
++ YAxis getYAxis() 
++ void setWebLineWidth(float width) 
++ float getWebLineWidth() 
++ void setWebLineWidthInner(float width) 
++ float getWebLineWidthInner() 
++ void setWebAlpha(int alpha) 
++ int getWebAlpha() 
++ void setWebColor(int color) 
++ int getWebColor() 
++ void setWebColorInner(int color) 
++ int getWebColorInner() 
++ void setDrawWeb(boolean enabled) 
++ void setSkipWebLineCount(int count) 
++ int getSkipWebLineCount() 
+# float getRequiredLegendOffset() 
+# float getRequiredBaseOffset() 
++ float getRadius() 
++ float getYChartMax() 
++ float getYChartMin() 
++ float getYRange() 
+    - YAxis mYAxis;
+    # YAxisRendererRadarChart mYAxisRenderer;
+    # XAxisRendererRadarChart mXAxisRenderer;
+ 
+}
+class com.github.mikephil.charting.charts.ScatterChart {
+ # void init() 
++ ScatterData getScatterData() 
++ String toString() 
++ {static} ScatterShape[] getAllDefaultShapes() 
+        - final String shapeIdentifier;
+ 
+}
+class com.github.mikephil.charting.components.Description {
+ + void setText(String text) 
++ String getText() 
++ void setPosition(float x, float y) 
++ MPPointF getPosition() 
++ void setTextAlign(Paint.Align align) 
+    - MPPointF mPosition;
+ 
+}
+class com.github.mikephil.charting.components.Legend {
+ + void setEntries(List<LegendEntry> entries) 
++ LegendEntry[] getEntries() 
++ float getMaximumEntryWidth(Paint p) 
++ float getMaximumEntryHeight(Paint p) 
++ int[] getColors() 
++ String[] getLabels() 
++ int[] getExtraColors() 
++ String[] getExtraLabels() 
++ LegendEntry[] getExtraEntries() 
++ void setExtra(List<LegendEntry> entries) 
++ void setExtra(LegendEntry[] entries) 
++ void setExtra(List<Integer> colors, List<String> labels) 
++ void setExtra(int[] colors, String[] labels) 
++ void setCustom(LegendEntry[] entries) 
++ void setCustom(List<LegendEntry> entries) 
++ void resetCustom() 
++ boolean isLegendCustom() 
++ LegendPosition getPosition() 
++ void setPosition(LegendPosition newValue) 
++ LegendHorizontalAlignment getHorizontalAlignment() 
++ void setHorizontalAlignment(LegendHorizontalAlignment value) 
++ LegendVerticalAlignment getVerticalAlignment() 
++ void setVerticalAlignment(LegendVerticalAlignment value) 
++ LegendOrientation getOrientation() 
++ void setOrientation(LegendOrientation value) 
++ boolean isDrawInsideEnabled() 
++ void setDrawInside(boolean value) 
++ LegendDirection getDirection() 
++ void setDirection(LegendDirection pos) 
++ LegendForm getForm() 
++ void setForm(LegendForm shape) 
++ void setFormSize(float size) 
++ float getFormSize() 
++ void setFormLineWidth(float size) 
++ float getFormLineWidth() 
++ void setFormLineDashEffect(DashPathEffect dashPathEffect) 
++ DashPathEffect getFormLineDashEffect() 
++ float getXEntrySpace() 
++ void setXEntrySpace(float space) 
++ float getYEntrySpace() 
++ void setYEntrySpace(float space) 
++ float getFormToTextSpace() 
++ void setFormToTextSpace(float space) 
++ float getStackSpace() 
++ void setStackSpace(float space) 
++ void setWordWrapEnabled(boolean enabled) 
++ boolean isWordWrapEnabled() 
++ float getMaxSizePercent() 
++ void setMaxSizePercent(float maxSize) 
++ List<FSize> getCalculatedLabelSizes() 
++ List<Boolean> getCalculatedLabelBreakPoints() 
++ List<FSize> getCalculatedLineSizes() 
++ void calculateDimensions(Paint labelpaint, ViewPortHandler viewPortHandler) 
+    - LegendEntry[] mExtraEntries;
+ 
+}
+class com.github.mikephil.charting.components.Legend.LegendForm
+class com.github.mikephil.charting.components.Legend.LegendPosition
+class com.github.mikephil.charting.components.LegendEntry {
+     + String label;
+ 
+}
+class com.github.mikephil.charting.components.LimitLine {
+ + float getLimit() 
++ void setLineWidth(float width) 
++ float getLineWidth() 
++ void setLineColor(int color) 
++ int getLineColor() 
++ void enableDashedLine(float lineLength, float spaceLength, float phase) 
++ void disableDashedLine() 
++ boolean isDashedLineEnabled() 
++ DashPathEffect getDashPathEffect() 
++ void setTextStyle(Paint.Style style) 
++ void setLabelPosition(LimitLabelPosition pos) 
++ LimitLabelPosition getLabelPosition() 
++ void setLabel(String label) 
++ String getLabel() 
+ 
+}
+class com.github.mikephil.charting.components.LimitLine.LimitLabelPosition
+class com.github.mikephil.charting.components.MarkerImage {
+ + void setOffset(MPPointF offset) 
++ void setOffset(float offsetX, float offsetY) 
++ MPPointF getOffset() 
++ void setSize(FSize size) 
++ FSize getSize() 
++ void setChartView(Chart chart) 
++ Chart getChartView() 
++ MPPointF getOffsetForDrawingAtPoint(float posX, float posY) 
++ void refreshContent(Entry e, Highlight highlight) 
++ void draw(Canvas canvas, float posX, float posY) 
+    - Context mContext;
+    - Drawable mDrawable;
+    - WeakReference<Chart> mWeakChart;
+ 
+}
+class com.github.mikephil.charting.components.MarkerView {
+ - void setupLayoutResource(int layoutResource) 
++ void setOffset(MPPointF offset) 
++ void setOffset(float offsetX, float offsetY) 
++ MPPointF getOffset() 
++ void setChartView(Chart chart) 
++ Chart getChartView() 
++ MPPointF getOffsetForDrawingAtPoint(float posX, float posY) 
++ void refreshContent(Entry e, Highlight highlight) 
++ void draw(Canvas canvas, float posX, float posY) 
+    - WeakReference<Chart> mWeakChart;
+ 
+}
+class com.github.mikephil.charting.components.XAxis {
+ + XAxisPosition getPosition() 
++ void setPosition(XAxisPosition pos) 
++ float getLabelRotationAngle() 
++ void setLabelRotationAngle(float angle) 
++ void setAvoidFirstLastClipping(boolean enabled) 
++ boolean isAvoidFirstLastClippingEnabled() 
+ 
+}
+class com.github.mikephil.charting.components.XAxis.XAxisPosition
+class com.github.mikephil.charting.components.YAxis {
+ + AxisDependency getAxisDependency() 
++ float getMinWidth() 
++ void setMinWidth(float minWidth) 
++ float getMaxWidth() 
++ void setMaxWidth(float maxWidth) 
++ YAxisLabelPosition getLabelPosition() 
++ void setPosition(YAxisLabelPosition pos) 
++ boolean isDrawTopYLabelEntryEnabled() 
++ boolean isDrawBottomYLabelEntryEnabled() 
++ void setDrawTopYLabelEntry(boolean enabled) 
++ void setInverted(boolean enabled) 
++ boolean isInverted() 
++ void setStartAtZero(boolean startAtZero) 
++ void setSpaceTop(float percent) 
++ float getSpaceTop() 
++ void setSpaceBottom(float percent) 
++ float getSpaceBottom() 
++ boolean isDrawZeroLineEnabled() 
++ void setDrawZeroLine(boolean mDrawZeroLine) 
++ int getZeroLineColor() 
++ void setZeroLineColor(int color) 
++ float getZeroLineWidth() 
++ void setZeroLineWidth(float width) 
++ float getRequiredWidthSpace(Paint p) 
++ float getRequiredHeightSpace(Paint p) 
++ boolean needsOffset() 
++ void calculate(float dataMin, float dataMax) 
+    - AxisDependency mAxisDependency;
+ 
+}
+class com.github.mikephil.charting.components.YAxis.AxisDependency
+class com.github.mikephil.charting.components.YAxis.YAxisLabelPosition
+class com.github.mikephil.charting.data.BarData {
+ + void setBarWidth(float mBarWidth) 
++ float getBarWidth() 
++ void groupBars(float fromX, float groupSpace, float barSpace) 
++ float getGroupWidth(float groupSpace, float barSpace) 
+ 
+}
+class com.github.mikephil.charting.data.BarDataSet {
+ + DataSet<BarEntry> copy() 
+- void calcEntryCountIncludingStacks(List<BarEntry> yVals) 
+- void calcStackSize(List<BarEntry> yVals) 
+# void calcMinMax(BarEntry e) 
++ int getStackSize() 
++ boolean isStacked() 
++ int getEntryCountStacks() 
++ void setBarShadowColor(int color) 
++ int getBarShadowColor() 
++ void setBarBorderWidth(float width) 
++ float getBarBorderWidth() 
++ void setBarBorderColor(int color) 
++ int getBarBorderColor() 
++ void setHighLightAlpha(int alpha) 
++ int getHighLightAlpha() 
++ void setStackLabels(String[] labels) 
++ String[] getStackLabels() 
+ 
+}
+class com.github.mikephil.charting.data.BarEntry {
+ + BarEntry copy() 
++ float[] getYVals() 
++ void setVals(float[] vals) 
++ float getY() 
++ Range[] getRanges() 
++ boolean isStacked() 
++ float getBelowSum(int stackIndex) 
++ float getSumBelow(int stackIndex) 
++ float getPositiveSum() 
++ float getNegativeSum() 
+- void calcPosNegSum() 
+- {static} float calcSum(float[] vals) 
+# void calcRanges() 
+    - float[] mYVals;
+    - Range[] mRanges;
+    - float mNegativeSum;
+    - float mPositiveSum;
+ 
+}
+class com.github.mikephil.charting.data.BubbleData {
+ + void setHighlightCircleWidth(float width) 
+ 
+}
+class com.github.mikephil.charting.data.BubbleDataSet {
+ + void setHighlightCircleWidth(float width) 
++ float getHighlightCircleWidth() 
+# void calcMinMax(BubbleEntry e) 
++ DataSet<BubbleEntry> copy() 
++ float getMaxSize() 
++ boolean isNormalizeSizeEnabled() 
++ void setNormalizeSizeEnabled(boolean normalizeSize) 
+    # float mMaxSize;
+ 
+}
+class com.github.mikephil.charting.data.BubbleEntry {
+ + BubbleEntry copy() 
++ float getSize() 
++ void setSize(float size) 
+ 
+}
+class com.github.mikephil.charting.data.CandleData {
+  
+}
+class com.github.mikephil.charting.data.CandleDataSet {
+ + DataSet<CandleEntry> copy() 
+# void calcMinMax(CandleEntry e) 
+# void calcMinMaxY(CandleEntry e) 
++ void setBarSpace(float space) 
++ float getBarSpace() 
++ void setShadowWidth(float width) 
++ float getShadowWidth() 
++ void setShowCandleBar(boolean showCandleBar) 
++ boolean getShowCandleBar() 
++ void setNeutralColor(int color) 
++ int getNeutralColor() 
++ void setIncreasingColor(int color) 
++ int getIncreasingColor() 
++ void setDecreasingColor(int color) 
++ int getDecreasingColor() 
++ void setIncreasingPaintStyle(Paint.Style paintStyle) 
++ void setDecreasingPaintStyle(Paint.Style decreasingPaintStyle) 
++ int getShadowColor() 
++ void setShadowColor(int shadowColor) 
++ boolean getShadowColorSameAsCandle() 
++ void setShadowColorSameAsCandle(boolean shadowColorSameAsCandle) 
+ 
+}
+class com.github.mikephil.charting.data.CandleEntry {
+ + float getShadowRange() 
++ float getBodyRange() 
++ float getY() 
++ CandleEntry copy() 
++ float getHigh() 
++ void setHigh(float mShadowHigh) 
++ float getLow() 
++ void setLow(float mShadowLow) 
++ float getClose() 
++ void setClose(float mClose) 
++ float getOpen() 
++ void setOpen(float mOpen) 
+ 
+}
+class com.github.mikephil.charting.data.CombinedData {
+ + void setData(LineData data) 
++ void setData(BarData data) 
++ void setData(ScatterData data) 
++ void setData(CandleData data) 
++ void setData(BubbleData data) 
++ void calcMinMax() 
++ BubbleData getBubbleData() 
++ LineData getLineData() 
++ BarData getBarData() 
++ ScatterData getScatterData() 
++ CandleData getCandleData() 
++ List<BarLineScatterCandleBubbleData> getAllData() 
++ BarLineScatterCandleBubbleData getDataByIndex(int index) 
++ void notifyDataChanged() 
++ Entry getEntryForHighlight(Highlight highlight) 
++ int getDataIndex(ChartData data) 
++ boolean removeDataSet(IBarLineScatterCandleBubbleDataSet<? extends Entry> d) 
++ boolean removeDataSet(int index) 
++ boolean removeEntry(Entry e, int dataSetIndex) 
++ boolean removeEntry(float xValue, int dataSetIndex) 
+    - LineData mLineData;
+    - BarData mBarData;
+    - ScatterData mScatterData;
+    - CandleData mCandleData;
+    - BubbleData mBubbleData;
+ 
+}
+class com.github.mikephil.charting.data.Entry {
+ + float getX() 
++ void setX(float x) 
++ Entry copy() 
++ boolean equalTo(Entry e) 
++ String toString() 
++ int describeContents() 
++ void writeToParcel(Parcel dest, int flags) 
++ Entry createFromParcel(Parcel source) 
++ Entry[] newArray(int size) 
+ 
+}
+class com.github.mikephil.charting.data.LineData {
+  
+}
+class com.github.mikephil.charting.data.LineDataSet {
+ + DataSet<Entry> copy() 
++ void setMode(LineDataSet.Mode mode) 
++ void setCubicIntensity(float intensity) 
++ float getCubicIntensity() 
++ void setCircleRadius(float radius) 
++ float getCircleRadius() 
++ void setCircleHoleRadius(float holeRadius) 
++ float getCircleHoleRadius() 
++ void setCircleSize(float size) 
++ float getCircleSize() 
++ void enableDashedLine(float lineLength, float spaceLength, float phase) 
++ void disableDashedLine() 
++ boolean isDashedLineEnabled() 
++ DashPathEffect getDashPathEffect() 
++ void setDrawCircles(boolean enabled) 
++ boolean isDrawCirclesEnabled() 
++ boolean isDrawCubicEnabled() 
++ boolean isDrawSteppedEnabled() 
++ List<Integer> getCircleColors() 
++ int getCircleColor(int index) 
++ int getCircleColorCount() 
++ void setCircleColors(List<Integer> colors) 
++ void setCircleColors(int... colors) 
++ void setCircleColors(int[] colors, Context c) 
++ void setCircleColor(int color) 
++ void resetCircleColors() 
++ void setCircleColorHole(int color) 
++ int getCircleHoleColor() 
++ void setDrawCircleHole(boolean enabled) 
++ boolean isDrawCircleHoleEnabled() 
++ void setFillFormatter(IFillFormatter formatter) 
++ IFillFormatter getFillFormatter() 
+ 
+}
+class com.github.mikephil.charting.data.PieData {
+ + void setDataSet(IPieDataSet dataSet) 
++ IPieDataSet getDataSet() 
++ IPieDataSet getDataSetByIndex(int index) 
++ IPieDataSet getDataSetByLabel(String label, boolean ignorecase) 
++ Entry getEntryForHighlight(Highlight highlight) 
++ float getYValueSum() 
+ 
+}
+class com.github.mikephil.charting.data.PieDataSet {
+ + DataSet<PieEntry> copy() 
+# void calcMinMax(PieEntry e) 
++ void setSliceSpace(float spaceDp) 
++ float getSliceSpace() 
++ void setAutomaticallyDisableSliceSpacing(boolean autoDisable) 
++ boolean isAutomaticallyDisableSliceSpacingEnabled() 
++ void setSelectionShift(float shift) 
++ float getSelectionShift() 
++ ValuePosition getXValuePosition()
+    
++ void setXValuePosition(ValuePosition xValuePosition)
+    
++ ValuePosition getYValuePosition()
+    
++ void setYValuePosition(ValuePosition yValuePosition)
+    
++ int getValueLineColor()
+    
++ void setValueLineColor(int valueLineColor)
+    
++ float getValueLineWidth()
+    
++ void setValueLineWidth(float valueLineWidth)
+    
++ float getValueLinePart1OffsetPercentage()
+    
++ void setValueLinePart1OffsetPercentage(float valueLinePart1OffsetPercentage)
+    
++ float getValueLinePart1Length()
+    
++ void setValueLinePart1Length(float valueLinePart1Length)
+    
++ float getValueLinePart2Length()
+    
++ void setValueLinePart2Length(float valueLinePart2Length)
+    
++ boolean isValueLineVariableLength()
+    
++ void setValueLineVariableLength(boolean valueLineVariableLength)
+    
+    - boolean mAutomaticallyDisableSliceSpacing;
+ 
+}
+class com.github.mikephil.charting.data.PieEntry {
+ + float getValue() 
++ String getLabel() 
++ void setLabel(String label) 
++ void setX(float x) 
++ float getX() 
++ PieEntry copy() 
+    - String label;
+ 
+}
+class com.github.mikephil.charting.data.RadarData {
+ + void setLabels(List<String> labels) 
++ void setLabels(String... labels) 
++ List<String> getLabels() 
++ Entry getEntryForHighlight(Highlight highlight) 
+    - List<String> mLabels;
+ 
+}
+class com.github.mikephil.charting.data.RadarDataSet {
+ + boolean isDrawHighlightCircleEnabled()
+    
++ void setDrawHighlightCircleEnabled(boolean enabled)
+    
++ int getHighlightCircleFillColor()
+    
++ void setHighlightCircleFillColor(int color)
+    
++ int getHighlightCircleStrokeColor()
+    
++ void setHighlightCircleStrokeColor(int color)
+    
++ int getHighlightCircleStrokeAlpha()
+    
++ void setHighlightCircleStrokeAlpha(int alpha)
+    
++ float getHighlightCircleInnerRadius()
+    
++ void setHighlightCircleInnerRadius(float radius)
+    
++ float getHighlightCircleOuterRadius()
+    
++ void setHighlightCircleOuterRadius(float radius)
+    
++ float getHighlightCircleStrokeWidth()
+    
++ void setHighlightCircleStrokeWidth(float strokeWidth)
+    
++ DataSet<RadarEntry> copy() 
+ 
+}
+class com.github.mikephil.charting.data.RadarEntry {
+ + float getValue() 
++ RadarEntry copy() 
++ void setX(float x) 
++ float getX() 
+ 
+}
+class com.github.mikephil.charting.data.ScatterData {
+ + float getGreatestShapeSize() 
+ 
+}
+class com.github.mikephil.charting.data.ScatterDataSet {
+ + DataSet<Entry> copy() 
++ void setScatterShapeSize(float size) 
++ float getScatterShapeSize() 
++ void setScatterShape(ScatterChart.ScatterShape shape) 
++ void setShapeRenderer(IShapeRenderer shapeRenderer) 
++ IShapeRenderer getShapeRenderer() 
++ void setScatterShapeHoleRadius(float holeRadius) 
++ float getScatterShapeHoleRadius() 
++ void setScatterShapeHoleColor(int holeColor) 
++ int getScatterShapeHoleColor() 
++ {static} IShapeRenderer getRendererForShape(ScatterChart.ScatterShape shape) 
+ 
+}
+class com.github.mikephil.charting.data.filter.Approximator {
+ + float[] reduceWithDouglasPeucker(float[] points, float tolerance) 
++ float distance(float x, float y) 
++ float[] getPoints() 
+        - float[] points;
+        - float sxey;
+        - float exsy;
+        - float dx;
+        - float dy;
+        - float length;
+ 
+}
+class com.github.mikephil.charting.data.realm.implementation.RealmBarDataSet
+class com.github.mikephil.charting.data.realm.implementation.RealmBubbleDataSet
+class com.github.mikephil.charting.data.realm.implementation.RealmCandleDataSet
+class com.github.mikephil.charting.data.realm.implementation.RealmLineDataSet
+class com.github.mikephil.charting.data.realm.implementation.RealmPieDataSet
+class com.github.mikephil.charting.data.realm.implementation.RealmRadarDataSet
+class com.github.mikephil.charting.data.realm.implementation.RealmScatterDataSet
+class com.github.mikephil.charting.exception.DrawingDataSetNotCreatedException {
+  
+}
+class com.github.mikephil.charting.formatter.DefaultAxisValueFormatter {
+ + String getFormattedValue(float value, AxisBase axis) 
++ int getDecimalDigits() 
+    # DecimalFormat mFormat;
+ 
+}
+class com.github.mikephil.charting.formatter.DefaultFillFormatter {
+ + float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) 
+ 
+}
+class com.github.mikephil.charting.formatter.DefaultValueFormatter {
+ + void setup(int digits) 
++ String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) 
++ int getDecimalDigits() 
+    # DecimalFormat mFormat;
+    # int mDecimalDigits;
+ 
+}
+class com.github.mikephil.charting.formatter.IndexAxisValueFormatter {
+ + String getFormattedValue(float value, AxisBase axis) 
++ String[] getValues()
+    
++ void setValues(String[] values)
+    
+ 
+}
+class com.github.mikephil.charting.formatter.LargeValueFormatter {
+ + String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) 
++ String getFormattedValue(float value, AxisBase axis) 
++ void setAppendix(String appendix) 
++ void setSuffix(String[] suff) 
+- String makePretty(double number) 
++ int getDecimalDigits() 
+    - DecimalFormat mFormat;
+ 
+}
+class com.github.mikephil.charting.formatter.PercentFormatter {
+ + String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) 
++ String getFormattedValue(float value, AxisBase axis) 
++ int getDecimalDigits() 
+    # DecimalFormat mFormat;
+ 
+}
+class com.github.mikephil.charting.formatter.StackedValueFormatter {
+ + String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) 
+    - boolean mDrawWholeStack;
+    - String mAppendix;
+    - DecimalFormat mFormat;
+ 
+}
+class com.github.mikephil.charting.highlight.BarHighlighter {
+ + Highlight getHighlight(float x, float y) 
++ Highlight getStackedHighlight(Highlight high, IBarDataSet set, float xVal, float yVal) 
+# int getClosestStackIndex(Range[] ranges, float value) 
+# Range[] getRanges(BarEntry entry) 
+# float getDistance(float x1, float y1, float x2, float y2) 
+# BarLineScatterCandleBubbleData getData() 
+ 
+}
+class com.github.mikephil.charting.highlight.ChartHighlighter {
+ + Highlight getHighlight(float x, float y) 
+# MPPointD getValsForTouch(float x, float y) 
+# Highlight getHighlightForX(float xVal, float x, float y) 
+# float getMinimumDistance(List<Highlight> closestValues, float pos, YAxis.AxisDependency axis) 
+# float getHighlightPos(Highlight h) 
+# List<Highlight> getHighlightsAtXValue(float xVal, float x, float y) 
+# List<Highlight> buildHighlights(IDataSet set, int dataSetIndex, float xVal, DataSet.Rounding rounding) 
++ Highlight getClosestHighlightByPixel(List<Highlight> closestValues, float x, float y,
+                                                YAxis.AxisDependency axis, float minSelectionDistance) 
+# float getDistance(float x1, float y1, float x2, float y2) 
+# BarLineScatterCandleBubbleData getData() 
+    # T mChart;
+ 
+}
+class com.github.mikephil.charting.highlight.CombinedHighlighter {
+ # List<Highlight> getHighlightsAtXValue(float xVal, float x, float y) 
+# Highlight getClosest(float x, float y, Highlight... highs) 
+    # BarHighlighter barHighlighter;
+ 
+}
+class com.github.mikephil.charting.highlight.Highlight {
+ + float getX() 
++ float getY() 
++ float getXPx() 
++ float getYPx() 
++ int getDataIndex() 
++ void setDataIndex(int mDataIndex) 
++ int getDataSetIndex() 
++ int getStackIndex() 
++ boolean isStacked() 
++ void setDraw(float x, float y) 
++ float getDrawX() 
++ float getDrawY() 
++ boolean equalTo(Highlight h) 
++ String toString() 
+    - float mXPx;
+    - float mYPx;
+    - int mDataSetIndex;
+    - float mDrawX;
+    - float mDrawY;
+ 
+}
+class com.github.mikephil.charting.highlight.HorizontalBarHighlighter {
+ + Highlight getHighlight(float x, float y) 
+# List<Highlight> buildHighlights(IDataSet set, int dataSetIndex, float xVal, DataSet.Rounding rounding) 
+# float getDistance(float x1, float y1, float x2, float y2) 
+ 
+}
+class com.github.mikephil.charting.highlight.PieHighlighter {
+ # Highlight getClosestHighlight(int index, float x, float y) 
+ 
+}
+class com.github.mikephil.charting.highlight.RadarHighlighter {
+ # Highlight getClosestHighlight(int index, float x, float y) 
+# List<Highlight> getHighlightsAtIndex(int index) 
+ 
+}
+class com.github.mikephil.charting.highlight.Range {
+ + boolean contains(float value) 
++ boolean isLarger(float value) 
++ boolean isSmaller(float value) 
+	+ float from;
+	+ float to;
+ 
+}
+class com.github.mikephil.charting.jobs.AnimatedMoveViewJob {
+ + {static} AnimatedMoveViewJob getInstance(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer trans, View v, float xOrigin, float yOrigin, long duration)
++ {static} void recycleInstance(AnimatedMoveViewJob instance)
++ void onAnimationUpdate(ValueAnimator animation) 
++ void recycleSelf()
+    - {static} ObjectPool<AnimatedMoveViewJob> pool;
+ 
+}
+class com.github.mikephil.charting.jobs.AnimatedZoomJob {
+ + {static} AnimatedZoomJob getInstance(ViewPortHandler viewPortHandler, View v, Transformer trans, YAxis axis, float xAxisRange, float scaleX, float scaleY, float xOrigin, float yOrigin, float zoomCenterX, float zoomCenterY, float zoomOriginX, float zoomOriginY, long duration) 
++ void onAnimationUpdate(ValueAnimator animation) 
++ void onAnimationEnd(Animator animation) 
++ void onAnimationCancel(Animator animation) 
++ void onAnimationRepeat(Animator animation) 
++ void recycleSelf() 
++ void onAnimationStart(Animator animation) 
+    - {static} ObjectPool<AnimatedZoomJob> pool;
+    # float zoomOriginX;
+    # float zoomOriginY;
+    # float zoomCenterX;
+    # float zoomCenterY;
+    # YAxis yAxis;
+    # float xAxisRange;
+ 
+}
+class com.github.mikephil.charting.jobs.MoveViewJob {
+ + {static} MoveViewJob getInstance(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer trans, View v)
++ {static} void recycleInstance(MoveViewJob instance)
++ void run() 
+    - {static} ObjectPool<MoveViewJob> pool;
+ 
+}
+class com.github.mikephil.charting.jobs.ZoomJob {
+ + {static} ZoomJob getInstance(ViewPortHandler viewPortHandler, float scaleX, float scaleY, float xValue, float yValue,
+                                      Transformer trans, YAxis.AxisDependency axis, View v) 
++ {static} void recycleInstance(ZoomJob instance) 
++ void run() 
+    - {static} ObjectPool<ZoomJob> pool;
+    # float scaleX;
+    # float scaleY;
+ 
+}
+class com.github.mikephil.charting.listener.BarLineChartTouchListener {
+ + boolean onTouch(View v, MotionEvent event) 
+- void saveTouchStart(MotionEvent event) 
+- void performDrag(MotionEvent event) 
+- void performZoom(MotionEvent event) 
+- void performHighlightDrag(MotionEvent e) 
+- {static} void midPoint(MPPointF point, MotionEvent event) 
+- {static} float spacing(MotionEvent event) 
+- {static} float getXDist(MotionEvent e) 
+- {static} float getYDist(MotionEvent e) 
++ MPPointF getTrans(float x, float y) 
+- boolean inverted() 
++ Matrix getMatrix() 
++ void setDragTriggerDist(float dragTriggerDistance) 
++ boolean onDoubleTap(MotionEvent e) 
++ void onLongPress(MotionEvent e) 
++ boolean onSingleTapUp(MotionEvent e) 
++ boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) 
++ void stopDeceleration() 
++ void computeScroll() 
+    - IDataSet mClosestDataSetToTouch;
+    - VelocityTracker mVelocityTracker;
+    - float mDragTriggerDist;
+    - float mMinScalePointerDistance;
+ 
+}
+class com.github.mikephil.charting.listener.OnDrawLineChartTouchListener {
+ + boolean onTouch(View v, MotionEvent event) 
+ 
+}
+class com.github.mikephil.charting.listener.PieRadarChartTouchListener {
+ + boolean onTouch(View v, MotionEvent event) 
++ void onLongPress(MotionEvent me) 
++ boolean onSingleTapConfirmed(MotionEvent e) 
++ boolean onSingleTapUp(MotionEvent e) 
+- void resetVelocity() 
+- void sampleVelocity(float touchLocationX, float touchLocationY) 
+- float calculateVelocity() 
++ void setGestureStartAngle(float x, float y) 
++ void updateGestureRotation(float x, float y) 
++ void stopDeceleration() 
++ void computeScroll() 
+        + long time;
+        + float angle;
+ 
+}
+class com.github.mikephil.charting.matrix.Vector3 {
+ + final void add(Vector3 other) 
++ final void add(float otherX, float otherY, float otherZ) 
++ final void subtract(Vector3 other) 
++ final void subtractMultiple(Vector3 other, float multiplicator)
+    
++ final void multiply(float magnitude) 
++ final void multiply(Vector3 other) 
++ final void divide(float magnitude) 
++ final void set(Vector3 other) 
++ final void set(float xValue, float yValue, float zValue) 
++ final float dot(Vector3 other) 
++ final Vector3 cross(Vector3 other) 
++ final float length() 
++ final float length2() 
++ final float distance2(Vector3 other) 
++ final float normalize() 
++ final void zero() 
++ final boolean pointsInSameDirection(Vector3 other) 
+    + float x;
+    + float y;
+    + float z;
+ 
+}
+class com.github.mikephil.charting.renderer.BarChartRenderer {
+ + void initBuffers() 
++ void drawData(Canvas c) 
+# void drawDataSet(Canvas c, IBarDataSet dataSet, int index) 
+# void prepareBarHighlight(float x, float y1, float y2, float barWidthHalf, Transformer trans) 
++ void drawValues(Canvas c) 
++ void drawHighlighted(Canvas c, Highlight[] indices) 
+# void setHighlightDrawPos(Highlight high, RectF bar) 
++ void drawExtras(Canvas c) 
+    # BarDataProvider mChart;
+    # BarBuffer[] mBarBuffers;
+    # Paint mShadowPaint;
+    # Paint mBarBorderPaint;
+ 
+}
+class com.github.mikephil.charting.renderer.BubbleChartRenderer {
+ + void initBuffers() 
++ void drawData(Canvas c) 
+# float getShapeSize(float entrySize, float maxSize, float reference, boolean normalizeSize) 
+# void drawDataSet(Canvas c, IBubbleDataSet dataSet) 
++ void drawValues(Canvas c) 
++ void drawExtras(Canvas c) 
++ void drawHighlighted(Canvas c, Highlight[] indices) 
+    # BubbleDataProvider mChart;
+ 
+}
+class com.github.mikephil.charting.renderer.CandleStickChartRenderer {
+ + void initBuffers() 
++ void drawData(Canvas c) 
+# void drawDataSet(Canvas c, ICandleDataSet dataSet) 
++ void drawValues(Canvas c) 
++ void drawExtras(Canvas c) 
++ void drawHighlighted(Canvas c, Highlight[] indices) 
+    # CandleDataProvider mChart;
+ 
+}
+class com.github.mikephil.charting.renderer.CombinedChartRenderer {
+ + void createRenderers() 
++ void initBuffers() 
++ void drawData(Canvas c) 
++ void drawValues(Canvas c) 
++ void drawExtras(Canvas c) 
++ void drawHighlighted(Canvas c, Highlight[] indices) 
++ DataRenderer getSubRenderer(int index) 
++ List<DataRenderer> getSubRenderers() 
++ void setSubRenderers(List<DataRenderer> renderers) 
+    # WeakReference<Chart> mChart;
+ 
+}
+class com.github.mikephil.charting.renderer.HorizontalBarChartRenderer {
+ + void initBuffers() 
+# void drawDataSet(Canvas c, IBarDataSet dataSet, int index) 
++ void drawValues(Canvas c) 
+# void drawValue(Canvas c, String valueText, float x, float y, int color) 
+# void prepareBarHighlight(float x, float y1, float y2, float barWidthHalf, Transformer trans) 
+# void setHighlightDrawPos(Highlight high, RectF bar) 
+# boolean isDrawingValuesAllowed(ChartInterface chart) 
+ 
+}
+class com.github.mikephil.charting.renderer.LegendRenderer {
+ + Paint getLabelPaint() 
++ Paint getFormPaint() 
++ void computeLegend(ChartData<?> data) 
++ void renderLegend(Canvas c) 
+# void drawForm(
+            Canvas c,
+            float x, float y,
+            LegendEntry entry,
+            Legend legend) 
+# void drawLabel(Canvas c, float x, float y, String label) 
+    # Paint mLegendLabelPaint;
+    # Paint mLegendFormPaint;
+    # Legend mLegend;
+ 
+}
+class com.github.mikephil.charting.renderer.LineChartRenderer {
+ + void initBuffers() 
++ void drawData(Canvas c) 
+# void drawDataSet(Canvas c, ILineDataSet dataSet) 
+# void drawHorizontalBezier(ILineDataSet dataSet) 
+# void drawCubicBezier(ILineDataSet dataSet) 
+# void drawCubicFill(Canvas c, ILineDataSet dataSet, Path spline, Transformer trans, XBounds bounds) 
+# void drawLinear(Canvas c, ILineDataSet dataSet) 
+# void drawLinearFill(Canvas c, ILineDataSet dataSet, Transformer trans, XBounds bounds) 
+- void generateFilledPath(final ILineDataSet dataSet, final int startIndex, final int endIndex, final Path outputPath) 
++ void drawValues(Canvas c) 
++ void drawExtras(Canvas c) 
+# void drawCircles(Canvas c) 
++ void drawHighlighted(Canvas c, Highlight[] indices) 
++ void setBitmapConfig(Bitmap.Config config) 
++ void releaseBitmap() 
+# boolean init(ILineDataSet set) 
+# void fill(ILineDataSet set, boolean drawCircleHole, boolean drawTransparentCircleHole) 
+# Bitmap getBitmap(int index) 
+    # LineDataProvider mChart;
+    # Paint mCirclePaintInner;
+    # WeakReference<Bitmap> mDrawBitmap;
+    # Canvas mBitmapCanvas;
+        - Bitmap[] circleBitmaps;
+ 
+}
+class com.github.mikephil.charting.renderer.PieChartRenderer {
+ + Paint getPaintHole() 
++ Paint getPaintTransparentCircle() 
++ TextPaint getPaintCenterText() 
++ Paint getPaintEntryLabels() 
++ void initBuffers() 
++ void drawData(Canvas c) 
+# float calculateMinimumRadiusForSpacedSlice(
+            MPPointF center,
+            float radius,
+            float angle,
+            float arcStartPointX,
+            float arcStartPointY,
+            float startAngle,
+            float sweepAngle) 
+# float getSliceSpace(IPieDataSet dataSet) 
+# void drawDataSet(Canvas c, IPieDataSet dataSet) 
++ void drawValues(Canvas c) 
+# void drawEntryLabel(Canvas c, String label, float x, float y) 
++ void drawExtras(Canvas c) 
+# void drawHole(Canvas c) 
+# void drawCenterText(Canvas c) 
++ void drawHighlighted(Canvas c, Highlight[] indices) 
+# void drawRoundedSlices(Canvas c) 
++ void releaseBitmap() 
+    # PieChart mChart;
+    # Paint mHolePaint;
+    # Paint mTransparentCirclePaint;
+    # Paint mValueLinePaint;
+    - TextPaint mCenterTextPaint;
+    - Paint mEntryLabelsPaint;
+    - StaticLayout mCenterTextLayout;
+    - CharSequence mCenterTextLastValue;
+    # WeakReference<Bitmap> mDrawBitmap;
+    # Canvas mBitmapCanvas;
+ 
+}
+class com.github.mikephil.charting.renderer.RadarChartRenderer {
+ + Paint getWebPaint() 
++ void initBuffers() 
++ void drawData(Canvas c) 
+# void drawDataSet(Canvas c, IRadarDataSet dataSet, int mostEntries) 
++ void drawValues(Canvas c) 
++ void drawExtras(Canvas c) 
+# void drawWeb(Canvas c) 
++ void drawHighlighted(Canvas c, Highlight[] indices) 
++ void drawHighlightCircle(Canvas c,
+                                    MPPointF point,
+                                    float innerRadius,
+                                    float outerRadius,
+                                    int fillColor,
+                                    int strokeColor,
+                                    float strokeWidth) 
+    # RadarChart mChart;
+    # Paint mWebPaint;
+    # Paint mHighlightCirclePaint;
+ 
+}
+class com.github.mikephil.charting.renderer.ScatterChartRenderer {
+ + void initBuffers() 
++ void drawData(Canvas c) 
+# void drawDataSet(Canvas c, IScatterDataSet dataSet) 
++ void drawValues(Canvas c) 
++ void drawExtras(Canvas c) 
++ void drawHighlighted(Canvas c, Highlight[] indices) 
+    # ScatterDataProvider mChart;
+ 
+}
+class com.github.mikephil.charting.renderer.XAxisRenderer {
+ # void setupGridPaint() 
++ void computeAxis(float min, float max, boolean inverted) 
+# void computeAxisValues(float min, float max) 
+# void computeSize() 
++ void renderAxisLabels(Canvas c) 
++ void renderAxisLine(Canvas c) 
+# void drawLabels(Canvas c, float pos, MPPointF anchor) 
+# void drawLabel(Canvas c, String formattedLabel, float x, float y, MPPointF anchor, float angleDegrees) 
++ void renderGridLines(Canvas c) 
++ RectF getGridClippingRect() 
+# void drawGridLine(Canvas c, float x, float y, Path gridLinePath) 
++ void renderLimitLines(Canvas c) 
++ void renderLimitLineLine(Canvas c, LimitLine limitLine, float[] position) 
++ void renderLimitLineLabel(Canvas c, LimitLine limitLine, float[] position, float yOffset) 
+    # XAxis mXAxis;
+ 
+}
+class com.github.mikephil.charting.renderer.XAxisRendererHorizontalBarChart {
+ + void computeAxis(float min, float max, boolean inverted) 
+# void computeSize() 
++ void renderAxisLabels(Canvas c) 
+# void drawLabels(Canvas c, float pos, MPPointF anchor) 
++ RectF getGridClippingRect() 
+# void drawGridLine(Canvas c, float x, float y, Path gridLinePath) 
++ void renderAxisLine(Canvas c) 
++ void renderLimitLines(Canvas c) 
+    # BarChart mChart;
+ 
+}
+class com.github.mikephil.charting.renderer.XAxisRendererRadarChart {
+ + void renderAxisLabels(Canvas c) 
++ void renderLimitLines(Canvas c) 
+    - RadarChart mChart;
+ 
+}
+class com.github.mikephil.charting.renderer.YAxisRenderer {
+ + void renderAxisLabels(Canvas c) 
++ void renderAxisLine(Canvas c) 
+# void drawYLabels(Canvas c, float fixedPosition, float[] positions, float offset) 
++ void renderGridLines(Canvas c) 
++ RectF getGridClippingRect() 
+# Path linePath(Path p, int i, float[] positions) 
+# float[] getTransformedPositions() 
+# void drawZeroLine(Canvas c) 
++ void renderLimitLines(Canvas c) 
+    # YAxis mYAxis;
+    # Paint mZeroLinePaint;
+ 
+}
+class com.github.mikephil.charting.renderer.YAxisRendererHorizontalBarChart {
+ + void computeAxis(float yMin, float yMax, boolean inverted) 
++ void renderAxisLabels(Canvas c) 
++ void renderAxisLine(Canvas c) 
+# void drawYLabels(Canvas c, float fixedPosition, float[] positions, float offset) 
+# float[] getTransformedPositions() 
++ RectF getGridClippingRect() 
+# Path linePath(Path p, int i, float[] positions) 
+# void drawZeroLine(Canvas c) 
++ void renderLimitLines(Canvas c) 
+ 
+}
+class com.github.mikephil.charting.renderer.YAxisRendererRadarChart {
+ # void computeAxisValues(float min, float max) 
++ void renderAxisLabels(Canvas c) 
++ void renderLimitLines(Canvas c) 
+    - RadarChart mChart;
+ 
+}
+class com.github.mikephil.charting.renderer.scatter.ChevronDownShapeRenderer {
+ + void renderShape(Canvas c, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
+                     float posX, float posY, Paint renderPaint) 
+ 
+}
+class com.github.mikephil.charting.renderer.scatter.ChevronUpShapeRenderer {
+ + void renderShape(Canvas c, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
+                            float posX, float posY, Paint renderPaint) 
+ 
+}
+class com.github.mikephil.charting.renderer.scatter.CircleShapeRenderer {
+ + void renderShape(Canvas c, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
+                            float posX, float posY, Paint renderPaint) 
+ 
+}
+class com.github.mikephil.charting.renderer.scatter.CrossShapeRenderer {
+ + void renderShape(Canvas c, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
+                            float posX, float posY, Paint renderPaint) 
+ 
+}
+class com.github.mikephil.charting.renderer.scatter.SquareShapeRenderer {
+ + void renderShape(Canvas c, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
+                            float posX, float posY, Paint renderPaint) 
+ 
+}
+class com.github.mikephil.charting.renderer.scatter.TriangleShapeRenderer {
+ + void renderShape(Canvas c, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
+                            float posX, float posY, Paint renderPaint) 
+ 
+}
+class com.github.mikephil.charting.renderer.scatter.XShapeRenderer {
+ + void renderShape(Canvas c, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
+                            float posX, float posY, Paint renderPaint) 
+ 
+}
+class com.github.mikephil.charting.test.ApproximatorTest {
+ + void testApproximation() 
+ 
+}
+class com.github.mikephil.charting.test.AxisRendererTest {
+ + void testComputeAxisValues() 
+ 
+}
+class com.github.mikephil.charting.test.BarDataTest {
+ + void testGroupBars() 
+ 
+}
+class com.github.mikephil.charting.test.ChartDataTest {
+ + void testDynamicChartData() 
+ 
+}
+class com.github.mikephil.charting.test.DataSetTest {
+ + void testCalcMinMax() 
++ void testAddRemoveEntry() 
++ void testGetEntryForXValue() 
++ void testGetEntryForXValueWithDuplicates() 
+ 
+}
+class com.github.mikephil.charting.test.LargeValueFormatterTest {
+ + void test() 
+ 
+}
+class com.github.mikephil.charting.test.ObjectPoolTest {
+ + {static} TestPoolable getInstance(int foo, int bar)
++ {static} void recycleInstance(TestPoolable instance)
++ {static} void recycleInstances(List<TestPoolable> instances)
++ {static} ObjectPool getPool()
++ void testObjectPool()
+        - {static} ObjectPool<TestPoolable> pool;
+ 
+}
+class com.github.mikephil.charting.utils.ColorTemplate {
+ + {static} int rgb(String hex) 
++ {static} int getHoloBlue() 
++ {static} int colorWithAlpha(int color, int alpha) 
++ {static} List<Integer> createColors(Resources r, int[] colors) 
++ {static} List<Integer> createColors(int[] colors) 
+ 
+}
+class com.github.mikephil.charting.utils.EntryXComparator {
+ + int compare(Entry entry1, Entry entry2) 
+ 
+}
+class com.github.mikephil.charting.utils.FSize {
+ + {static} FSize getInstance(final float width, final float height)
++ {static} void recycleInstance(FSize instance)
++ {static} void recycleInstances(List<FSize> instances)
++ boolean equals(final Object obj) 
++ String toString() 
++ int hashCode() 
+    + float width;
+    + float height;
+    - {static} ObjectPool<FSize> pool;
+ 
+}
+class com.github.mikephil.charting.utils.FileUtils {
+ + {static} List<Entry> loadEntriesFromFile(String path) 
++ {static} List<Entry> loadEntriesFromAssets(AssetManager am, String path) 
++ {static} void saveToSdCard(List<Entry> entries, String path) 
++ {static} List<BarEntry> loadBarEntriesFromAssets(AssetManager am, String path) 
+ 
+}
+class com.github.mikephil.charting.utils.HorizontalViewPortHandler {
+ + void setMinimumScaleX(float xScale) 
++ void setMinimumScaleY(float yScale) 
++ void setMinMaxScaleX(float minScaleX, float maxScaleX) 
++ void setMinMaxScaleY(float minScaleY, float maxScaleY) 
+ 
+}
+class com.github.mikephil.charting.utils.MPPointD {
+ + {static} MPPointD getInstance(double x, double y)
++ {static} void recycleInstance(MPPointD instance)
++ {static} void recycleInstances(List<MPPointD> instances)
++ String toString() 
+    - {static} ObjectPool<MPPointD> pool;
+    + double x;
+    + double y;
+ 
+}
+class com.github.mikephil.charting.utils.MPPointF {
+ + {static} MPPointF getInstance(float x, float y) 
++ {static} MPPointF getInstance() 
++ {static} MPPointF getInstance(MPPointF copy) 
++ {static} void recycleInstance(MPPointF instance)
++ {static} void recycleInstances(List<MPPointF> instances)
++ MPPointF createFromParcel(Parcel in) 
++ MPPointF[] newArray(int size) 
++ void my_readFromParcel(Parcel in) 
++ float getX()
++ float getY()
+    - {static} ObjectPool<MPPointF> pool;
+    + float x;
+    + float y;
+ 
+}
+class com.github.mikephil.charting.utils.ObjectPool {
+ + int getPoolId()
++ {static} synchronized ObjectPool create(int withCapacity, Poolable object)
++ void setReplenishPercentage(float percentage)
++ float getReplenishPercentage()
+- void refillPool()
+- void refillPool(float percentage)
++ synchronized T get()
++ synchronized void recycle(T object)
++ synchronized void recycle(List<T> objects)
+- void resizePool() 
++ int getPoolCapacity()
++ int getPoolCount()
+# {abstract} Poolable instantiate()
+    - int poolId;
+    - int desiredCapacity;
+    - Object[] objects;
+    - int objectsPointer;
+    - T modelObject;
+    - float replenishPercentage;
+ 
+}
+class com.github.mikephil.charting.utils.Transformer {
+ + void prepareMatrixValuePx(float xChartMin, float deltaX, float deltaY, float yChartMin) 
++ void prepareMatrixOffset(boolean inverted) 
++ float[] generateTransformedValuesScatter(IScatterDataSet data, float phaseX,
+                                                    float phaseY, int from, int to) 
++ float[] generateTransformedValuesBubble(IBubbleDataSet data, float phaseY, int from, int to) 
++ float[] generateTransformedValuesLine(ILineDataSet data,
+                                                 float phaseX, float phaseY,
+                                                 int min, int max) 
++ float[] generateTransformedValuesCandle(ICandleDataSet data,
+                                                   float phaseX, float phaseY, int from, int to) 
++ void pathValueToPixel(Path path) 
++ void pathValuesToPixel(List<Path> paths) 
++ void pointValuesToPixel(float[] pts) 
++ void rectValueToPixel(RectF r) 
++ void rectToPixelPhase(RectF r, float phaseY) 
++ void rectToPixelPhaseHorizontal(RectF r, float phaseY) 
++ void rectValueToPixelHorizontal(RectF r) 
++ void rectValueToPixelHorizontal(RectF r, float phaseY) 
++ void rectValuesToPixel(List<RectF> rects) 
++ void pixelsToValue(float[] pixels) 
++ MPPointD getValuesByTouchPoint(float x, float y) 
++ void getValuesByTouchPoint(float x, float y, MPPointD outputPoint) 
++ MPPointD getPixelForValues(float x, float y) 
++ Matrix getValueMatrix() 
++ Matrix getOffsetMatrix() 
++ Matrix getValueToPixelMatrix() 
++ Matrix getPixelToValueMatrix() 
+    # ViewPortHandler mViewPortHandler;
+ 
+}
+class com.github.mikephil.charting.utils.TransformerHorizontalBarChart {
+ + void prepareMatrixOffset(boolean inverted) 
+ 
+}
+class com.github.mikephil.charting.utils.ViewPortHandler {
+ + void setChartDimens(float width, float height) 
++ boolean hasChartDimens() 
++ void restrainViewPort(float offsetLeft, float offsetTop, float offsetRight,
+                                 float offsetBottom) 
++ float offsetLeft() 
++ float offsetRight() 
++ float offsetTop() 
++ float offsetBottom() 
++ float contentTop() 
++ float contentLeft() 
++ float contentRight() 
++ float contentBottom() 
++ float contentWidth() 
++ float contentHeight() 
++ RectF getContentRect() 
++ MPPointF getContentCenter() 
++ float getChartHeight() 
++ float getChartWidth() 
++ float getSmallestContentExtension() 
++ Matrix zoomIn(float x, float y) 
++ void zoomIn(float x, float y, Matrix outputMatrix) 
++ Matrix zoomOut(float x, float y) 
++ void zoomOut(float x, float y, Matrix outputMatrix) 
++ void resetZoom(Matrix outputMatrix) 
++ Matrix zoom(float scaleX, float scaleY) 
++ void zoom(float scaleX, float scaleY, Matrix outputMatrix) 
++ Matrix zoom(float scaleX, float scaleY, float x, float y) 
++ void zoom(float scaleX, float scaleY, float x, float y, Matrix outputMatrix) 
++ Matrix setZoom(float scaleX, float scaleY) 
++ void setZoom(float scaleX, float scaleY, Matrix outputMatrix) 
++ Matrix setZoom(float scaleX, float scaleY, float x, float y) 
++ Matrix fitScreen() 
++ void fitScreen(Matrix outputMatrix) 
++ Matrix translate(final float[] transformedPts) 
++ void translate(final float[] transformedPts, Matrix outputMatrix) 
++ void centerViewPort(final float[] transformedPts, final View view) 
++ Matrix refresh(Matrix newMatrix, View chart, boolean invalidate) 
++ void limitTransAndScale(Matrix matrix, RectF content) 
++ void setMinimumScaleX(float xScale) 
++ void setMaximumScaleX(float xScale) 
++ void setMinMaxScaleX(float minScaleX, float maxScaleX) 
++ void setMinimumScaleY(float yScale) 
++ void setMaximumScaleY(float yScale) 
++ void setMinMaxScaleY(float minScaleY, float maxScaleY) 
++ Matrix getMatrixTouch() 
++ boolean isInBoundsX(float x) 
++ boolean isInBoundsY(float y) 
++ boolean isInBounds(float x, float y) 
++ boolean isInBoundsLeft(float x) 
++ boolean isInBoundsRight(float x) 
++ boolean isInBoundsTop(float y) 
++ boolean isInBoundsBottom(float y) 
++ float getScaleX() 
++ float getScaleY() 
++ float getMinScaleX() 
++ float getMaxScaleX() 
++ float getMinScaleY() 
++ float getMaxScaleY() 
++ float getTransX() 
++ float getTransY() 
++ boolean isFullyZoomedOut() 
++ boolean isFullyZoomedOutY() 
++ boolean isFullyZoomedOutX() 
++ void setDragOffsetX(float offset) 
++ void setDragOffsetY(float offset) 
++ boolean hasNoDragOffset() 
++ boolean canZoomOutMoreX() 
++ boolean canZoomInMoreX() 
++ boolean canZoomOutMoreY() 
++ boolean canZoomInMoreY() 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.AnotherBarActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+    - BarChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.BarChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+- void setData(int count, float range) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
+    # BarChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.BarChartActivityMultiDataset {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
+    - BarChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.BarChartActivitySinus {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+- void setData(int count) 
+    # BarChart mChart;
+    - SeekBar mSeekBarX;
+    - TextView tvX;
+    - List<BarEntry> mSinusData;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.BarChartPositiveNegative {
+ # void onCreate(Bundle savedInstanceState) 
+- void setData(List<Data> dataList) 
++ String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) 
+    # BarChart mChart;
+    - Typeface mTf;
+        + String xAxisValue;
+        + float yValue;
+        + float xValue;
+        - DecimalFormat mFormat;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.BubbleChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+    - BubbleChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.CandleStickChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+    - CandleStickChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.CombinedChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ String getFormattedValue(float value, AxisBase axis) 
+- LineData generateLineData() 
+- BarData generateBarData() 
+# ScatterData generateScatterData() 
+# CandleData generateCandleData() 
+# BubbleData generateBubbleData() 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
+    - CombinedChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.CubicLineChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+- void setData(int count, float range) 
++ float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) 
+    - LineChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.DrawChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
+- void initWithDummyData() 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ void onEntryAdded(Entry entry) 
++ void onDrawFinished(DataSet<?> dataSet) 
++ void onEntryMoved(Entry entry) 
+    - LineChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.DynamicalAddingActivity {
+ # void onCreate(Bundle savedInstanceState) 
+- void addEntry() 
+- void removeLastEntry() 
+- void addDataSet() 
+- void removeDataSet() 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
+- LineDataSet createSet() 
+    - LineChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.FilledLineActivity {
+ # void onCreate(Bundle savedInstanceState) 
+- void setData(int count, float range) 
++ float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) 
+    - LineChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.HalfPieChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
+- void setData(int count, float range) 
+- SpannableString generateCenterSpannableText() 
+- void moveOffScreen() 
+    - PieChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+- void setData(int count, float range) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
+    # HorizontalBarChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.InvertedLineChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+- void setData(int count, float range) 
+    - LineChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.LineChartActivity1 {
+ # void onCreate(Bundle savedInstanceState) 
++ void onWindowFocusChanged(boolean hasFocus) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+- void setData(int count, float range) 
++ void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) 
++ void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) 
++ void onChartLongPressed(MotionEvent me) 
++ void onChartDoubleTapped(MotionEvent me) 
++ void onChartSingleTapped(MotionEvent me) 
++ void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) 
++ void onChartScale(MotionEvent me, float scaleX, float scaleY) 
++ void onChartTranslate(MotionEvent me, float dX, float dY) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
+    - LineChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.LineChartActivity2 {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
+- void setData(int count, float range) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+    - LineChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.LineChartActivityColored {
+ # void onCreate(Bundle savedInstanceState) 
+- void setupChart(LineChart chart, LineData data, int color) 
+- LineData getData(int count, float range) 
+    - Typeface mTf;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.LineChartTime {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
+- void setData(int count, float range) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+    - LineChart mChart;
+    - SeekBar mSeekBarX;
+    - TextView tvX;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.ListViewBarChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ View getView(int position, View convertView, ViewGroup parent) 
+- BarData generateData(int cnt) 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.ListViewMultiChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ View getView(int position, View convertView, ViewGroup parent) 
++ int getItemViewType(int position) 
++ int getViewTypeCount() 
+- LineData generateDataLine(int cnt) 
+- BarData generateDataBar(int cnt) 
+- PieData generateDataPie(int cnt) 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.MultiLineChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+    - LineChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.PerformanceLineChart {
+ # void onCreate(Bundle savedInstanceState) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+- void setData(int count, float range) 
+    - LineChart mChart;
+    - SeekBar mSeekBarValues;
+    - TextView mTvCount;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.PieChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
+- void setData(int count, float range) 
+- SpannableString generateCenterSpannableText() 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+    - PieChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.PiePolylineChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
+- void setData(int count, float range) 
+- SpannableString generateCenterSpannableText() 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+    - PieChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+    - Typeface tf;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.R
+class com.xxmassdeveloper.mpchartexample.RadarChartActivitry {
+ # void onCreate(Bundle savedInstanceState) 
++ String getFormattedValue(float value, AxisBase axis) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void setData() 
+    - RadarChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.RealtimeLineChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
+- void addEntry() 
+- LineDataSet createSet() 
+- void feedMultiple() 
++ void run() 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
+# void onPause() 
+    - LineChart mChart;
+    - Thread thread;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.ScatterChartActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
+    - ScatterChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.ScrollViewActivity {
+ # void onCreate(Bundle savedInstanceState) 
+- void setData(int count) 
+    - BarChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.StackedBarActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) 
++ void onStartTrackingTouch(SeekBar seekBar) 
++ void onStopTrackingTouch(SeekBar seekBar) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
+- int[] getColors() 
+    - BarChart mChart;
+    - SeekBar mSeekBarX, mSeekBarY;
+    - TextView tvX, tvY;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.StackedBarActivityNegative {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
++ void onValueSelected(Entry e, Highlight h) 
++ void onNothingSelected() 
++ String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) 
++ String getFormattedValue(float value, AxisBase axis) 
+    - HorizontalBarChart mChart;
+        - DecimalFormat mFormat;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.CustomScatterShapeRenderer {
+ + void renderShape(Canvas c, IScatterDataSet dataSet, ViewPortHandler viewPortHandler,
+                            float posX, float posY, Paint renderPaint) 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.DayAxisValueFormatter {
+ + String getFormattedValue(float value, AxisBase axis) 
+- int getDaysForMonth(int month, int year) 
+- int determineMonth(int dayOfYear) 
+- int determineDayOfMonth(int days, int month) 
+- int determineYear(int days) 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.MyAxisValueFormatter {
+ + String getFormattedValue(float value, AxisBase axis) 
+    - DecimalFormat mFormat;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.MyCustomXAxisValueFormatter {
+ + String getFormattedValue(float value, AxisBase axis) 
+    - DecimalFormat mFormat;
+    - ViewPortHandler mViewPortHandler;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.MyEasingFunction {
+ + float getInterpolation(float input) 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.MyFillFormatter {
+ + float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.MyMarkerView {
+ + void refreshContent(Entry e, Highlight highlight) 
++ MPPointF getOffset() 
+    - TextView tvContent;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.MyValueFormatter {
+ + String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) 
+    - DecimalFormat mFormat;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.RadarMarkerView {
+ + void refreshContent(Entry e, Highlight highlight) 
++ MPPointF getOffset() 
+    - TextView tvContent;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.RealmDemoData {
+ + float getyValue() 
++ void setyValue(float yValue) 
++ float getxValue() 
++ void setxValue(float xValue) 
++ RealmList<RealmFloat> getStackValues() 
++ void setStackValues(RealmList<RealmFloat> stackValues) 
++ float getOpen() 
++ void setOpen(float open) 
++ float getClose() 
++ void setClose(float close) 
++ float getHigh() 
++ void setHigh(float high) 
++ float getLow() 
++ void setLow(float low) 
++ float getBubbleSize() 
++ void setBubbleSize(float bubbleSize) 
++ String getSomeStringField() 
++ void setSomeStringField(String someStringField) 
++ String getLabel() 
++ void setLabel(String label) 
+    - float yValue;
+    - float xValue;
+    - float open, close, high, low;
+    - float bubbleSize;
+    - RealmList<RealmFloat> stackValues;
+    - String someStringField;
+    - String label;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.RealmFloat {
+ + float getFloatValue() 
++ void setFloatValue(float value) 
+    - float floatValue;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.StackedBarsMarkerView {
+ + void refreshContent(Entry e, Highlight highlight) 
++ MPPointF getOffset() 
+    - TextView tvContent;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.XYMarkerView {
+ + void refreshContent(Entry e, Highlight highlight) 
++ MPPointF getOffset() 
+    - TextView tvContent;
+    - IAxisValueFormatter xAxisValueFormatter;
+    - DecimalFormat format;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.custom.YearXAxisFormatter {
+ + String getFormattedValue(float value, AxisBase axis) 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.fragments.BarChartFrag {
+ + {static} Fragment newInstance() 
++ View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
++ void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) 
++ void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) 
++ void onChartLongPressed(MotionEvent me) 
++ void onChartDoubleTapped(MotionEvent me) 
++ void onChartSingleTapped(MotionEvent me) 
++ void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) 
++ void onChartScale(MotionEvent me, float scaleX, float scaleY) 
++ void onChartTranslate(MotionEvent me, float dX, float dY) 
+    - BarChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.fragments.ComplexityFragment {
+ + {static} Fragment newInstance() 
++ View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+    - LineChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.fragments.PieChartFrag {
+ + {static} Fragment newInstance() 
++ View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+- SpannableString generateCenterText() 
+    - PieChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.fragments.ScatterChartFrag {
+ + {static} Fragment newInstance() 
++ View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+    - ScatterChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.fragments.SimpleChartDemo {
+ # void onCreate(Bundle savedInstanceState) 
++ Fragment getItem(int pos) 
++ int getCount() 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.fragments.SineCosineFragment {
+ + {static} Fragment newInstance() 
++ View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+    - LineChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.listviewitems.BarChartItem {
+ + int getItemType() 
++ View getView(int position, View convertView, Context c) 
+    - Typeface mTf;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.listviewitems.LineChartItem {
+ + int getItemType() 
++ View getView(int position, View convertView, Context c) 
+    - Typeface mTf;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.listviewitems.PieChartItem {
+ + int getItemType() 
++ View getView(int position, View convertView, Context c) 
+- SpannableString generateCenterText() 
+    - Typeface mTf;
+    - SpannableString mCenterText;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.notimportant.ContentItem {
+  
+}
+class com.xxmassdeveloper.mpchartexample.notimportant.MainActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ void onItemClick(AdapterView<?> av, View v, int pos, long arg3) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.notimportant.MyAdapter {
+ + View getView(int position, View convertView, ViewGroup parent) 
+    - Typeface mTypeFaceLight;
+    - Typeface mTypeFaceRegular;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityBar {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- void setData() 
+    - BarChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityBubble {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- void setData() 
+    - BubbleChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityCandle {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- void setData() 
+    - CandleStickChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityHorizontalBar {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- void setData() 
+    - HorizontalBarChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityLine {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- void setData() 
+    - LineChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityPie {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- void setData() 
+- SpannableString generateCenterSpannableText() 
+    - PieChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityRadar {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- void setData() 
+    - RadarChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityScatter {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- void setData() 
+    - ScatterChart mChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmMainActivity {
+ # void onCreate(Bundle savedInstanceState) 
++ void onItemClick(AdapterView<?> av, View v, int pos, long arg3) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.RealmWikiExample {
+ # void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- void setData() 
+    - LineChart lineChart;
+    - BarChart barChart;
+ 
+}
+class com.xxmassdeveloper.mpchartexample.realm.Score {
+ + float getTotalScore() 
++ void setTotalScore(float totalScore) 
++ float getScoreNr() 
++ void setScoreNr(float scoreNr) 
++ String getPlayerName() 
++ void setPlayerName(String playerName) 
+    - float totalScore;
+    - float scoreNr;
+    - String playerName;
+ 
+}
+class io.realm.Realm
+class io.realm.RealmConfiguration
+class io.realm.RealmList
+class io.realm.RealmObject
+class io.realm.RealmResults
+class junit.framework.Assert
+interface AdapterView.OnItemClickListener
+interface Animator.AnimatorListener
+interface ValueAnimator.AnimatorUpdateListener
+interface View.OnTouchListener
+interface android.animation.TimeInterpolator
+interface android.os.Parcelable
+interface android.view.View.OnTouchListener
+interface android.widget.AdapterView.OnItemClickListener
+interface android.widget.SeekBar.OnSeekBarChangeListener
+interface com.github.mikephil.charting.animation.Easing {
+ + {static} EasingFunction getEasingFunctionFromOption(EasingOption easing) 
++ float ease(long elapsed, long duration) 
++ float getInterpolation(float input) 
+ 
+}Function
+interface com.github.mikephil.charting.components.IMarker {
+  
+}
+interface com.github.mikephil.charting.formatter.ColorFormatter {
+  
+}
+interface com.github.mikephil.charting.formatter.IAxisValueFormatter {
+  
+}
+interface com.github.mikephil.charting.formatter.IFillFormatter {
+  
+}
+interface com.github.mikephil.charting.formatter.IValueFormatter {
+  
+}
+interface com.github.mikephil.charting.highlight.IHighlighter {
+  
+}
+interface com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider {
+  
+}
+interface com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandleBubbleDataProvider {
+  
+}
+interface com.github.mikephil.charting.interfaces.dataprovider.BubbleDataProvider {
+  
+}
+interface com.github.mikephil.charting.interfaces.dataprovider.CandleDataProvider {
+  
+}
+interface com.github.mikephil.charting.interfaces.dataprovider.ChartInterface {
+  
+}
+interface com.github.mikephil.charting.interfaces.dataprovider.CombinedDataProvider {
+  
+}
+interface com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider {
+  
+}
+interface com.github.mikephil.charting.interfaces.dataprovider.ScatterDataProvider {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.IBarDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.ICandleDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.IDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.ILineDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.ILineRadarDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.ILineScatterCandleRadarDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.IPieDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.IRadarDataSet {
+  
+}
+interface com.github.mikephil.charting.interfaces.datasets.IScatterDataSet {
+  
+}
+interface com.github.mikephil.charting.listener.OnChartGestureListener {
+  
+}
+interface com.github.mikephil.charting.listener.OnChartValueSelectedListener {
+  
+}
+interface com.github.mikephil.charting.listener.OnDrawListener {
+  
+}
+interface com.github.mikephil.charting.renderer.scatter.IShapeRenderer {
+  
+}
+com.github.mikephil.charting.charts.BarLineChartBase --|> com.github.mikephil.charting.charts.Chart
+com.github.mikephil.charting.charts.BarLineChartBase --|> com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandleBubbleDataProvider
+com.github.mikephil.charting.charts.Chart --|> android.view.ViewGroup
+com.github.mikephil.charting.charts.Chart --|> com.github.mikephil.charting.interfaces.dataprovider.ChartInterface
+com.github.mikephil.charting.charts.PieRadarChartBase --|> com.github.mikephil.charting.charts.Chart
+com.github.mikephil.charting.components.AxisBase --|> com.github.mikephil.charting.components.ComponentBase
+com.github.mikephil.charting.data.BarLineScatterCandleBubbleData --|> com.github.mikephil.charting.data.ChartData
+com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet --|> com.github.mikephil.charting.data.DataSet
+com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet --|> com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet
+com.github.mikephil.charting.data.BaseDataSet --|> com.github.mikephil.charting.interfaces.datasets.IDataSet
+com.github.mikephil.charting.data.DataSet --|> com.github.mikephil.charting.data.BaseDataSet
+com.github.mikephil.charting.data.LineRadarDataSet --|> com.github.mikephil.charting.data.LineScatterCandleRadarDataSet
+com.github.mikephil.charting.data.LineRadarDataSet --|> com.github.mikephil.charting.interfaces.datasets.ILineRadarDataSet
+com.github.mikephil.charting.data.LineScatterCandleRadarDataSet --|> com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet
+com.github.mikephil.charting.data.LineScatterCandleRadarDataSet --|> com.github.mikephil.charting.interfaces.datasets.ILineScatterCandleRadarDataSet
+com.github.mikephil.charting.highlight.PieRadarHighlighter --|> com.github.mikephil.charting.highlight.IHighlighter
+com.github.mikephil.charting.jobs.AnimatedViewPortJob --|> com.github.mikephil.charting.jobs.ViewPortJob
+com.github.mikephil.charting.jobs.AnimatedViewPortJob --|> Animator.AnimatorListener
+com.github.mikephil.charting.jobs.AnimatedViewPortJob --|> ValueAnimator.AnimatorUpdateListener
+com.github.mikephil.charting.jobs.ViewPortJob --|> ObjectPool.Poolable
+com.github.mikephil.charting.listener.ChartTouchListener --|> GestureDetector.SimpleOnGestureListener
+com.github.mikephil.charting.listener.ChartTouchListener --|> View.OnTouchListener
+com.github.mikephil.charting.renderer.AxisRenderer --|> com.github.mikephil.charting.renderer.Renderer
+com.github.mikephil.charting.renderer.BarLineScatterCandleBubbleRenderer --|> com.github.mikephil.charting.renderer.DataRenderer
+com.github.mikephil.charting.renderer.DataRenderer --|> com.github.mikephil.charting.renderer.Renderer
+com.github.mikephil.charting.renderer.LineRadarRenderer --|> com.github.mikephil.charting.renderer.LineScatterCandleRadarRenderer
+com.github.mikephil.charting.renderer.LineScatterCandleRadarRenderer --|> com.github.mikephil.charting.renderer.BarLineScatterCandleBubbleRenderer
+com.xxmassdeveloper.mpchartexample.fragments.SimpleFragment --|> android.support.v4.app.Fragment
+com.xxmassdeveloper.mpchartexample.notimportant.DemoBase --|> android.support.v4.app.FragmentActivity
+com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.github.mikephil.charting.buffer.BarBuffer --|> com.github.mikephil.charting.buffer.AbstractBuffer
+com.github.mikephil.charting.buffer.HorizontalBarBuffer --|> com.github.mikephil.charting.buffer.BarBuffer
+com.github.mikephil.charting.charts.BarChart --|> com.github.mikephil.charting.charts.BarLineChartBase
+com.github.mikephil.charting.charts.BarChart --|> com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider
+com.github.mikephil.charting.charts.BubbleChart --|> com.github.mikephil.charting.charts.BarLineChartBase
+com.github.mikephil.charting.charts.BubbleChart --|> com.github.mikephil.charting.interfaces.dataprovider.BubbleDataProvider
+com.github.mikephil.charting.charts.CandleStickChart --|> com.github.mikephil.charting.charts.BarLineChartBase
+com.github.mikephil.charting.charts.CandleStickChart --|> com.github.mikephil.charting.interfaces.dataprovider.CandleDataProvider
+com.github.mikephil.charting.charts.CombinedChart --|> com.github.mikephil.charting.charts.BarLineChartBase
+com.github.mikephil.charting.charts.CombinedChart --|> com.github.mikephil.charting.interfaces.dataprovider.CombinedDataProvider
+com.github.mikephil.charting.charts.HorizontalBarChart --|> com.github.mikephil.charting.charts.BarChart
+com.github.mikephil.charting.charts.LineChart --|> com.github.mikephil.charting.charts.BarLineChartBase
+com.github.mikephil.charting.charts.LineChart --|> com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider
+com.github.mikephil.charting.charts.PieChart --|> com.github.mikephil.charting.charts.PieRadarChartBase
+com.github.mikephil.charting.charts.RadarChart --|> com.github.mikephil.charting.charts.PieRadarChartBase
+com.github.mikephil.charting.charts.ScatterChart --|> com.github.mikephil.charting.charts.BarLineChartBase
+com.github.mikephil.charting.charts.ScatterChart --|> com.github.mikephil.charting.interfaces.dataprovider.ScatterDataProvider
+com.github.mikephil.charting.components.Description --|> com.github.mikephil.charting.components.ComponentBase
+com.github.mikephil.charting.components.Legend --|> com.github.mikephil.charting.components.ComponentBase
+com.github.mikephil.charting.components.LimitLine --|> com.github.mikephil.charting.components.ComponentBase
+com.github.mikephil.charting.components.MarkerImage --|> com.github.mikephil.charting.components.IMarker
+com.github.mikephil.charting.components.MarkerView --|> android.widget.RelativeLayout
+com.github.mikephil.charting.components.MarkerView --|> com.github.mikephil.charting.components.IMarker
+com.github.mikephil.charting.components.XAxis --|> com.github.mikephil.charting.components.AxisBase
+com.github.mikephil.charting.components.YAxis --|> com.github.mikephil.charting.components.AxisBase
+com.github.mikephil.charting.data.BarData --|> com.github.mikephil.charting.data.BarLineScatterCandleBubbleData
+com.github.mikephil.charting.data.BarDataSet --|> com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet
+com.github.mikephil.charting.data.BarDataSet --|> com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+com.github.mikephil.charting.data.BarEntry --|> com.github.mikephil.charting.data.Entry
+com.github.mikephil.charting.data.BubbleData --|> com.github.mikephil.charting.data.BarLineScatterCandleBubbleData
+com.github.mikephil.charting.data.BubbleDataSet --|> com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet
+com.github.mikephil.charting.data.BubbleDataSet --|> com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet
+com.github.mikephil.charting.data.BubbleEntry --|> com.github.mikephil.charting.data.Entry
+com.github.mikephil.charting.data.CandleData --|> com.github.mikephil.charting.data.BarLineScatterCandleBubbleData
+com.github.mikephil.charting.data.CandleDataSet --|> com.github.mikephil.charting.data.LineScatterCandleRadarDataSet
+com.github.mikephil.charting.data.CandleDataSet --|> com.github.mikephil.charting.interfaces.datasets.ICandleDataSet
+com.github.mikephil.charting.data.CandleEntry --|> com.github.mikephil.charting.data.Entry
+com.github.mikephil.charting.data.CombinedData --|> com.github.mikephil.charting.data.BarLineScatterCandleBubbleData
+com.github.mikephil.charting.data.Entry --|> com.github.mikephil.charting.data.BaseEntry
+com.github.mikephil.charting.data.Entry --|> android.os.Parcelable
+com.github.mikephil.charting.data.LineData --|> com.github.mikephil.charting.data.BarLineScatterCandleBubbleData
+com.github.mikephil.charting.data.LineDataSet --|> com.github.mikephil.charting.data.LineRadarDataSet
+com.github.mikephil.charting.data.LineDataSet --|> com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+com.github.mikephil.charting.data.PieData --|> com.github.mikephil.charting.data.ChartData
+com.github.mikephil.charting.data.PieDataSet --|> com.github.mikephil.charting.data.DataSet
+com.github.mikephil.charting.data.PieDataSet --|> com.github.mikephil.charting.interfaces.datasets.IPieDataSet
+com.github.mikephil.charting.data.PieEntry --|> com.github.mikephil.charting.data.Entry
+com.github.mikephil.charting.data.RadarData --|> com.github.mikephil.charting.data.ChartData
+com.github.mikephil.charting.data.RadarDataSet --|> com.github.mikephil.charting.data.LineRadarDataSet
+com.github.mikephil.charting.data.RadarDataSet --|> com.github.mikephil.charting.interfaces.datasets.IRadarDataSet
+com.github.mikephil.charting.data.RadarEntry --|> com.github.mikephil.charting.data.Entry
+com.github.mikephil.charting.data.ScatterData --|> com.github.mikephil.charting.data.BarLineScatterCandleBubbleData
+com.github.mikephil.charting.data.ScatterDataSet --|> com.github.mikephil.charting.data.LineScatterCandleRadarDataSet
+com.github.mikephil.charting.data.ScatterDataSet --|> com.github.mikephil.charting.interfaces.datasets.IScatterDataSet
+com.github.mikephil.charting.formatter.DefaultAxisValueFormatter --|> com.github.mikephil.charting.formatter.IAxisValueFormatter
+com.github.mikephil.charting.formatter.DefaultFillFormatter --|> com.github.mikephil.charting.formatter.IFillFormatter
+com.github.mikephil.charting.formatter.DefaultValueFormatter --|> com.github.mikephil.charting.formatter.IValueFormatter
+com.github.mikephil.charting.formatter.IndexAxisValueFormatter --|> com.github.mikephil.charting.formatter.IAxisValueFormatter
+com.github.mikephil.charting.formatter.LargeValueFormatter --|> com.github.mikephil.charting.formatter.IAxisValueFormatter
+com.github.mikephil.charting.formatter.LargeValueFormatter --|> com.github.mikephil.charting.formatter.IValueFormatter
+com.github.mikephil.charting.formatter.PercentFormatter --|> com.github.mikephil.charting.formatter.IAxisValueFormatter
+com.github.mikephil.charting.formatter.PercentFormatter --|> com.github.mikephil.charting.formatter.IValueFormatter
+com.github.mikephil.charting.formatter.StackedValueFormatter --|> com.github.mikephil.charting.formatter.IValueFormatter
+com.github.mikephil.charting.highlight.BarHighlighter --|> com.github.mikephil.charting.highlight.ChartHighlighter
+com.github.mikephil.charting.highlight.ChartHighlighter --|> com.github.mikephil.charting.highlight.IHighlighter
+com.github.mikephil.charting.highlight.CombinedHighlighter --|> com.github.mikephil.charting.highlight.ChartHighlighter
+com.github.mikephil.charting.highlight.CombinedHighlighter --|> com.github.mikephil.charting.highlight.IHighlighter
+com.github.mikephil.charting.highlight.HorizontalBarHighlighter --|> com.github.mikephil.charting.highlight.BarHighlighter
+com.github.mikephil.charting.highlight.PieHighlighter --|> com.github.mikephil.charting.highlight.PieRadarHighlighter
+com.github.mikephil.charting.highlight.RadarHighlighter --|> com.github.mikephil.charting.highlight.PieRadarHighlighter
+com.github.mikephil.charting.jobs.AnimatedMoveViewJob --|> com.github.mikephil.charting.jobs.AnimatedViewPortJob
+com.github.mikephil.charting.jobs.AnimatedZoomJob --|> com.github.mikephil.charting.jobs.AnimatedViewPortJob
+com.github.mikephil.charting.jobs.AnimatedZoomJob --|> Animator.AnimatorListener
+com.github.mikephil.charting.jobs.MoveViewJob --|> com.github.mikephil.charting.jobs.ViewPortJob
+com.github.mikephil.charting.jobs.ZoomJob --|> com.github.mikephil.charting.jobs.ViewPortJob
+com.github.mikephil.charting.listener.BarLineChartTouchListener --|> com.github.mikephil.charting.listener.ChartTouchListener
+com.github.mikephil.charting.listener.OnDrawLineChartTouchListener --|> android.view.GestureDetector.SimpleOnGestureListener
+com.github.mikephil.charting.listener.OnDrawLineChartTouchListener --|> android.view.View.OnTouchListener
+com.github.mikephil.charting.listener.PieRadarChartTouchListener --|> com.github.mikephil.charting.listener.ChartTouchListener
+com.github.mikephil.charting.renderer.BarChartRenderer --|> com.github.mikephil.charting.renderer.BarLineScatterCandleBubbleRenderer
+com.github.mikephil.charting.renderer.BubbleChartRenderer --|> com.github.mikephil.charting.renderer.BarLineScatterCandleBubbleRenderer
+com.github.mikephil.charting.renderer.CandleStickChartRenderer --|> com.github.mikephil.charting.renderer.LineScatterCandleRadarRenderer
+com.github.mikephil.charting.renderer.CombinedChartRenderer --|> com.github.mikephil.charting.renderer.DataRenderer
+com.github.mikephil.charting.renderer.HorizontalBarChartRenderer --|> com.github.mikephil.charting.renderer.BarChartRenderer
+com.github.mikephil.charting.renderer.LegendRenderer --|> com.github.mikephil.charting.renderer.Renderer
+com.github.mikephil.charting.renderer.LineChartRenderer --|> com.github.mikephil.charting.renderer.LineRadarRenderer
+com.github.mikephil.charting.renderer.PieChartRenderer --|> com.github.mikephil.charting.renderer.DataRenderer
+com.github.mikephil.charting.renderer.RadarChartRenderer --|> com.github.mikephil.charting.renderer.LineRadarRenderer
+com.github.mikephil.charting.renderer.ScatterChartRenderer --|> com.github.mikephil.charting.renderer.LineScatterCandleRadarRenderer
+com.github.mikephil.charting.renderer.XAxisRenderer --|> com.github.mikephil.charting.renderer.AxisRenderer
+com.github.mikephil.charting.renderer.XAxisRendererHorizontalBarChart --|> com.github.mikephil.charting.renderer.XAxisRenderer
+com.github.mikephil.charting.renderer.XAxisRendererRadarChart --|> com.github.mikephil.charting.renderer.XAxisRenderer
+com.github.mikephil.charting.renderer.YAxisRenderer --|> com.github.mikephil.charting.renderer.AxisRenderer
+com.github.mikephil.charting.renderer.YAxisRendererHorizontalBarChart --|> com.github.mikephil.charting.renderer.YAxisRenderer
+com.github.mikephil.charting.renderer.YAxisRendererRadarChart --|> com.github.mikephil.charting.renderer.YAxisRenderer
+com.github.mikephil.charting.renderer.scatter.ChevronDownShapeRenderer --|> com.github.mikephil.charting.renderer.scatter.IShapeRenderer
+com.github.mikephil.charting.renderer.scatter.ChevronUpShapeRenderer --|> com.github.mikephil.charting.renderer.scatter.IShapeRenderer
+com.github.mikephil.charting.renderer.scatter.CircleShapeRenderer --|> com.github.mikephil.charting.renderer.scatter.IShapeRenderer
+com.github.mikephil.charting.renderer.scatter.CrossShapeRenderer --|> com.github.mikephil.charting.renderer.scatter.IShapeRenderer
+com.github.mikephil.charting.renderer.scatter.SquareShapeRenderer --|> com.github.mikephil.charting.renderer.scatter.IShapeRenderer
+com.github.mikephil.charting.renderer.scatter.TriangleShapeRenderer --|> com.github.mikephil.charting.renderer.scatter.IShapeRenderer
+com.github.mikephil.charting.renderer.scatter.XShapeRenderer --|> com.github.mikephil.charting.renderer.scatter.IShapeRenderer
+com.github.mikephil.charting.utils.FSize --|> ObjectPool.Poolable
+com.github.mikephil.charting.utils.HorizontalViewPortHandler --|> com.github.mikephil.charting.utils.ViewPortHandler
+com.github.mikephil.charting.utils.MPPointD --|> ObjectPool.Poolable
+com.github.mikephil.charting.utils.MPPointF --|> ObjectPool.Poolable
+com.github.mikephil.charting.utils.TransformerHorizontalBarChart --|> com.github.mikephil.charting.utils.Transformer
+com.xxmassdeveloper.mpchartexample.AnotherBarActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.AnotherBarActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.BarChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.BarChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.BarChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.BarChartActivityMultiDataset --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.BarChartActivityMultiDataset --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.BarChartActivityMultiDataset --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.BarChartActivitySinus --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.BarChartActivitySinus --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.BarChartPositiveNegative --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.BubbleChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.BubbleChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.BubbleChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.CandleStickChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.CandleStickChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.CombinedChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.CubicLineChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.CubicLineChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.DrawChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.DrawChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.DrawChartActivity --|> com.github.mikephil.charting.listener.OnDrawListener
+com.xxmassdeveloper.mpchartexample.DynamicalAddingActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.DynamicalAddingActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.FilledLineActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.HalfPieChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.HorizontalBarChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.InvertedLineChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.InvertedLineChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.InvertedLineChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.LineChartActivity1 --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.LineChartActivity1 --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.LineChartActivity1 --|> com.github.mikephil.charting.listener.OnChartGestureListener
+com.xxmassdeveloper.mpchartexample.LineChartActivity1 --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.LineChartActivity2 --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.LineChartActivity2 --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.LineChartActivity2 --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.LineChartActivityColored --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.LineChartTime --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.LineChartTime --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.ListViewBarChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.ListViewMultiChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.MultiLineChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.MultiLineChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.MultiLineChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.PerformanceLineChart --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.PerformanceLineChart --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.PieChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.PieChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.PieChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.PiePolylineChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.PiePolylineChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.PiePolylineChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.RadarChartActivitry --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.RealtimeLineChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.RealtimeLineChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.ScatterChartActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.ScatterChartActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.ScatterChartActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.ScrollViewActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.StackedBarActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.StackedBarActivity --|> android.widget.SeekBar.OnSeekBarChangeListener
+com.xxmassdeveloper.mpchartexample.StackedBarActivity --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.StackedBarActivityNegative --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.StackedBarActivityNegative --|> com.github.mikephil.charting.listener.OnChartValueSelectedListener
+com.xxmassdeveloper.mpchartexample.custom.CustomScatterShapeRenderer --|> com.github.mikephil.charting.renderer.scatter.IShapeRenderer
+com.xxmassdeveloper.mpchartexample.custom.DayAxisValueFormatter --|> com.github.mikephil.charting.formatter.IAxisValueFormatter
+com.xxmassdeveloper.mpchartexample.custom.MyAxisValueFormatter --|> com.github.mikephil.charting.formatter.IAxisValueFormatter
+com.xxmassdeveloper.mpchartexample.custom.MyCustomXAxisValueFormatter --|> com.github.mikephil.charting.formatter.IAxisValueFormatter
+com.xxmassdeveloper.mpchartexample.custom.MyEasingFunction --|> com.github.mikephil.charting.animation.EasingFunction
+com.xxmassdeveloper.mpchartexample.custom.MyFillFormatter --|> com.github.mikephil.charting.formatter.IFillFormatter
+com.xxmassdeveloper.mpchartexample.custom.MyMarkerView --|> com.github.mikephil.charting.components.MarkerView
+com.xxmassdeveloper.mpchartexample.custom.MyValueFormatter --|> com.github.mikephil.charting.formatter.IValueFormatter
+com.xxmassdeveloper.mpchartexample.custom.RadarMarkerView --|> com.github.mikephil.charting.components.MarkerView
+com.xxmassdeveloper.mpchartexample.custom.RealmDemoData --|> io.realm.RealmObject
+com.xxmassdeveloper.mpchartexample.custom.RealmFloat --|> io.realm.RealmObject
+com.xxmassdeveloper.mpchartexample.custom.StackedBarsMarkerView --|> com.github.mikephil.charting.components.MarkerView
+com.xxmassdeveloper.mpchartexample.custom.XYMarkerView --|> com.github.mikephil.charting.components.MarkerView
+com.xxmassdeveloper.mpchartexample.custom.YearXAxisFormatter --|> com.github.mikephil.charting.formatter.IAxisValueFormatter
+com.xxmassdeveloper.mpchartexample.fragments.BarChartFrag --|> com.xxmassdeveloper.mpchartexample.fragments.SimpleFragment
+com.xxmassdeveloper.mpchartexample.fragments.BarChartFrag --|> com.github.mikephil.charting.listener.OnChartGestureListener
+com.xxmassdeveloper.mpchartexample.fragments.ComplexityFragment --|> com.xxmassdeveloper.mpchartexample.fragments.SimpleFragment
+com.xxmassdeveloper.mpchartexample.fragments.PieChartFrag --|> com.xxmassdeveloper.mpchartexample.fragments.SimpleFragment
+com.xxmassdeveloper.mpchartexample.fragments.ScatterChartFrag --|> com.xxmassdeveloper.mpchartexample.fragments.SimpleFragment
+com.xxmassdeveloper.mpchartexample.fragments.SimpleChartDemo --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.fragments.SineCosineFragment --|> com.xxmassdeveloper.mpchartexample.fragments.SimpleFragment
+com.xxmassdeveloper.mpchartexample.listviewitems.BarChartItem --|> com.xxmassdeveloper.mpchartexample.listviewitems.ChartItem
+com.xxmassdeveloper.mpchartexample.listviewitems.LineChartItem --|> com.xxmassdeveloper.mpchartexample.listviewitems.ChartItem
+com.xxmassdeveloper.mpchartexample.listviewitems.PieChartItem --|> com.xxmassdeveloper.mpchartexample.listviewitems.ChartItem
+com.xxmassdeveloper.mpchartexample.notimportant.MainActivity --|> android.app.Activity
+com.xxmassdeveloper.mpchartexample.notimportant.MainActivity --|> android.widget.AdapterView.OnItemClickListener
+com.xxmassdeveloper.mpchartexample.notimportant.MyAdapter --|> android.widget.ArrayAdapter
+com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityBar --|> com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity
+com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityBubble --|> com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity
+com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityCandle --|> com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity
+com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityHorizontalBar --|> com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity
+com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityLine --|> com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity
+com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityPie --|> com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity
+com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityRadar --|> com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity
+com.xxmassdeveloper.mpchartexample.realm.RealmDatabaseActivityScatter --|> com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity
+com.xxmassdeveloper.mpchartexample.realm.RealmMainActivity --|> com.xxmassdeveloper.mpchartexample.notimportant.DemoBase
+com.xxmassdeveloper.mpchartexample.realm.RealmMainActivity --|> AdapterView.OnItemClickListener
+com.xxmassdeveloper.mpchartexample.realm.RealmWikiExample --|> com.xxmassdeveloper.mpchartexample.realm.RealmBaseActivity
+com.xxmassdeveloper.mpchartexample.realm.Score --|> io.realm.RealmObject
+com.github.mikephil.charting.animation.EasingFunction --|> android.animation.TimeInterpolator
+com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandleBubbleDataProvider
+com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandleBubbleDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.ChartInterface
+com.github.mikephil.charting.interfaces.dataprovider.BubbleDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandleBubbleDataProvider
+com.github.mikephil.charting.interfaces.dataprovider.CandleDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandleBubbleDataProvider
+com.github.mikephil.charting.interfaces.dataprovider.CombinedDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider
+com.github.mikephil.charting.interfaces.dataprovider.CombinedDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.BubbleDataProvider
+com.github.mikephil.charting.interfaces.dataprovider.CombinedDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.CandleDataProvider
+com.github.mikephil.charting.interfaces.dataprovider.CombinedDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider
+com.github.mikephil.charting.interfaces.dataprovider.CombinedDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.ScatterDataProvider
+com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandleBubbleDataProvider
+com.github.mikephil.charting.interfaces.dataprovider.ScatterDataProvider --|> com.github.mikephil.charting.interfaces.dataprovider.BarLineScatterCandleBubbleDataProvider
+com.github.mikephil.charting.interfaces.datasets.IBarDataSet --|> com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet
+com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet --|> com.github.mikephil.charting.interfaces.datasets.IDataSet
+com.github.mikephil.charting.interfaces.datasets.IBubbleDataSet --|> com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet
+com.github.mikephil.charting.interfaces.datasets.ICandleDataSet --|> com.github.mikephil.charting.interfaces.datasets.ILineScatterCandleRadarDataSet
+com.github.mikephil.charting.interfaces.datasets.ILineDataSet --|> com.github.mikephil.charting.interfaces.datasets.ILineRadarDataSet
+com.github.mikephil.charting.interfaces.datasets.ILineRadarDataSet --|> com.github.mikephil.charting.interfaces.datasets.ILineScatterCandleRadarDataSet
+com.github.mikephil.charting.interfaces.datasets.ILineScatterCandleRadarDataSet --|> com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet
+com.github.mikephil.charting.interfaces.datasets.IPieDataSet --|> com.github.mikephil.charting.interfaces.datasets.IDataSet
+com.github.mikephil.charting.interfaces.datasets.IRadarDataSet --|> com.github.mikephil.charting.interfaces.datasets.ILineRadarDataSet
+com.github.mikephil.charting.interfaces.datasets.IScatterDataSet --|> com.github.mikephil.charting.interfaces.datasets.ILineScatterCandleRadarDataSet
+@enduml

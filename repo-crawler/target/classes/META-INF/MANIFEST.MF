@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: repo-crawler
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: SilviuG
+Implementation-Vendor-Id: repo-crawler
+Build-Jdk: 1.8.0_71
+Implementation-URL: http://projects.spring.io/spring-boot/repo-parent/
+ repo-crawler/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<body>
+	<wicket:extend>
+		<div id="contact-us" class="parallax">
+			<div class="container">
+				<div class="row">
+					<div
+						class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp"
+						data-wow-duration="1000ms" data-wow-delay="300ms">
+						<h2>Get repository recommendations</h2>
+					</div>
+				</div>
+				<div class="contact-form wow fadeIn" data-wow-duration="1000ms"
+					data-wow-delay="600ms">
+					<div class="row">
+						<form wicket:id="recommendationForm">
+							<span> <input
+								wicket:id="repositoryRecommendationDescription" id="j_username"
+								name="j_username" type="text" class="form-control" tabindex="1"
+								required />
+							</span> <a wicket:id="submit" class="btn btn-primary">Get
+								Recommendations</a>
+						</form>
+					</div>
+				</div>
+				<table class="table table-bordered" wicket:id="recommendationsTable">
+				<thead class="thead-inverse">
+					<tr>
+						<th>#</th>
+						<th>Repository Name</th>
+						<th>Languages</th>
+						<th>Similarity</th>
+						<th>Description</th>
+						<th>Repository Link</th>
+						<th>Download UML class diagram</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr wicket:id="repositoryRow">
+						<th scope="row"><label wicket:id="repositoryIndex"></label></th>
+						<td><label wicket:id="repositoryName"></label></td>
+						<td><label wicket:id="programmingLanguages"></label></td>
+						<td><label wicket:id="similarityScore"></label></td>
+						<td><label wicket:id="repositoryDescription"></label></td>
+						<td><a wicket:id="viewRepositoryLink" href="#">View</a></td>
+						<td><a wicket:id="downloadDiagramLink" href="#">Download</a></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+
+	</wicket:extend>
+</body>
+</html>

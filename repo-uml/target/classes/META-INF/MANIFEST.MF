@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: repo-uml
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: SilviuG
+Implementation-Vendor-Id: repo-uml
+Build-Jdk: 1.8.0_71
+Implementation-URL: http://projects.spring.io/spring-boot/repo-parent/
+ repo-uml/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

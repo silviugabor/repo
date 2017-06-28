@@ -1,0 +1,28 @@
+include 'CarouselFragment'
+include 'CompassExample'
+include 'ContactSelector'
+include 'CustomActivityTransition'
+include 'DynamicListItems'
+include 'encryption'
+include 'FixedSizeTextColumns'
+include 'Fragments'
+include 'GsonJsonWebservice'
+include 'LeftNavBarLibrary'
+project(':LeftNavBarLibrary').projectDir = new File('LeftNavBarExample/LeftNavBarLibrary') 
+include 'LeftNavBarExample'
+project(':LeftNavBarExample').projectDir = new File('LeftNavBarExample/Example') 
+include 'ListStyles'
+include 'LivewallpaperSwitchAnimation'
+project(':LivewallpaperSwitchAnimation').projectDir = new File('Livewallpaper/switch_animation') 
+include 'LivewallpaperSwitchLeftRight'
+project(':LivewallpaperSwitchLeftRight').projectDir = new File('Livewallpaper/switch_leftright') 
+include 'MapApiV2Demo'
+include 'MultipleContacts'
+include 'OptionalDependencies'
+include 'PinchZoomDetector'
+include 'simperAudioStreamer'
+include 'sms'
+include 'TabHostExample'
+include 'TabHostSelfContainedTabBrowsing'
+include 'wizard'
+include 'EditTextChips'

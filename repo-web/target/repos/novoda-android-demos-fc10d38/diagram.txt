@@ -1,0 +1,1307 @@
+@startuml
+abstract class com.example.google.tv.leftnavbar.TabImpl {
+ + Object getTag() 
++ Tab setTag(Object tag) 
++ Tab setTabListener(ActionBar.TabListener callback) 
++ View getCustomView() 
++ Tab setCustomView(View view) 
++ Tab setCustomView(int layoutResId) 
++ Drawable getIcon() 
++ int getPosition() 
++ void setPosition(int position) 
++ CharSequence getText() 
++ CharSequence getContentDescription() 
++ Tab setIcon(Drawable icon) 
++ Tab setIcon(int resId) 
++ Tab setText(int resId) 
++ Tab setText(CharSequence text) 
++ Tab setContentDescription(int resId) 
++ Tab setContentDescription(CharSequence contentDesc) 
++ String toString() 
+    - final Context mContext;
+    - Object mTag;
+    - Drawable mIcon;
+    - CharSequence mText;
+    - CharSequence mContentDescription;
+    - int mPosition;
+    - View mCustomView;
+ 
+}
+abstract class com.novoda.demo.edittextchips.HintSafeTextWatcher {
+ + final void beforeTextChanged(CharSequence text, int start, int count, int after) 
++ final void onTextChanged(CharSequence text, int start, int before, int count) 
++ final void afterTextChanged(Editable text) 
+# {abstract} void onTextChanged(Editable text)
+    - boolean selfUpdateInProgress;
+ 
+}
+abstract class com.novoda.example.compass.activities.BasicSensorActivity {
+ + void onReceive(Context context, Intent intent) 
+# void onCreate(Bundle bundle) 
+- void initLocationIntentFilter() 
++ void onResume() 
+# void onPause() 
+- void registerAcclSensor() 
+- void registerMagSensor() 
+- void registerLocationUpdates() 
+- void unRegisterLocationUpdates() 
+- void unRegisterAcclSensor() 
++ void unRegisterMagSensor() 
++ void onAccuracyChanged(Sensor sensor, int accuracy) 
++ void onSensorChanged(SensorEvent event) 
+- void updateSensorValues(SensorEvent event) 
+- void setRotationInDegrees(double floatBearing) 
+- void setBearing(double floatBearing) 
++ int getRotation()
++ double getBearing()
+- void setmagValues(SensorEvent event) 
+- void setAcclValues(SensorEvent event) 
+    - Location location;
+    - GeomagneticField magField;
+    - IntentFilter filter;
+    - SensorManager sensorManager;
+    - Sensor acclSensor;
+    - Sensor magFieldSensor;
+ 
+}
+class android.animation.Animator
+class android.animation.AnimatorListenerAdapter
+class android.animation.ObjectAnimator
+class android.animation.ValueAnimator
+class android.app.ActionBar
+class android.app.ActionBar.OnNavigationListener
+class android.app.ActionBar.Tab
+class android.app.Activity
+class android.app.AlertDialog
+class android.app.Application
+class android.app.Dialog
+class android.app.Fragment
+class android.app.FragmentTransaction
+class android.app.ListActivity
+class android.app.PendingIntent
+class android.app.Service
+class android.content.BroadcastReceiver
+class android.content.ComponentName
+class android.content.ContentResolver
+class android.content.ContentValues
+class android.content.Context
+class android.content.CursorLoader
+class android.content.DialogInterface
+class android.content.Intent
+class android.content.IntentFilter
+class android.content.Loader
+class android.content.ServiceConnection
+class android.content.pm.ApplicationInfo
+class android.content.pm.PackageManager
+class android.content.pm.PackageManager.NameNotFoundException
+class android.content.res.Configuration
+class android.content.res.Resources
+class android.content.res.TypedArray
+class android.database.Cursor
+class android.database.sqlite.SQLiteDatabase
+class android.database.sqlite.SQLiteOpenHelper
+class android.graphics.Bitmap
+class android.graphics.BitmapFactory
+class android.graphics.Canvas
+class android.graphics.Matrix
+class android.graphics.Paint
+class android.graphics.PointF
+class android.graphics.Rect
+class android.graphics.Typeface
+class android.graphics.drawable.Drawable
+class android.hardware.GeomagneticField
+class android.hardware.Sensor
+class android.hardware.SensorEvent
+class android.hardware.SensorManager
+class android.location.Location
+class android.location.LocationManager
+class android.media.AudioManager
+class android.media.MediaPlayer
+class android.net.Uri
+class android.os.Build
+class android.os.Bundle
+class android.os.Handler
+class android.os.IBinder
+class android.os.Message
+class android.os.RemoteException
+class android.os.SystemClock
+class android.provider.BaseColumns
+class android.provider.Contacts
+class android.provider.Contacts.People
+class android.provider.ContactsContract
+class android.service.wallpaper.WallpaperService
+class android.support.test.InstrumentationRegistry
+class android.support.test.runner.AndroidJUnit4
+class android.support.v4.app.Fragment
+class android.support.v4.app.FragmentActivity
+class android.support.v4.app.FragmentTransaction
+class android.support.v4.app.ListFragment
+class android.support.v7.app.AppCompatActivity
+class android.telephony.gsm.SmsManager
+class android.telephony.gsm.SmsMessage
+class android.text.Editable
+class android.text.Spanned
+class android.text.TextUtils
+class android.util.AttributeSet
+class android.util.FloatMath
+class android.util.Log
+class android.util.TypedValue
+class android.view.ActionMode
+class android.view.FocusFinder
+class android.view.Gravity
+class android.view.KeyEvent
+class android.view.LayoutInflater
+class android.view.Menu
+class android.view.MenuInflater
+class android.view.MenuItem
+class android.view.MotionEvent
+class android.view.ScaleGestureDetector
+class android.view.SurfaceHolder
+class android.view.View
+class android.view.View.OnClickListener
+class android.view.ViewGroup
+class android.view.ViewGroup.MarginLayoutParams
+class android.view.ViewParent
+class android.view.Window
+class android.view.inputmethod.InputMethodManager
+class android.webkit.WebView
+class android.widget.AdapterView
+class android.widget.AdapterView.OnItemClickListener
+class android.widget.ArrayAdapter
+class android.widget.BaseAdapter
+class android.widget.Button
+class android.widget.CursorAdapter
+class android.widget.EditText
+class android.widget.Filterable
+class android.widget.Gallery
+class android.widget.ImageButton
+class android.widget.ImageView
+class android.widget.LinearLayout
+class android.widget.ListView
+class android.widget.MultiAutoCompleteTextView
+class android.widget.ProgressBar
+class android.widget.RelativeLayout
+class android.widget.ScrollView
+class android.widget.SimpleAdapter
+class android.widget.Spinner
+class android.widget.SpinnerAdapter
+class android.widget.TabHost
+class android.widget.TextView
+class android.widget.Toast
+class com.actionbarsherlock.app.SherlockFragmentActivity
+class com.actionbarsherlock.view.Menu
+class com.example.google.tv.leftnavbar.HomeDisplay {
+ - void loadLogo(TypedArray a, PackageManager pm, ApplicationInfo appInfo) 
+- void loadIcon(TypedArray a, PackageManager pm, ApplicationInfo appInfo) 
++ void setOnClickHomeListener(View.OnClickListener listener) 
+- void createView(ViewGroup parent, TypedArray attributes) 
+- void updateImage() 
+    - Mode mMode;
+    - final Context mContext;
+    - Drawable mLogo;
+    - Drawable mIcon;
+    - View mView;
+    - boolean mExpanded;
+ 
+}
+class com.example.google.tv.leftnavbar.LeftNavBar {
+ - void initialize(Window window, Context context) 
+- void updateWindowLayout(boolean animated) 
+- void updateTitleBar(boolean animated) 
+- void setLeftMargin(View view, int margin) 
+- void setTopMargin(View view, int margin) 
++ void show() 
++ void hide() 
+- void setVisible(boolean visible) 
++ boolean isShowing() 
++ void setTitle(CharSequence title) 
++ void setTitle(int resId) 
++ CharSequence getTitle() 
++ void setSubtitle(CharSequence subtitle) 
++ void setSubtitle(int resId) 
++ CharSequence getSubtitle() 
++ Tab newTab() 
+- TabImpl convertTab(Tab tab) 
++ void addTab(Tab tab) 
++ void addTab(Tab tab, boolean setSelected) 
++ void addTab(Tab tab, int position) 
++ void addTab(Tab tab, int position, boolean setSelected) 
++ Tab getSelectedTab() 
++ Tab getTabAt(int index) 
++ int getTabCount() 
++ void removeAllTabs() 
++ void removeTab(Tab tab) 
++ void removeTabAt(int position) 
++ void selectTab(Tab tab) 
++ int getNavigationItemCount() 
++ int getNavigationMode() 
++ int getSelectedNavigationIndex() 
++ void setListNavigationCallbacks(SpinnerAdapter adapter, OnNavigationListener callback) 
++ void setNavigationMode(int mode) 
++ void setSelectedNavigationItem(int position) 
++ int getDisplayOptions() 
+- {static} boolean has(int changes, int option) 
++ void setDisplayOptions(int options) 
++ void setDisplayOptions(int options, int mask) 
++ void setDisplayHomeAsUpEnabled(boolean showHomeAsUp) 
++ void setDisplayShowCustomEnabled(boolean showCustom) 
++ void setDisplayShowHomeEnabled(boolean showHome) 
++ void setDisplayShowTitleEnabled(boolean showTitle) 
++ void setDisplayUseLogoEnabled(boolean useLogo) 
++ void setShowHorizontalProgress(int value) 
++ View getCustomView() 
++ void setCustomView(View view) 
++ void setCustomView(View view, LayoutParams layoutParams) 
++ void setCustomView(int resId) 
++ void setIcon(int resId) 
++ void setIcon(Drawable icon) 
++ void setLogo(int resId) 
++ void setLogo(Drawable logo) 
++ void addOnMenuVisibilityListener(OnMenuVisibilityListener listener) 
++ void removeOnMenuVisibilityListener(OnMenuVisibilityListener listener) 
++ void setBackgroundDrawable(Drawable d) 
++ int getHeight() 
++ void setExpandedSize(int s) 
++ void setShowHideAnimationEnabled(boolean enabled) 
++ void dispatchMenuVisibilityChanged(boolean visible) 
++ ActionMode startActionMode(ActionMode.Callback callback) 
++ void showOptionsMenu(boolean show) 
++ void setOnClickHomeListener(View.OnClickListener listener) 
+    - Context mContext;
+    - boolean mIsOverlay;
+    - TitleBarView mTitleBar;
+    - LeftNavView mLeftNav;
+    - View mContent;
+ 
+}
+class com.example.google.tv.leftnavbar.LeftNavBarService {
+ + {static} LeftNavBarService instance() 
++ LeftNavBar getLeftNavBar(Activity activity) 
+    - final Map<Integer, LeftNavBar> map;
+ 
+}
+class com.example.google.tv.leftnavbar.LeftNavView {
+ + void setWidth(int a) 
+# void onFinishInflate() 
+- ViewGroup getMainSection() 
++ boolean setVisible(boolean visible, boolean animated) 
++ boolean isVisible() 
++ void setOnClickHomeListener(View.OnClickListener listener) 
++ void addFocusables(ArrayList<View> views, int direction, int focusableMode) 
++ View focusSearch(View focused, int direction) 
+# void onDescendantFocusChanged(boolean hasFocus) 
++ int getDisplayOptions() 
++ int setDisplayOptions(int options) 
+- void setHomeMode() 
+- void setExpandedState() 
+- void setExpanded(boolean expanded) 
+- void setExpanded(final boolean expanded, boolean animated) 
++ void onAnimationUpdate(ValueAnimator animation) 
++ void onAnimationStart(Animator animator) 
++ void onAnimationEnd(Animator animator) 
+- void setContentExpanded(boolean expanded) 
+- void setViewWidth(int width) 
++ int getApparentWidth(boolean ignoreHiddenState) 
++ void setAnimationsEnabled(boolean enabled) 
+- {static} boolean has(int changes, int option) 
++ TabDisplay getTabs() 
++ SpinnerDisplay getSpinner() 
++ void setNavigationMode(int mode) 
+- void setNavigationModeVisibility(int mode, boolean visible) 
++ int getNavigationMode() 
++ void showOptionsMenu(Boolean show) 
++ void setCustomView(View view) 
+- boolean hasCustomView() 
+- boolean hasVisibleCustomView() 
++ View getCustomView() 
+- CustomViewWrapper getCustomViewWrapper() 
+- void setCustomViewVisibility(boolean visible) 
+# void onMeasure(int widthMeasureSpec, int heightMeasureSpec) 
+# void onLayout(boolean changed, int l, int t, int r, int b) 
+- int findTopOfAvailableSpace(LeftNavView parent) 
+- int findBottomOfAvailableSpace(LeftNavView parent) 
+- void checkDimensionsConsistency(int value, int expected) 
+    - final HomeDisplay mHome;
+    - final TabDisplay mTabs;
+    - final OptionsDisplay mOptions;
+    - final SpinnerDisplay mSpinner;
+    - final int mWidthCollapsed;
+    - int mWidthExpanded;
+    - final int mApparentWidthCollapsed;
+    - final int mApparentWidthExpanded;
+    - final VisibilityController mVisibilityController;
+    - final int mAnimationDuration;
+    - int mDisplayOptions;
+    - int mNavigationMode;
+    - boolean mExpanded;
+    - boolean mAnimationsEnabled;
+    - ValueAnimator mWidthAnimator;
+        - final View mView;
+ 
+}
+class com.example.google.tv.leftnavbar.OptionsDisplay {
+ - void refreshExpandedState() 
+- void createView(ViewGroup parent, TypedArray attributes) 
+- void setDuplicateParentState(View view) 
+- View configureOption(View option, CharSequence title, boolean active) 
+- {static} void setOptionExpanded(View option, boolean expanded) 
+- {static} ImageView getOptionIcon(View option) 
+- {static} TextView getOptionTitle(View option) 
+- ViewGroup getOptionsContainer() 
+    - final Context mContext;
+    - ViewGroup mView;
+    - boolean mExpanded;
+ 
+}
+class com.example.google.tv.leftnavbar.SpinnerDisplay {
+ - void refreshSelectedItem() 
+- void createView(ViewGroup parent, TypedArray attributes) 
++ void onNothingSelected(AdapterView<?> parent) 
+    - final Context mContext;
+    - Spinner mView;
+    - OnNavigationListener mListener;
+    - boolean mExpanded;
+ 
+}
+class com.example.google.tv.leftnavbar.TabDisplay {
+ - void createView(ViewGroup parent) 
+- void onSelectionChanged(TabImpl oldSelection, TabImpl newSelection) 
+- {static} void detachFromParent(View view) 
++ void setSelectionActive(boolean active) 
++ void setSelected(TabImpl tab) 
++ TabImpl getSelected() 
+- boolean isSelected(TabImpl tab) 
+- void setSelectionState(TabImpl tab, boolean selected) 
++ void refresh() 
++ int getItemViewType(int position) 
++ void insert(TabImpl tab, int position) 
++ void remove(TabImpl tab) 
++ void clear() 
++ View getView(int position, View convertView, ViewGroup parent) 
++ void onClick(View v) 
+- void updatePositions(boolean allInvalid) 
+    - final Context mContext;
+    - final TabAdapter mAdapter;
+    - TabListView mList;
+    - boolean mExpanded;
+        - final Map<TabImpl, TabFrame> mCachedViews;
+        - TabImpl mSelection;
+        - boolean mIsSelectionActive;
+        - TabImpl mSavedSelection;
+ 
+}
+class com.example.google.tv.leftnavbar.TabFrame {
+ + void setSelected(boolean selected) 
++ void select(boolean selected) 
++ void expand(boolean expanded) 
+- ImageView getIcon() 
+- TextView getTitle() 
++ void configureNormal(Drawable icon, CharSequence text) 
++ void configureCustom(View content) 
+- void markConfigured(boolean isCustom) 
+    - boolean mConfigured;
+    - boolean mIsCustom;
+ 
+}
+class com.example.google.tv.leftnavbar.TabListView {
+ + void setHighlighted(int index) 
++ void addFocusables(ArrayList<View> views, int direction, int focusableMode) 
++ void clearFocus() 
++ void clearChildFocus(View child) 
++ void run() 
+# void dispatchDraw(Canvas canvas) 
+    - int mHighlighted;
+    - boolean mClearingFocus;
+ 
+}
+class com.example.google.tv.leftnavbar.TitleBarView {
+ # void onFinishInflate() 
+- void setTextStyle(TextView view, int style) 
++ void setTitle(CharSequence text) 
++ void setTitleColor(int color) 
++ void setLeftIcon(Drawable drawable, int alpha) 
++ void setRightIcon(Drawable drawable, int alpha) 
+- void setIcon(ImageView view, Drawable drawable, int alpha) 
++ void setHorizontalProgress(int value) 
++ boolean isHorizontalProgressVisible() 
++ void setCircularProgress(int value) 
++ void disableLeftIcon() 
++ void disableRightIcon() 
++ void disableHorizontalProgress() 
++ void disableCircularProgress() 
+- void disableSubtitle() 
+- {static} void removeFromParent(View view) 
++ CharSequence getTitle() 
++ void setSubtitle(CharSequence text) 
++ CharSequence getSubtitle() 
++ void setAnimationsEnabled(boolean enabled) 
++ void setVisible(boolean visible, boolean animated) 
++ boolean isVisible() 
++ int getApparentHeight() 
++ void setProgressVisible(boolean visible) 
+    - final VisibilityController mVisibilityController;
+    - boolean mIsLegacy;
+    - boolean mAnimationsEnabled;
+    - TextView mTitle;
+    - TextView mSubtitle;
+    - ImageView mLeftIcon;
+    - ImageView mRightIcon;
+    - ProgressBar mCircularProgress;
+    - ProgressBar mHorizontalProgress;
+    - int mTitleResource;
+    - int mSubtitleResource;
+ 
+}
+class com.example.google.tv.leftnavbar.VisibilityController {
+ + void onAnimationStart(Animator animator) 
++ void onAnimationEnd(Animator animator) 
+- void setViewVisible(boolean visible) 
+    - final View mView;
+    - final int mAnimationDuration;
+    - boolean mVisible;
+ 
+}
+class com.eyeem.chips.AutocompletePopover
+class com.eyeem.chips.ChipsEditText
+class com.google.android.gms.maps.CameraUpdate
+class com.google.android.gms.maps.CameraUpdateFactory
+class com.google.android.gms.maps.GoogleMap
+class com.google.android.gms.maps.SupportMapFragment
+class com.google.android.gms.maps.model.LatLng
+class com.google.gson.Gson
+class com.novoda.AutoMultipleContacts {
+ + void onCreate(Bundle savedInstanceState) 
++ View newView(Context context, Cursor cursor, ViewGroup parent) 
++ void bindView(View view, Context context, Cursor cursor) 
++ String convertToString(Cursor cursor) 
++ Cursor runQueryOnBackgroundThread(CharSequence constraint) 
+        - ContentResolver mContent;
+ 
+}
+class com.novoda.Base64 {
+ - {static} byte[] encode3to4(byte[] source, int srcOffset,
+      int numSigBytes, byte[] destination, int destOffset, byte[] alphabet) 
++ {static} String encode(byte[] source) 
++ {static} String encodeWebSafe(byte[] source, boolean doPadding) 
++ {static} String encode(byte[] source, int off, int len, byte[] alphabet,
+      boolean doPadding) 
++ {static} byte[] encode(byte[] source, int off, int len, byte[] alphabet,
+      int maxLineLength) 
+- {static} int decode4to3(byte[] source, int srcOffset,
+      byte[] destination, int destOffset, byte[] decodabet) 
++ {static} byte[] decode(String s) 
++ {static} byte[] decodeWebSafe(String s) 
++ {static} byte[] decode(byte[] source) 
++ {static} byte[] decodeWebSafe(byte[] source)
+      
++ {static} byte[] decode(byte[] source, int off, int len)
+      
++ {static} byte[] decodeWebSafe(byte[] source, int off, int len)
+      
++ {static} byte[] decode(byte[] source, int off, int len, byte[] decodabet)
+      
+ 
+}
+class com.novoda.Base64DecoderException {
+  
+}
+class com.novoda.ContactSelector {
+ + void onCreate(Bundle savedInstanceState) 
++ void onActivityResult(int reqCode, int resultCode, Intent data) 
+    - Button btnContacts;
+    - TextView txtContacts;
+ 
+}
+class com.novoda.CryptException {
+  
+}
+class com.novoda.DynamicListItems {
+ + void onCreate(Bundle savedInstanceState) 
+- OnClickListener getBtnClickListener() 
+	- SimpleAdapter				adapter;
+	- EditText					newValue;
+ 
+}
+class com.novoda.Encrypt {
+ + void onCreate(Bundle savedInstanceState) 
++ String crypt(int mode, String encryption_subject) 
+- SecretKeyFactory getSecretKeyFactory() 
+- SecretKey getSecretKey(SecretKeyFactory kf) 
+- Cipher getCipherInstance() 
+- void initialise(PBEParameterSpec ps, SecretKey k, Cipher crypter, int decryptMode) 
+- String getString(String encryption_subject, Cipher crypter) 
+- String encode(String encryption_subject, Cipher crypter) 
+- byte[] finishTransformation(Cipher crypter, byte[] bytes) 
+- byte[] getDecode(String encryption_subject) 
+ 
+}
+class com.novoda.HelloWebView {
+ + void onCreate(Bundle savedInstanceState) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(MenuItem item) 
+- void fontSizePlus() 
+- void fontSizeMinus() 
+# Dialog onCreateDialog(int id) 
+- Dialog getChooseViewDialog() 
++ void onClick(DialogInterface dialog, int item) 
++ boolean onTouch(View v, MotionEvent event) 
+	- WebView webView;
+	- int fontSize;
+	- PinchZoomDetector zoomDetector;
+ 
+}
+class com.novoda.Main {
+ + void onCreate(Bundle savedInstanceState) 
++ boolean onTouch(View v, MotionEvent event) 
+- void shortToast(String s) 
+	- Toast toast;
+	- PinchZoomDetector zoomDetector;
+ 
+}
+class com.novoda.R
+class com.novoda.SelfContainedTabHost {
+ + void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+# void onPause() 
++ void handleMessage(Message msg) 
++ void onReceive(Context context, Intent intent) 
+- OnClickListener goToTab1() 
+- OnClickListener goToTab2() 
+	- TabHost tabHost;
+	# {static} TabChangeReceiver receiver;
+ 
+} {
+ + void onCreate(Bundle savedInstanceState) 
+ 
+}
+class com.novoda.Step1 {
+ + void onCreate(Bundle savedInstanceState) 
+ 
+}
+class com.novoda.Step2 {
+ + void onCreate(Bundle savedInstanceState) 
+ 
+}
+class com.novoda.Step3 {
+ + void onCreate(Bundle savedInstanceState) 
+ 
+}
+class com.novoda.StyledListItems {
+ + void onCreate(Bundle savedInstanceState) 
++ int getCount() 
++ Object getItem(int position) 
++ long getItemId(int position) 
++ View getView(int position, View convertView, ViewGroup parent) 
++ void setContent(String title) 
+        - Context mContext;
+        - LayoutInflater mInflater;
+        - TextView mTitle;
+ 
+}
+class com.novoda.Wizard {
+ + void onCreate(Bundle savedInstanceState) 
+# void onActivityResult(int requestCode, int resultCode, Intent data) 
+    - TextView step1result, step2result, step3result;
+ 
+}
+class com.novoda.activity.JsonRequest {
+ + void onCreate(Bundle savedInstanceState) 
+# void onResume() 
+- InputStream retrieveStream(String url) 
+ 
+}
+class com.novoda.demo.edittextchips.MainActivity {
+ + void onCreate(Bundle savedInstanceState) 
+- View eyeem() 
+- View splitwise() 
++ void onClick(View v) 
+ 
+}
+class com.novoda.demo.edittextchips.R
+class com.novoda.demo.edittextchips.eyeem.EyeemActivity {
+ + {static} Intent intent(Context context) 
+# void onCreate(Bundle savedInstanceState) 
++ ArrayList<String> getSuggestions(String query) 
++ ArrayList<String> getDefaultSuggestions() 
+- TextWatcher textWatcher() 
++ void onTextChanged(CharSequence s, int start, int before, int count) 
++ void afterTextChanged(Editable s) 
+- boolean lastCharacterIsSeparator(CharSequence s) 
+- void showSuggestions(ChipsEditText chips, AutocompletePopover popover) 
+    - ChipsEditText chips;
+    - AutocompletePopover popover;
+ 
+}
+class com.novoda.demo.edittextchips.splitwise.HintTextWatcher {
+ # void onTextChanged(Editable text) 
+- int hintStartPosition(Editable text) 
+- boolean isNotCurrentlyTyping(String rawText) 
+- boolean containsSpansOnly(String rawText) 
+- boolean isCurrentlyTyping(Editable text) 
+- boolean doesNotContainJustSpans(Editable text) 
+- void removeHint(Editable text) 
+    - final TagsView tagsView;
+    - final CharSequence suffixHint;
+    - final HintSpan suffixHintSpannable;
+ 
+}
+class com.novoda.demo.edittextchips.splitwise.SplitwiseActivity {
+ + {static} Intent intent(Context context) 
+# void onCreate(Bundle savedInstanceState) 
+# boolean keepObject(Tag tag, String mask) 
+ 
+}
+class com.novoda.demo.edittextchips.splitwise.Tag {
+ + String toString() 
+    - final String name;
+ 
+}
+class com.novoda.demo.edittextchips.splitwise.TagView {
+ + void setSelected(boolean selected) 
+    - OnSelectedListener listener;
+ 
+}
+class com.novoda.demo.edittextchips.splitwise.TagViewAdapter {
+ + void onSelected() 
+- void showKeyboard(ViewGroup container) 
+    - final Context context;
+ 
+}
+class com.novoda.demo.edittextchips.splitwise.TagsView {
+ - int hintStyle() 
+# View getViewForObject(Tag tag) 
+# Tag defaultObject(String completionText) 
++ boolean enoughToFilter() 
+# void onSelectionChanged(int selStart, int selEnd) 
+- boolean isHintVisible() 
+- boolean isSelectingHint(int selStart) 
+- int hintStartPosition() 
+    - final CharSequence suffixHint;
+    - final HintTextWatcher hintTextWatcher;
+    - final TagViewAdapter adapter;
+ 
+}
+class com.novoda.demo.optionaldependencies.BaseOptionalDependencies {
+ + void updatePaidContent(TextView textView) 
+ 
+}
+class com.novoda.demo.optionaldependencies.MainActivity {
+ # void onCreate(Bundle savedInstanceState) 
+ 
+}
+class com.novoda.demo.optionaldependencies.OptionalDependencies {
+ + void updatePaidContent(TextView textView) 
+ 
+} {
+  
+}
+class com.novoda.demo.optionaldependencies.OptionalDependencyApplication {
+ + void onCreate() 
++ OptionalDependencies getOptionalDependencies() 
+    - OptionalDependencies optionalDependencies;
+ 
+}
+class com.novoda.demo.tddpersistence.MainActivity {
+ # void onCreate(Bundle savedInstanceState) 
+- void initLayout() 
+- void onAddTask() 
+- Task createTask() 
+- void refreshUI() 
+- void updateTaskList() 
+- TaskRepository getRepository() 
+    - TaskRepository taskRepository;
+    - EditText taskEditTitle;
+    - EditText taskEditDate;
+    - LinearLayout tasksList;
+ 
+}
+class com.novoda.demo.tddpersistence.MainActivityPresenter {
+ + void save(Task task) 
+    - final TaskRepository taskRepository;
+ 
+}
+class com.novoda.demo.tddpersistence.Task {
+ + String getName() 
++ Date getExpiration() 
++ boolean equals(Object o) 
++ int hashCode() 
+    - String name;
+    - Date expiration;
+ 
+}
+class com.novoda.demo.tddpersistence.TaskDBModel {
+ + String getName() 
++ long getExpiration() 
+    - final String name;
+    - final long expiration;
+ 
+}
+class com.novoda.demo.tddpersistence.TaskDBStorage {
+ - SQLiteDatabase openDB() 
++ void insert(TaskDBModel taskDBModel) 
++ void delete(TaskDBModel taskDBModel) 
+- void closeDB() 
+- ContentValues toContentValues(TaskDBModel taskDBModel) 
++ List<TaskDBModel> findAllExpiredBy(long expirationDate) 
+- String[] dbProjection() 
+- List<TaskDBModel> toTaskDBModels(Cursor cursor) 
++ List<TaskDBModel> findAll() 
++ TaskDBModel findByName(String taskName) 
+    - final TaskReaderDbHelper taskReaderDbHelper;
+ 
+}
+class com.novoda.demo.tddpersistence.TaskMapper {
+ + TaskDBModel fromDomain(Task task) 
++ Task toDomain(TaskDBModel taskDBModel) 
+ 
+}
+class com.novoda.demo.tddpersistence.TaskRepository {
+ + void persistTask(Task task) 
++ List<Task> tasksExpiredBy(Date date) 
++ Task taskWithName(String taskName) 
++ List<Task> allTasks() 
+- List<Task> dbTasksToDomain(List<TaskDBModel> allExpiredBy) 
+    - final TaskMapper taskMapper;
+    - final TaskStorage taskDBStorage;
+ 
+}
+class com.novoda.demo.tddpersistence.db.AndroidTransactor {
+ + void perform(UnitOfWork unitOfWork)  
+    - final TaskReaderDbHelper dbHelper;
+ 
+}
+class com.novoda.demo.tddpersistence.db.TaskReaderContract {
+  
+}
+class com.novoda.demo.tddpersistence.db.TaskReaderContract.TaskEntry
+class com.novoda.demo.tddpersistence.db.TaskReaderDbHelper {
+ + void onCreate(SQLiteDatabase db) 
++ void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
++ void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) 
+ 
+}
+class com.novoda.demo.wearbuildconfig.DemoActivity {
+ # void onCreate(Bundle savedInstanceState) 
+ 
+}
+class com.novoda.example.compass.NovoCompass {
+ + void onCreate() 
+- void initLocationListener() 
++ {static} Locator getLocator()
+    - {static} Locator locator;
+ 
+}
+class com.novoda.example.compass.R
+class com.novoda.example.compass.activities.CompassActivity {
+ + void onCreate(Bundle savedInstanceState) 
+- void refreshText() 
+- void refreshImageRotation() 
++ void onSensorChanged(SensorEvent evt) 
+- void updateText(String textString) 
++ boolean onCreateOptionsMenu(Menu menu) 
++ boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) 
+    - boolean isCompassEnabled;
+    - RotatableImageView image;
+ 
+}
+class com.novoda.example.compass.utils.CompassUtils {
+ + {static} String getDirectionFromBearing(double bearing) 
++ {static} int getRotationDegreesFromBearing(double bearing)
+ 
+}
+class com.novoda.example.compass.utils.LowPassFilter {
+ + {static} float[] filter(float[] input, float[] prev) 
+ 
+}
+class com.novoda.example.compass.view.RotatableImageView {
+ - void initialize() 
+# void onMeasure(int widthMeasureSpec, int heightMeasureSpec) 
+# void onDraw(Canvas canvas) 
++ void setRotationInDegrees(int rotation)
++ void useCompassToRotate(boolean isCompassEnabled)
+    - int rotationValue;
+    - boolean isCompassEnabled;
+ 
+}
+class com.novoda.example.compass.view.RotatedImageView {
+ - void initialization(Context context) 
+- void initializeBackgroundImage(Context context) 
+- void initializeScaleDetector(Context context) 
+- void initializeVariables() 
++ boolean onTouchEvent(MotionEvent ev) 
+- void activateScaleDetector(MotionEvent ev) 
+- void updateXYPositionSimpleTouch(MotionEvent ev) 
+- void updatePointerId(MotionEvent ev) 
++ void onDraw(Canvas canvas) 
+- void rotateImageFromMultitouch(ArrayList<PointF> touchPoints, Canvas canvas) 
+- void drawCanvas(Canvas canvas) 
++ boolean onScale(ScaleGestureDetector detector) 
+- PointF getMidPoint(float x1, float y1, float x2, float y2) 
++ void setMultitouchPoints(MotionEvent event) 
++ void setInitalPositionMultiPoints(MotionEvent event) 
++ void updatePositionToMoveTheImage(MotionEvent event) 
++ void calculateNewPoints() 
++ void checkIfCompassIsActivated() 
++ void setCompassActivated(boolean activated, float originalDegrees) 
++ void updateCompassDegrees(float degrees) 
+    - Drawable backgroundImage;
+    - float mPosX;
+    - float mPosY;
+    - float mLastTouchX;
+    - float mLastTouchY;
+    - ScaleGestureDetector mScaleDetector;
+    - float degrees;
+    - float old_degrees;
+    - boolean firstIterationMultitouch;
+    - float last_rotation_degrees;
+    - float last_center_rotation_position_x;
+    - float last_center_rotation_position_y;
+    - boolean isCompassActivated;
+    - float compass_degrees;
+    - float original_compass_degrees;
+ 
+}
+class com.novoda.location.Locator
+class com.novoda.location.LocatorFactory
+class com.novoda.location.LocatorSettings
+class com.novoda.location.exception.NoProviderAvailable
+class com.novoda.mapdemo.R
+class com.novoda.mapdemo.activity.NovodaMapActivity {
+ # void onCreate(Bundle savedInstanceState) 
+ 
+}
+class com.novoda.mapdemo.fragment.NovodaMapFragment {
+ + View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) 
+- void setUpMapIfNeeded() 
+- void setUpMap() 
+- CameraUpdate zoomToLastKnownLatLng() 
+- LatLng getLastKnownLatLng() 
+- LatLng locationToLatLng(Location location) 
+    - GoogleMap map;
+ 
+}
+class com.novoda.mapdemo.fragment.SomeOtherFragment {
+ + View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
++ void onClick(View v) 
+- void showToast() 
+ 
+}
+class com.novoda.model.Metadata {
+ 	+ String resultType;
+ 
+}
+class com.novoda.model.Result {
+ 	+ String fromUserIdStr;
+	+ String profileImageUrl;
+	+ String createdAt;
+	+ String fromUser;
+	+ String idStr;
+	+ Metadata metadata;
+	+ String toUserId;
+	+ String text;
+	+ long id;
+	+ String from_user_id;
+	+ String isoLanguageCode;
+	+ String toUserIdStr;
+	+ String source;
+ 
+}
+class com.novoda.model.SearchResponse {
+ 	+ List<Result> results;
+	+ long maxId;
+	+ int sinceId;
+	+ String refreshUrl;
+	+ String nextPage;
+	+ int resultsPerPage;
+	+ int page;
+	+ double completedIn;
+	+ String sinceIdStr;
+	+ String maxIdStr;
+	+ String query;
+ 
+}
+class com.novoda.sms.Constants {
+  
+}
+class com.novoda.sms.SMS {
+ + void onCreate(Bundle savedInstanceState) 
++ View newView(Context context, Cursor cursor, ViewGroup parent) 
++ void bindView(View view, Context context, Cursor cursor) 
++ String convertToString(Cursor cursor) 
++ Cursor runQueryOnBackgroundThread(CharSequence constraint) 
+- OnClickListener getNewSendSmsListener() 
+- boolean pollIsValid(String phoneNo, String message) 
+- void sendSMS(String phoneNumber, String message) 
+        - ContentResolver mContent;
+ 
+}
+class com.novoda.sms.SmsDeliveredReciever {
+ + void onReceive(Context context, Intent intent) 
+ 
+}
+class com.novoda.sms.SmsReceiver {
+ + void onReceive(Context context, Intent intent) 
+    
+ 
+}
+class com.novoda.sms.SmsSentReciever {
+ + void onReceive(Context context, Intent intent) 
+ 
+}
+class com.novoda.utils.PinchZoomDetector {
+ + int detectZoom(MotionEvent event) 
+- int moving(MotionEvent event) 
+- int release(MotionEvent event) 
+- float fingerDistance(MotionEvent event) 
+	- boolean zooming;
+	- float oldDistance;
+ 
+} {
+ + int detectZoom(MotionEvent event) 
+- int moving(MotionEvent event) 
+- int release(MotionEvent event) 
+- float fingerDistance(MotionEvent event) 
+	- boolean zooming;
+	- float oldDistance;
+ 
+}
+class com.novoda.wallpaper.AnimSwitchWallPaper {
+ + void onCreate() 
++ void onDestroy() 
++ Engine onCreateEngine() 
++ void onCreate(SurfaceHolder surfaceHolder) 
++ void onVisibilityChanged(boolean visible) 
++ void onSurfaceChanged(SurfaceHolder holder, int format, int width, int height) 
++ void onSurfaceCreated(SurfaceHolder holder) 
++ void onSurfaceDestroyed(SurfaceHolder holder) 
++ void onOffsetsChanged(float xOffset, float yOffset, float xStep, float yStep, int xPixels, int yPixels) 
++ void onTouchEvent(MotionEvent event) 
++ void run() 
+- void drawCar(Canvas c) 
+		- boolean mVisible;
+		- float mPosY;
+ 
+}
+class com.novoda.wallpaper.ImageSwitchWallPaper {
+ + void onCreate() 
++ void onDestroy() 
++ Engine onCreateEngine() 
++ void onCreate(SurfaceHolder surfaceHolder) 
++ void onVisibilityChanged(boolean visible) 
++ void onSurfaceChanged(SurfaceHolder holder, int format, int width, int height) 
++ void onSurfaceCreated(SurfaceHolder holder) 
++ void onSurfaceDestroyed(SurfaceHolder holder) 
++ void onOffsetsChanged(float xOffset, float yOffset, float xStep, float yStep, int xPixels, int yPixels) 
++ void onTouchEvent(MotionEvent event) 
++ void run() 
+- void drawCar(Canvas c) 
+		- float mOffset;
+		- float mCenterX;
+		- float mCenterY;
+		- int carRightBitmap;
+		- int carLeftBitmap;
+		- int carFrontBitmap;
+		- int slidePic;
+		- boolean mVisible;
+		- float xLastOffset;
+ 
+}
+class com.tokenautocomplete.FilteredArrayAdapter
+class com.tokenautocomplete.HintSpan
+class com.tokenautocomplete.TokenCompleteTextView
+class novoda.audio.StreamerInterface {
+ + void onCreate(Bundle savedInstanceState) 
++ void onServiceConnected(ComponentName classname, IBinder service) 
++ void onServiceDisconnected(ComponentName name) 
+- OnClickListener getIFM1clickListener() 
+    + Context mAppContext;
+    + URL mTrackUrl;
+    - TextView mbtn_Ifm2;
+ 
+}
+class novoda.audio.service.AudioStreamService {
+ + IBinder onBind(Intent intent) 
++ void onPrepared(MediaPlayer mp) 
++ void onBufferingUpdate(MediaPlayer mp, int percent) 
++ void onCompletion(MediaPlayer mp) 
++ boolean onError(MediaPlayer mp, int what, int extra) 
++ void play(String audioTrackURL) 
++ void stop() 
++ String getFileName() 
++ long getPosition() 
++ int getState() 
++ void play(String url) 
++ long getCurrPlayingPosition() 
+        - int mAudioSrvState;
+        - MediaPlayer mMediaPlayer;
+        - String mAudioTrackURL;
+ 
+}
+class novoda.audio.service.IAudioStreamService
+class novoda.com.sandbox.Activity
+class novoda.com.sandbox.Application {
+ + {static} void setSignedIn() 
++ {static} void setSignedOut() 
++ {static} boolean isSignedIn() 
+ 
+}
+class novoda.com.sandbox.DetailsActivity {
+ + {static} Intent createIntent(String packageName) 
+# void onCreate(Bundle savedInstanceState) 
+- void setItem(String keyName, String value, @IdRes int id) 
+ 
+}
+class novoda.com.sandbox.MainActivity {
+ # void onCreate(Bundle savedInstanceState) 
+- void resetSignInStateOnRotation(Bundle savedInstanceState) 
++ void onClick(View v) 
+# void onResume() 
+- void refreshUi() 
+- void updateSignInState() 
+- void showData() 
+    - ArrayAdapter<String> adapter;
+    - Button signInButton;
+ 
+}
+class novoda.com.sandbox.SignInActivity {
+ + {static} Intent createIntent() 
+# void onCreate(Bundle savedInstanceState) 
+- boolean credentialsAreInvalid() 
++ void beforeTextChanged(CharSequence s, int start, int count, int after) 
++ void onTextChanged(CharSequence s, int start, int before, int count) 
++ void afterTextChanged(Editable s) 
+    - EditText userNameEditText;
+    - EditText passwordEditText;
+    - View submitButton;
+    - AlertDialog invalidCredentialsDialog;
+ 
+}
+class novoda.demo.Activity
+class novoda.demo.Carousel {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onKeyDown(int keyCode, KeyEvent event) 
++ void onActivityCreated(Bundle savedInstanceState) 
++ {static} CarouselFragment newInstance(int index) 
++ View onCreateView(
+	            LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+# void setSelectedId(long id) 
+    - {static} int count;
+    - int selectedCarouselItemIndex;
+	- TextView featuredId;
+    - {static} Context mContext;
+    - {static} CarouselFragment fragment;
+ 
+}
+class novoda.demo.GalleryAdapter {
+ + int getCount() 
++ Object getItem(int position) 
++ long getItemId(int position) 
++ View getView(int position, View convertView, ViewGroup parent) 
+    - final Context mContext;
+ 
+}
+class novoda.demo.GridViewAdapter {
+ + int getCount() 
++ Object getItem(int position) 
++ long getItemId(int position) 
++ View getView(int position, View convertView, ViewGroup parent) 
+    - final Context mContext;
+ 
+}
+class novoda.demo.LeftNavBarExample {
+ # void onCreate(Bundle savedInstanceState) 
++ View onCreateView(
+	            LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+    - {static} Context mContext;
+ 
+}
+class novoda.demo.LeftNavBarWrapper {
+ + void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
++ void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
++ void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) 
++ LeftNavBar newInstance() 
++ void leftNarBarInit(LeftNavBar bar) 
++ LeftNavBar getLeftNavBar() 
+- void setupTopActionBar() 
+- void setupCustomNavBarView() 
+- void applyCustomParams(ActionBar.LayoutParams params) 
+- {static} int nextDimension(int dimension) 
+- {static} int nextGravity(int gravity, boolean horizontal) 
+- void setupNavBarTabs() 
+ 
+}
+class novoda.demo.ToThis {
+ + void onCreate(Bundle savedInstanceState) 
+ 
+}
+class novoda.demo.TransitionFromThis {
+ + void onCreate(Bundle savedInstanceState) 
+ 
+}
+class novoda.demo.fragments.list.Constants {
+  
+}
+class novoda.demo.fragments.list.R
+class novoda.demo.fragments.list.activities.Details {
+ # void onCreate(Bundle savedInstanceState) 
++ boolean onOptionsItemSelected(android.view.MenuItem item) 
+~{static} void invoke(Activity activity) 
+ 
+}
+class novoda.demo.fragments.list.activities.List {
+ # void onCreate(Bundle savedInstanceState) 
+ 
+}
+class novoda.demo.fragments.list.frags.Detail {
+ + {static} Detail newInstance(int index) 
++ View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+ 
+}
+class novoda.demo.fragments.list.frags.List {
+ + void onActivityCreated(Bundle savedInstanceState) 
++ void onSaveInstanceState(Bundle outState) 
++ void onListItemClick(ListView l, View v, int position, long id) 
+ 
+}
+class org.apache.http.HttpEntity
+class org.apache.http.HttpResponse
+class org.apache.http.HttpStatus
+class org.apache.http.client.methods.HttpGet
+class org.apache.http.impl.client.DefaultHttpClient
+class org.hamcrest.Description
+class org.hamcrest.Matcher
+class org.hamcrest.MatcherAssert
+class org.hamcrest.Matchers
+class org.hamcrest.TypeSafeMatcher
+class org.junit.Assert
+class xyz.lgvalle.tddpersistence.DatabaseCleaner {
+ + void clean() 
+    - final TaskReaderDbHelper dbHelper;
+ 
+}
+class xyz.lgvalle.tddpersistence.PersistabilityTest {
+ + void setUp() 
++ void roundTripsPersistentObjects() 
+- void assertCanBePersisted(TestBuilder<Task> builder) 
+- void assertReloadsWithSameStateAs(Task original) 
+- Task persistedObjectFrom(TestBuilder<Task> builder) 
+    - TaskRepository taskRepository;
+    - TaskDBStorage storage;
+ 
+}
+class xyz.lgvalle.tddpersistence.TaskNamedMatcher {
+ # boolean matchesSafely(Task actualTask) 
++ void describeTo(Description description) 
++ {static} TaskNamedMatcher aTaskNamed(String expectedName) 
+    - String expectedName;
+ 
+}
+class xyz.lgvalle.tddpersistence.TaskRepositoryTest {
+ + void setUp() 
++ void findsExpiredTasks() 
+- void addTasks(final TaskBuilder... tasks) 
+- void assertTasksExpiringOn(String deadline, Matcher<Iterable<? extends Task>> taskMatcher) 
++ {static} TaskBuilder aTask() 
++ TaskBuilder withName(String name) 
++ TaskBuilder withExpirationDate(String strDate) 
++ Task build() 
+    - TaskRepository taskRepository;
+        - String name;
+        - Date date;
+ 
+}
+class xyz.lgvalle.tddpersistence.TaskRepositoryTest.TaskBuilder
+class xyz.lgvalle.tddpersistence.db.TaskReaderContract
+class xyz.lgvalle.tddpersistence.db.TaskReaderDbHelper
+interface View.OnClickListener
+interface android.hardware.SensorEventListener
+interface android.media.MediaPlayer.OnBufferingUpdateListener
+interface android.media.MediaPlayer.OnCompletionListener
+interface android.media.MediaPlayer.OnErrorListener
+interface android.media.MediaPlayer.OnPreparedListener
+interface android.text.TextWatcher
+interface android.view.View.OnTouchListener
+interface com.novoda.demo.tddpersistence.Task {
+ + String getName() 
++ Date getExpiration() 
++ boolean equals(Object o) 
++ int hashCode() 
+    - String name;
+    - Date expiration;
+ 
+}Storage
+interface com.novoda.demo.tddpersistence.TestBuilder {
+  
+}
+com.example.google.tv.leftnavbar.TabImpl --|> android.app.ActionBar.Tab
+com.novoda.demo.edittextchips.HintSafeTextWatcher --|> android.text.TextWatcher
+com.novoda.example.compass.activities.BasicSensorActivity --|> com.actionbarsherlock.app.SherlockFragmentActivity
+com.novoda.example.compass.activities.BasicSensorActivity --|> android.hardware.SensorEventListener
+com.example.google.tv.leftnavbar.LeftNavBar --|> android.app.ActionBar
+com.example.google.tv.leftnavbar.LeftNavView --|> android.widget.LinearLayout
+com.example.google.tv.leftnavbar.TabFrame --|> android.widget.LinearLayout
+com.example.google.tv.leftnavbar.TabListView --|> android.widget.ListView
+com.example.google.tv.leftnavbar.TitleBarView --|> android.widget.RelativeLayout
+com.novoda.AutoMultipleContacts --|> android.app.Activity
+com.novoda.ContactSelector --|> android.app.Activity
+com.novoda.DynamicListItems --|> android.app.ListActivity
+com.novoda.Encrypt --|> android.app.Activity
+com.novoda.HelloWebView --|> android.app.Activity
+com.novoda.Main --|> android.app.Activity
+com.novoda.Main --|> android.view.View.OnTouchListener
+com.novoda.SelfContainedTabHost --|> android.app.Activity
+com.novoda.Step1 --|> android.app.Activity
+com.novoda.Step2 --|> android.app.Activity
+com.novoda.Step3 --|> android.app.Activity
+com.novoda.StyledListItems --|> android.app.ListActivity
+com.novoda.Wizard --|> android.app.Activity
+com.novoda.activity.JsonRequest --|> android.app.Activity
+com.novoda.demo.edittextchips.MainActivity --|> android.app.Activity
+com.novoda.demo.edittextchips.eyeem.EyeemActivity --|> android.app.Activity
+com.novoda.demo.edittextchips.splitwise.HintTextWatcher --|> com.novoda.demo.edittextchips.HintSafeTextWatcher
+com.novoda.demo.edittextchips.splitwise.SplitwiseActivity --|> android.app.Activity
+com.novoda.demo.edittextchips.splitwise.TagView --|> android.widget.TextView
+com.novoda.demo.edittextchips.splitwise.TagsView --|> com.tokenautocomplete.TokenCompleteTextView
+com.novoda.demo.optionaldependencies.MainActivity --|> android.app.Activity
+com.novoda.demo.optionaldependencies.OptionalDependencies --|> com.novoda.demo.optionaldependencies.BaseOptionalDependencies
+com.novoda.demo.optionaldependencies.OptionalDependencyApplication --|> android.app.Application
+com.novoda.demo.tddpersistence.MainActivity --|> android.support.v7.app.AppCompatActivity
+com.novoda.demo.tddpersistence.TaskDBStorage --|> com.novoda.demo.tddpersistence.TaskStorage
+com.novoda.demo.tddpersistence.db.TaskReaderDbHelper --|> android.database.sqlite.SQLiteOpenHelper
+com.novoda.demo.wearbuildconfig.DemoActivity --|> android.app.Activity
+com.novoda.example.compass.NovoCompass --|> android.app.Application
+com.novoda.example.compass.activities.CompassActivity --|> com.novoda.example.compass.activities.BasicSensorActivity
+com.novoda.example.compass.view.RotatableImageView --|> android.view.View
+com.novoda.example.compass.view.RotatedImageView --|> android.view.View
+com.novoda.mapdemo.activity.NovodaMapActivity --|> android.support.v4.app.FragmentActivity
+com.novoda.mapdemo.fragment.NovodaMapFragment --|> com.google.android.gms.maps.SupportMapFragment
+com.novoda.mapdemo.fragment.SomeOtherFragment --|> android.support.v4.app.Fragment
+com.novoda.mapdemo.fragment.SomeOtherFragment --|> View.OnClickListener
+com.novoda.sms.SMS --|> android.app.Activity
+com.novoda.sms.SmsDeliveredReciever --|> android.content.BroadcastReceiver
+com.novoda.sms.SmsReceiver --|> android.content.BroadcastReceiver
+com.novoda.sms.SmsSentReciever --|> android.content.BroadcastReceiver
+com.novoda.wallpaper.AnimSwitchWallPaper --|> android.service.wallpaper.WallpaperService
+com.novoda.wallpaper.ImageSwitchWallPaper --|> android.service.wallpaper.WallpaperService
+novoda.audio.StreamerInterface --|> android.app.Activity
+novoda.audio.service.AudioStreamService --|> android.app.Service
+novoda.audio.service.AudioStreamService --|> android.media.MediaPlayer.OnBufferingUpdateListener
+novoda.audio.service.AudioStreamService --|> android.media.MediaPlayer.OnCompletionListener
+novoda.audio.service.AudioStreamService --|> android.media.MediaPlayer.OnErrorListener
+novoda.audio.service.AudioStreamService --|> android.media.MediaPlayer.OnPreparedListener
+novoda.com.sandbox.Application --|> android.app.Application
+novoda.com.sandbox.DetailsActivity --|> android.app.Activity
+novoda.com.sandbox.MainActivity --|> android.support.v7.app.AppCompatActivity
+novoda.com.sandbox.SignInActivity --|> novoda.com.sandbox.Activity
+novoda.demo.Carousel --|> android.app.Activity
+novoda.demo.GalleryAdapter --|> android.widget.BaseAdapter
+novoda.demo.GridViewAdapter --|> android.widget.BaseAdapter
+novoda.demo.LeftNavBarExample --|> novoda.demo.Activity
+novoda.demo.ToThis --|> android.app.Activity
+novoda.demo.TransitionFromThis --|> android.app.Activity
+novoda.demo.fragments.list.activities.Details --|> android.support.v4.app.FragmentActivity
+novoda.demo.fragments.list.activities.List --|> android.support.v4.app.FragmentActivity
+novoda.demo.fragments.list.frags.Detail --|> android.support.v4.app.Fragment
+novoda.demo.fragments.list.frags.List --|> android.support.v4.app.ListFragment
+xyz.lgvalle.tddpersistence.TaskNamedMatcher --|> org.hamcrest.TypeSafeMatcher
+@enduml
