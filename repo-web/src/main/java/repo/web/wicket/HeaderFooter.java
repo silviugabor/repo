@@ -38,7 +38,6 @@ public abstract class HeaderFooter extends AbstractWebPage {
 	
 	private CssClassNameAppender scrollClassAppender;
 	protected OxygenCarousel oxygenCarousel;
-//	protected NotificationPanel feedbackPanel;
 
 	@Override
 	protected void onInitialize() {
@@ -54,8 +53,6 @@ public abstract class HeaderFooter extends AbstractWebPage {
 		}
 		
 		add(createFooterHomePageLink());
-//		feedbackPanel = createFeedbackPanel();
-//		add(feedbackPanel);
 	}
 
 	public HeaderFooter() {
@@ -126,8 +123,6 @@ public abstract class HeaderFooter extends AbstractWebPage {
 		                Component component = components.getModelObject();
 		                components.add(component);
 		                components.add(scrollClassAppender);
-//		                if (components.getIndex() == 0)
-//		                	components.add(new CssClassNameAppender("active"));
 		            }
 				};
 			}
@@ -153,7 +148,7 @@ public abstract class HeaderFooter extends AbstractWebPage {
 	protected OxygenCarousel createCarouselSlider() throws IOException{
 		List<ICarouselImage> carouselImages = Arrays.asList(new CarouselImage(new ClassPathResource("images/slider/1.jpg", AbstractWebPage.class).getPath(), "Welcome to the <span>Repo Recommendations Project</span>", "You can get nice project recommendations just by supplying project descriptions."),
 																 new CarouselImage(new ClassPathResource("images/slider/2.jpg", AbstractWebPage.class).getPath(), "<span>GitHub</span> repos", "You'll be getting GitHub Repository references."),
-																 new CarouselImage(new ClassPathResource("images/slider/3.jpg", AbstractWebPage.class).getPath(), "<span>UML</span> Class Diagram", "Moreover, if the project is a Java project, you'll be furnished an UML diagram"));
+																 new CarouselImage(new ClassPathResource("images/slider/3.jpg", AbstractWebPage.class).getPath(), "<span>UML</span> Class Diagram", "Moreover, if the project is a Java project, you'll be provided with an UML diagram"));
 		OxygenCarousel carouselSlider = new OxygenCarousel("carouselSlider", Model.ofList(carouselImages), "http://localhost:8087/licenta/login#contact");
 		return carouselSlider;
 	}
